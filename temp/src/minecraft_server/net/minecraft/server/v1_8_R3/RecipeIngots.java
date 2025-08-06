@@ -1,0 +1,24 @@
+package net.minecraft.server.v1_8_R3;
+
+import net.minecraft.server.v1_8_R3.Block;
+import net.minecraft.server.v1_8_R3.Blocks;
+import net.minecraft.server.v1_8_R3.CraftingManager;
+import net.minecraft.server.v1_8_R3.EnumColor;
+import net.minecraft.server.v1_8_R3.ItemStack;
+import net.minecraft.server.v1_8_R3.Items;
+
+public class RecipeIngots {
+   private Object[][] a = new Object[][]{{Blocks.GOLD_BLOCK, new ItemStack(Items.GOLD_INGOT, 9)}, {Blocks.IRON_BLOCK, new ItemStack(Items.IRON_INGOT, 9)}, {Blocks.DIAMOND_BLOCK, new ItemStack(Items.DIAMOND, 9)}, {Blocks.EMERALD_BLOCK, new ItemStack(Items.EMERALD, 9)}, {Blocks.LAPIS_BLOCK, new ItemStack(Items.DYE, 9, EnumColor.BLUE.getInvColorIndex())}, {Blocks.REDSTONE_BLOCK, new ItemStack(Items.REDSTONE, 9)}, {Blocks.COAL_BLOCK, new ItemStack(Items.COAL, 9, 0)}, {Blocks.HAY_BLOCK, new ItemStack(Items.WHEAT, 9)}, {Blocks.SLIME, new ItemStack(Items.SLIME, 9)}};
+
+   public void a(CraftingManager p_a_1_) {
+      for(int i = 0; i < this.a.length; ++i) {
+         Block block = (Block)this.a[i][0];
+         ItemStack itemstack = (ItemStack)this.a[i][1];
+         p_a_1_.registerShapedRecipe(new ItemStack(block), new Object[]{"###", "###", "###", Character.valueOf('#'), itemstack});
+         p_a_1_.registerShapedRecipe(itemstack, new Object[]{"#", Character.valueOf('#'), block});
+      }
+
+      p_a_1_.registerShapedRecipe(new ItemStack(Items.GOLD_INGOT), new Object[]{"###", "###", "###", Character.valueOf('#'), Items.GOLD_NUGGET});
+      p_a_1_.registerShapedRecipe(new ItemStack(Items.GOLD_NUGGET, 9), new Object[]{"#", Character.valueOf('#'), Items.GOLD_INGOT});
+   }
+}

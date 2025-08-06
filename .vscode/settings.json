@@ -1,0 +1,21 @@
+{
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-1.8",
+            "path": "/home/cat2/.sdkman/candidates/java/8.0.422-zulu",
+            "default": true
+        }
+    ],
+    "python.defaultInterpreterPath": "/home/cat2/miniconda3/envs/2.7/bin/python2.7",
+    "python.condaPath": "/home/cat2/miniconda3/bin/conda",
+    "python.envFile": "",
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.defaultColorDecorators": "never",
+        "editor.formatOnType": true,
+        "editor.wordBasedSuggestions": "off"
+        
+    },
+    
+      
+}

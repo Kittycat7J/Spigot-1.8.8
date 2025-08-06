@@ -1,0 +1,266 @@
+package net.minecraft.server.v1_8_R3;
+
+import com.google.common.base.Predicate;
+import net.minecraft.server.v1_8_R3.AxisAlignedBB;
+import net.minecraft.server.v1_8_R3.Block;
+import net.minecraft.server.v1_8_R3.BlockPosition;
+import net.minecraft.server.v1_8_R3.Blocks;
+import net.minecraft.server.v1_8_R3.DamageSource;
+import net.minecraft.server.v1_8_R3.DifficultyDamageScaler;
+import net.minecraft.server.v1_8_R3.Entity;
+import net.minecraft.server.v1_8_R3.EntityAgeable;
+import net.minecraft.server.v1_8_R3.EntityAnimal;
+import net.minecraft.server.v1_8_R3.EntityChicken;
+import net.minecraft.server.v1_8_R3.EntityHuman;
+import net.minecraft.server.v1_8_R3.EntityTameableAnimal;
+import net.minecraft.server.v1_8_R3.GenericAttributes;
+import net.minecraft.server.v1_8_R3.GroupDataEntity;
+import net.minecraft.server.v1_8_R3.Item;
+import net.minecraft.server.v1_8_R3.ItemStack;
+import net.minecraft.server.v1_8_R3.Items;
+import net.minecraft.server.v1_8_R3.LocaleI18n;
+import net.minecraft.server.v1_8_R3.Material;
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.Navigation;
+import net.minecraft.server.v1_8_R3.PathfinderGoal;
+import net.minecraft.server.v1_8_R3.PathfinderGoalAvoidTarget;
+import net.minecraft.server.v1_8_R3.PathfinderGoalBreed;
+import net.minecraft.server.v1_8_R3.PathfinderGoalFloat;
+import net.minecraft.server.v1_8_R3.PathfinderGoalFollowOwner;
+import net.minecraft.server.v1_8_R3.PathfinderGoalJumpOnBlock;
+import net.minecraft.server.v1_8_R3.PathfinderGoalLeapAtTarget;
+import net.minecraft.server.v1_8_R3.PathfinderGoalLookAtPlayer;
+import net.minecraft.server.v1_8_R3.PathfinderGoalOcelotAttack;
+import net.minecraft.server.v1_8_R3.PathfinderGoalRandomStroll;
+import net.minecraft.server.v1_8_R3.PathfinderGoalRandomTargetNonTamed;
+import net.minecraft.server.v1_8_R3.PathfinderGoalTempt;
+import net.minecraft.server.v1_8_R3.World;
+import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+
+public class EntityOcelot extends EntityTameableAnimal {
+   private PathfinderGoalAvoidTarget<EntityHuman> bo;
+   private PathfinderGoalTempt bp;
+   public boolean spawnBonus = true;
+
+   public EntityOcelot(World p_i487_1_) {
+      super(p_i487_1_);
+      this.setSize(0.6F, 0.7F);
+      ((Navigation)this.getNavigation()).a(true);
+      this.goalSelector.a(1, new PathfinderGoalFloat(this));
+      this.goalSelector.a(2, this.bm);
+      this.goalSelector.a(3, this.bp = new PathfinderGoalTempt(this, 0.6D, Items.FISH, true));
+      this.goalSelector.a(5, new PathfinderGoalFollowOwner(this, 1.0D, 10.0F, 5.0F));
+      this.goalSelector.a(6, new PathfinderGoalJumpOnBlock(this, 0.8D));
+      this.goalSelector.a(7, new PathfinderGoalLeapAtTarget(this, 0.3F));
+      this.goalSelector.a(8, new PathfinderGoalOcelotAttack(this));
+      this.goalSelector.a(9, new PathfinderGoalBreed(this, 0.8D));
+      this.goalSelector.a(10, new PathfinderGoalRandomStroll(this, 0.8D));
+      this.goalSelector.a(11, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 10.0F));
+      this.targetSelector.a(1, new PathfinderGoalRandomTargetNonTamed(this, EntityChicken.class, false, (Predicate)null));
+   }
+
+   protected void h() {
+      super.h();
+      this.datawatcher.a(18, Byte.valueOf((byte)0));
+   }
+
+   public void E() {
+      if(this.getControllerMove().a()) {
+         double d0 = this.getControllerMove().b();
+         if(d0 == 0.6D) {
+            this.setSneaking(true);
+            this.setSprinting(false);
+         } else if(d0 == 1.33D) {
+            this.setSneaking(false);
+            this.setSprinting(true);
+         } else {
+            this.setSneaking(false);
+            this.setSprinting(false);
+         }
+      } else {
+         this.setSneaking(false);
+         this.setSprinting(false);
+      }
+
+   }
+
+   protected boolean isTypeNotPersistent() {
+      return !this.isTamed();
+   }
+
+   protected void initAttributes() {
+      super.initAttributes();
+      this.getAttributeInstance(GenericAttributes.maxHealth).setValue(10.0D);
+      this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.30000001192092896D);
+   }
+
+   public void e(float p_e_1_, float p_e_2_) {
+   }
+
+   public void b(NBTTagCompound p_b_1_) {
+      super.b(p_b_1_);
+      p_b_1_.setInt("CatType", this.getCatType());
+   }
+
+   public void a(NBTTagCompound p_a_1_) {
+      super.a(p_a_1_);
+      this.setCatType(p_a_1_.getInt("CatType"));
+   }
+
+   protected String z() {
+      return this.isTamed()?(this.isInLove()?"mob.cat.purr":(this.random.nextInt(4) == 0?"mob.cat.purreow":"mob.cat.meow")):"";
+   }
+
+   protected String bo() {
+      return "mob.cat.hitt";
+   }
+
+   protected String bp() {
+      return "mob.cat.hitt";
+   }
+
+   protected float bB() {
+      return 0.4F;
+   }
+
+   protected Item getLoot() {
+      return Items.LEATHER;
+   }
+
+   public boolean r(Entity p_r_1_) {
+      return p_r_1_.damageEntity(DamageSource.mobAttack(this), 3.0F);
+   }
+
+   protected void dropDeathLoot(boolean p_dropDeathLoot_1_, int p_dropDeathLoot_2_) {
+   }
+
+   public boolean a(EntityHuman p_a_1_) {
+      ItemStack itemstack = p_a_1_.inventory.getItemInHand();
+      if(this.isTamed()) {
+         if(this.e(p_a_1_) && !this.world.isClientSide && !this.d(itemstack)) {
+            this.bm.setSitting(!this.isSitting());
+         }
+      } else if(this.bp.f() && itemstack != null && itemstack.getItem() == Items.FISH && p_a_1_.h(this) < 9.0D) {
+         if(!p_a_1_.abilities.canInstantlyBuild) {
+            --itemstack.count;
+         }
+
+         if(itemstack.count <= 0) {
+            p_a_1_.inventory.setItem(p_a_1_.inventory.itemInHandIndex, (ItemStack)null);
+         }
+
+         if(!this.world.isClientSide) {
+            if(this.random.nextInt(3) == 0 && !CraftEventFactory.callEntityTameEvent(this, p_a_1_).isCancelled()) {
+               this.setTamed(true);
+               this.setCatType(1 + this.world.random.nextInt(3));
+               this.setOwnerUUID(p_a_1_.getUniqueID().toString());
+               this.l(true);
+               this.bm.setSitting(true);
+               this.world.broadcastEntityEffect(this, (byte)7);
+            } else {
+               this.l(false);
+               this.world.broadcastEntityEffect(this, (byte)6);
+            }
+         }
+
+         return true;
+      }
+
+      return super.a(p_a_1_);
+   }
+
+   public EntityOcelot b(EntityAgeable p_b_1_) {
+      EntityOcelot entityocelot = new EntityOcelot(this.world);
+      if(this.isTamed()) {
+         entityocelot.setOwnerUUID(this.getOwnerUUID());
+         entityocelot.setTamed(true);
+         entityocelot.setCatType(this.getCatType());
+      }
+
+      return entityocelot;
+   }
+
+   public boolean d(ItemStack p_d_1_) {
+      return p_d_1_ != null && p_d_1_.getItem() == Items.FISH;
+   }
+
+   public boolean mate(EntityAnimal p_mate_1_) {
+      if(p_mate_1_ == this) {
+         return false;
+      } else if(!this.isTamed()) {
+         return false;
+      } else if(!(p_mate_1_ instanceof EntityOcelot)) {
+         return false;
+      } else {
+         EntityOcelot entityocelot = (EntityOcelot)p_mate_1_;
+         return !entityocelot.isTamed()?false:this.isInLove() && entityocelot.isInLove();
+      }
+   }
+
+   public int getCatType() {
+      return this.datawatcher.getByte(18);
+   }
+
+   public void setCatType(int p_setCatType_1_) {
+      this.datawatcher.watch(18, Byte.valueOf((byte)p_setCatType_1_));
+   }
+
+   public boolean bR() {
+      return this.world.random.nextInt(3) != 0;
+   }
+
+   public boolean canSpawn() {
+      if(this.world.a((AxisAlignedBB)this.getBoundingBox(), (Entity)this) && this.world.getCubes(this, this.getBoundingBox()).isEmpty() && !this.world.containsLiquid(this.getBoundingBox())) {
+         BlockPosition blockposition = new BlockPosition(this.locX, this.getBoundingBox().b, this.locZ);
+         if(blockposition.getY() < this.world.F()) {
+            return false;
+         }
+
+         Block block = this.world.getType(blockposition.down()).getBlock();
+         if(block == Blocks.GRASS || block.getMaterial() == Material.LEAVES) {
+            return true;
+         }
+      }
+
+      return false;
+   }
+
+   public String getName() {
+      return this.hasCustomName()?this.getCustomName():(this.isTamed()?LocaleI18n.get("entity.Cat.name"):super.getName());
+   }
+
+   public void setTamed(boolean p_setTamed_1_) {
+      super.setTamed(p_setTamed_1_);
+   }
+
+   protected void cm() {
+      if(this.bo == null) {
+         this.bo = new PathfinderGoalAvoidTarget(this, EntityHuman.class, 16.0F, 0.8D, 1.33D);
+      }
+
+      this.goalSelector.a((PathfinderGoal)this.bo);
+      if(!this.isTamed()) {
+         this.goalSelector.a(4, this.bo);
+      }
+
+   }
+
+   public GroupDataEntity prepare(DifficultyDamageScaler p_prepare_1_, GroupDataEntity p_prepare_2_) {
+      p_prepare_2_ = super.prepare(p_prepare_1_, p_prepare_2_);
+      if(this.spawnBonus && this.world.random.nextInt(7) == 0) {
+         for(int i = 0; i < 2; ++i) {
+            EntityOcelot entityocelot = new EntityOcelot(this.world);
+            entityocelot.setPositionRotation(this.locX, this.locY, this.locZ, this.yaw, 0.0F);
+            entityocelot.setAgeRaw(-24000);
+            this.world.addEntity(entityocelot, SpawnReason.OCELOT_BABY);
+         }
+      }
+
+      return p_prepare_2_;
+   }
+
+   public EntityAgeable createChild(EntityAgeable p_createChild_1_) {
+      return this.b(p_createChild_1_);
+   }
+}

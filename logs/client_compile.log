@@ -1,0 +1,37 @@
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by scala.runtime.LazyVals$ (file:/home/cat2/.sdkman/candidates/scala/3.6.2/maven2/org/scala-lang/scala3-library_3/3.6.2/scala3-library_3-3.6.2.jar)
+WARNING: Please consider reporting this to the maintainers of class scala.runtime.LazyVals$
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+bad option '-target:jvm-1.6' was ignored
+[31m[31m-- [E057] Type Mismatch Error: src/minecraft/net/minecraft/block/BlockFlower.java:60:33 -------------------------------------------------------------------------------------------------------------------------------------[0m[0m
+[31m60 |[0m    public IProperty<BlockFlower.EnumFlowerType> getTypeProperty()
+[31m[31m   |[0m                                 ^[0m
+[31m   |[0m                                 Type argument net.minecraft.block.BlockFlower.EnumFlowerType does not conform to upper bound Comparable[net.minecraft.block.BlockFlower.EnumFlowerType]
+[31m   |[0m
+[31m   |[0m longer explanation available when compiling with `-explain`
+[31m[31m-- [E057] Type Mismatch Error: src/minecraft/net/minecraft/block/BlockRailPowered.java:166:35 -------------------------------------------------------------------------------------------------------------------------------[0m[0m
+[31m166 |[0m    public IProperty<BlockRailBase.EnumRailDirection> getShapeProperty()
+[31m[31m    |[0m                                   ^[0m
+[31m    |[0m                                   Type argument net.minecraft.block.BlockRailBase.EnumRailDirection does not conform to upper bound Comparable[net.minecraft.block.BlockRailBase.EnumRailDirection]
+[31m    |[0m
+[31m    |[0m longer explanation available when compiling with `-explain`
+[31m[31m-- [E057] Type Mismatch Error: src/minecraft/net/minecraft/block/BlockRail.java:28:35 ---------------------------------------------------------------------------------------------------------------------------------------[0m[0m
+[31m28 |[0m    public IProperty<BlockRailBase.EnumRailDirection> getShapeProperty()
+[31m[31m   |[0m                                   ^[0m
+[31m   |[0m                                   Type argument net.minecraft.block.BlockRailBase.EnumRailDirection does not conform to upper bound Comparable[net.minecraft.block.BlockRailBase.EnumRailDirection]
+[31m   |[0m
+[31m   |[0m longer explanation available when compiling with `-explain`
+[31m[31m-- [E057] Type Mismatch Error: src/minecraft/net/minecraft/block/BlockRailBase.java:182:44 ----------------------------------------------------------------------------------------------------------------------------------[0m[0m
+[31m182 |[0m    public [33mabstract[0m IProperty<BlockRailBase.EnumRailDirection> getShapeProperty();
+[31m[31m    |[0m                                            ^[0m
+[31m    |[0m                                            Type argument net.minecraft.block.BlockRailBase.EnumRailDirection does not conform to upper bound Comparable[net.minecraft.block.BlockRailBase.EnumRailDirection]
+[31m    |[0m
+[31m    |[0m longer explanation available when compiling with `-explain`
+[31m[31m-- [E057] Type Mismatch Error: src/minecraft/net/minecraft/block/BlockRailDetector.java:137:35 ------------------------------------------------------------------------------------------------------------------------------[0m[0m
+[31m137 |[0m    public IProperty<BlockRailBase.EnumRailDirection> getShapeProperty()
+[31m[31m    |[0m                                   ^[0m
+[31m    |[0m                                   Type argument net.minecraft.block.BlockRailBase.EnumRailDirection does not conform to upper bound Comparable[net.minecraft.block.BlockRailBase.EnumRailDirection]
+[31m    |[0m
+[31m    |[0m longer explanation available when compiling with `-explain`
+1 warning found
+5 errors found
