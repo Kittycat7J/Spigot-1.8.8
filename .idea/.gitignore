@@ -1,3 +1,10 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+/temp/
+/.vscode/
+/logs/
+/runtime/logs/
+/runtime/saves/
+/runtime/crash/
+/runtime/screenshots/
