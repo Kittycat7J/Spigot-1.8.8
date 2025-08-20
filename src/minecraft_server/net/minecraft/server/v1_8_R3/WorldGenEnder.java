@@ -4,56 +4,58 @@ import java.util.Random;
 
 public class WorldGenEnder extends WorldGenerator
 {
-    private Block a;
+    private Block baseBlockRequired;
 
     public WorldGenEnder(Block p_i708_1_)
     {
-        this.a = p_i708_1_;
+        this.baseBlockRequired = p_i708_1_;
     }
 
-    public boolean generate(World p_generate_1_, Random p_generate_2_, BlockPosition p_generate_3_)
+    public boolean generate(World worldIn, Random rand, BlockPosition position)
     {
-        if (p_generate_1_.isEmpty(p_generate_3_) && p_generate_1_.getType(p_generate_3_.down()).getBlock() == this.a)
+        if (worldIn.isEmpty(position) && worldIn.getType(position.down()).getBlock() == this.baseBlockRequired)
         {
-            int i = p_generate_2_.nextInt(32) + 6;
-            int j = p_generate_2_.nextInt(4) + 1;
+            int i = rand.nextInt(32) + 6;
+            int j = rand.nextInt(4) + 1;
+            logger.debug("WorldGenEnder.java i", i, "j", j, "position", position);
             BlockPosition.MutableBlockPosition blockposition$mutableblockposition = new BlockPosition.MutableBlockPosition();
 
-            for (int k = p_generate_3_.getX() - j; k <= p_generate_3_.getX() + j; ++k)
+            for (int k = position.getX() - j; k <= position.getX() + j; ++k)
             {
-                for (int l = p_generate_3_.getZ() - j; l <= p_generate_3_.getZ() + j; ++l)
+                for (int l = position.getZ() - j; l <= position.getZ() + j; ++l)
                 {
-                    int i1 = k - p_generate_3_.getX();
-                    int j1 = l - p_generate_3_.getZ();
+                    int i1 = k - position.getX();
+                    int j1 = l - position.getZ();
 
-                    if (i1 * i1 + j1 * j1 <= j * j + 1 && p_generate_1_.getType(blockposition$mutableblockposition.c(k, p_generate_3_.getY() - 1, l)).getBlock() != this.a)
+                    if (i1 * i1 + j1 * j1 <= j * j + 1 && worldIn.getType(blockposition$mutableblockposition.c(k, position.getY() - 1, l)).getBlock() != this.baseBlockRequired)
                     {
                         return false;
                     }
                 }
             }
 
-            for (int l1 = p_generate_3_.getY(); l1 < p_generate_3_.getY() + i && l1 < 256; ++l1)
+            for (int l1 = position.getY(); l1 < position.getY() + i && l1 < 256; ++l1)
             {
-                for (int i2 = p_generate_3_.getX() - j; i2 <= p_generate_3_.getX() + j; ++i2)
+                for (int i2 = position.getX() - j; i2 <= position.getX() + j; ++i2)
                 {
-                    for (int j2 = p_generate_3_.getZ() - j; j2 <= p_generate_3_.getZ() + j; ++j2)
+                    for (int j2 = position.getZ() - j; j2 <= position.getZ() + j; ++j2)
                     {
-                        int k2 = i2 - p_generate_3_.getX();
-                        int k1 = j2 - p_generate_3_.getZ();
+                        int k2 = i2 - position.getX();
+                        int k1 = j2 - position.getZ();
 
                         if (k2 * k2 + k1 * k1 <= j * j + 1)
                         {
-                            p_generate_1_.setTypeAndData(new BlockPosition(i2, l1, j2), Blocks.OBSIDIAN.getBlockData(), 2);
+                            worldIn.setTypeAndData(new BlockPosition(i2, l1, j2), Blocks.OBSIDIAN.getBlockData(), 2);
                         }
                     }
                 }
             }
 
-            EntityEnderCrystal entityendercrystal = new EntityEnderCrystal(p_generate_1_);
-            entityendercrystal.setPositionRotation((double)((float)p_generate_3_.getX() + 0.5F), (double)(p_generate_3_.getY() + i), (double)((float)p_generate_3_.getZ() + 0.5F), p_generate_2_.nextFloat() * 360.0F, 0.0F);
-            p_generate_1_.addEntity(entityendercrystal);
-            p_generate_1_.setTypeAndData(p_generate_3_.up(i), Blocks.BEDROCK.getBlockData(), 2);
+            EntityEnderCrystal entityendercrystal = new EntityEnderCrystal(worldIn);
+            entityendercrystal.setPositionRotation((double)((float)position.getX() + 0.5F), (double)(position.getY() + i), (double)((float)position.getZ() + 0.5F), rand.nextFloat() * 360.0F, 0.0F);
+            worldIn.addEntity(entityendercrystal);
+            worldIn.setTypeAndData(position.up(i), Blocks.BEDROCK.getBlockData(), 2);
+            logger.debug("WorldGenEnder.java Created new bedrock at", position, "and also", position.up(i));
             return true;
         }
         else

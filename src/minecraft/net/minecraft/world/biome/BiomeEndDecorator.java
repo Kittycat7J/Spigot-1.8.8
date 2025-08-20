@@ -17,7 +17,9 @@ public class BiomeEndDecorator extends BiomeDecorator
         {
             int i = this.randomGenerator.nextInt(16) + 8;
             int j = this.randomGenerator.nextInt(16) + 8;
+            logger.debug("BiomeEndDecorator.java i", i, "j", j);
             this.spikeGen.generate(this.currentWorld, this.randomGenerator, this.currentWorld.getTopSolidOrLiquidBlock(this.field_180294_c.add(i, 0, j)));
+            logger.debug("BiomeEndDecorator Spike generated at", this.field_180294_c.add(i, 0, j));
         }
 
         if (this.field_180294_c.getX() == 0 && this.field_180294_c.getZ() == 0)

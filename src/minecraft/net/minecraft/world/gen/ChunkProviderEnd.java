@@ -291,6 +291,7 @@ public class ChunkProviderEnd implements IChunkProvider
         BlockFalling.fallInstantly = true;
         BlockPos blockpos = new BlockPos(p_73153_2_ * 16, 0, p_73153_3_ * 16);
         this.endWorld.getBiomeGenForCoords(blockpos.add(16, 0, 16)).decorate(this.endWorld, this.endWorld.rand, blockpos);
+        logger.debug("ChunkProviderEnd.java decorate(this.endWorld, this.endWorld.rand, blockpos);")
         BlockFalling.fallInstantly = false;
     }
 

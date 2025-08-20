@@ -23,6 +23,7 @@ public class WorldGenSpikes extends WorldGenerator
         {
             int i = rand.nextInt(32) + 6;
             int j = rand.nextInt(4) + 1;
+            logger.debug("WorldGenSpikes.java i", i, "j", j, "position", position);
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
             for (int k = position.getX() - j; k <= position.getX() + j; ++k)
@@ -60,6 +61,7 @@ public class WorldGenSpikes extends WorldGenerator
             entity.setLocationAndAngles((double)((float)position.getX() + 0.5F), (double)(position.getY() + i), (double)((float)position.getZ() + 0.5F), rand.nextFloat() * 360.0F, 0.0F);
             worldIn.spawnEntityInWorld(entity);
             worldIn.setBlockState(position.up(i), Blocks.bedrock.getDefaultState(), 2);
+            logger.debug("WorldGenSpikes.java Created new bedrock at", position, "and also", position.up(i));
             return true;
         }
         else
