@@ -1,2 +1,2 @@
 #!/bin/bash
-python runtime/startclient.py "$@"
+python3 runtime/startclient.py "$@"
