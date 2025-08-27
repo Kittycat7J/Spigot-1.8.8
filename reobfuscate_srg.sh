@@ -1,2 +1,3 @@
 #!/bin/bash
-python runtime/reobfuscate.py --srgnames "$@"
+./docker_run.sh
+exec docker exec -it spigot-1.8.8-dev python runtime/reobfuscate.py --srgnames "$@"

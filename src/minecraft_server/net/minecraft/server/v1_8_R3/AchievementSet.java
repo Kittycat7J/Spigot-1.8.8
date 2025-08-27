@@ -7,35 +7,28 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 import java.util.Set;
 
-public class AchievementSet extends ForwardingSet<String> implements IJsonStatistic
-{
-    private final Set<String> a = Sets.<String>newHashSet();
+public class AchievementSet extends ForwardingSet<String> implements IJsonStatistic {
+   private final Set<String> a = Sets.<String>newHashSet();
 
-    public void a(JsonElement p_a_1_)
-    {
-        if (p_a_1_.isJsonArray())
-        {
-            for (JsonElement jsonelement : p_a_1_.getAsJsonArray())
-            {
-                this.add(jsonelement.getAsString());
-            }
-        }
-    }
+   public void a(JsonElement p_a_1_) {
+      if(p_a_1_.isJsonArray()) {
+         for(JsonElement jsonelement : p_a_1_.getAsJsonArray()) {
+            this.add(jsonelement.getAsString());
+         }
+      }
+   }
 
-    public JsonElement a()
-    {
-        JsonArray jsonarray = new JsonArray();
+   public JsonElement a() {
+      JsonArray jsonarray = new JsonArray();
 
-        for (String s : this)
-        {
-            jsonarray.add(new JsonPrimitive(s));
-        }
+      for(String s : this) {
+         jsonarray.add(new JsonPrimitive(s));
+      }
 
-        return jsonarray;
-    }
+      return jsonarray;
+   }
 
-    protected Set<String> delegate()
-    {
-        return this.a;
-    }
+   protected Set<String> delegate() {
+      return this.a;
+   }
 }

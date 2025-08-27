@@ -13,36 +13,28 @@ import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.chat.TranslatableComponent;
 
-public class ComponentSerializer implements JsonDeserializer<BaseComponent>
-{
-    private static final Gson gson = (new GsonBuilder()).registerTypeAdapter(BaseComponent.class, new ComponentSerializer()).registerTypeAdapter(TextComponent.class, new TextComponentSerializer()).registerTypeAdapter(TranslatableComponent.class, new TranslatableComponentSerializer()).create();
-    public static final ThreadLocal<HashSet<BaseComponent>> serializedComponents = new ThreadLocal();
+public class ComponentSerializer implements JsonDeserializer<BaseComponent> {
+   private static final Gson gson = (new GsonBuilder()).registerTypeAdapter(BaseComponent.class, new ComponentSerializer()).registerTypeAdapter(TextComponent.class, new TextComponentSerializer()).registerTypeAdapter(TranslatableComponent.class, new TranslatableComponentSerializer()).create();
+   public static final ThreadLocal<HashSet<BaseComponent>> serializedComponents = new ThreadLocal();
 
-    public static BaseComponent[] parse(String json)
-    {
-        return json.startsWith("[") ? (BaseComponent[])gson.fromJson(json, BaseComponent[].class) : new BaseComponent[] {(BaseComponent)gson.fromJson(json, BaseComponent.class)};
-    }
+   public static BaseComponent[] parse(String json) {
+      return json.startsWith("[")?(BaseComponent[])gson.fromJson(json, BaseComponent[].class):new BaseComponent[]{(BaseComponent)gson.fromJson(json, BaseComponent.class)};
+   }
 
-    public static String toString(BaseComponent component)
-    {
-        return gson.toJson((Object)component);
-    }
+   public static String toString(BaseComponent component) {
+      return gson.toJson((Object)component);
+   }
 
-    public static String toString(BaseComponent... components)
-    {
-        return gson.toJson((Object)(new TextComponent(components)));
-    }
+   public static String toString(BaseComponent... components) {
+      return gson.toJson((Object)(new TextComponent(components)));
+   }
 
-    public BaseComponent deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException
-    {
-        if (json.isJsonPrimitive())
-        {
-            return new TextComponent(json.getAsString());
-        }
-        else
-        {
-            JsonObject jsonobject = json.getAsJsonObject();
-            return jsonobject.has("translate") ? (BaseComponent)context.deserialize(json, TranslatableComponent.class) : (BaseComponent)context.deserialize(json, TextComponent.class);
-        }
-    }
+   public BaseComponent deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+      if(json.isJsonPrimitive()) {
+         return new TextComponent(json.getAsString());
+      } else {
+         JsonObject jsonobject = json.getAsJsonObject();
+         return jsonobject.has("translate")?(BaseComponent)context.deserialize(json, TranslatableComponent.class):(BaseComponent)context.deserialize(json, TextComponent.class);
+      }
+   }
 }

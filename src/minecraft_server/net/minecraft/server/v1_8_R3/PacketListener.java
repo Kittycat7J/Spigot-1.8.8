@@ -1,6 +1,5 @@
 package net.minecraft.server.v1_8_R3;
 
-public interface PacketListener
-{
-    void a(IChatBaseComponent var1);
+public interface PacketListener {
+   void a(IChatBaseComponent var1);
 }

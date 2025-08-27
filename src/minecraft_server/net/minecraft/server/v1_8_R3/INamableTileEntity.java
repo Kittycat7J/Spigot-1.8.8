@@ -1,10 +1,9 @@
 package net.minecraft.server.v1_8_R3;
 
-public interface INamableTileEntity
-{
-    String getName();
+public interface INamableTileEntity {
+   String getName();
 
-    boolean hasCustomName();
+   boolean hasCustomName();
 
-    IChatBaseComponent getScoreboardDisplayName();
+   IChatBaseComponent getScoreboardDisplayName();
 }

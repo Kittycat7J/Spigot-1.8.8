@@ -19,18 +19,19 @@ def main():
     parser.add_option('-c', '--config', dest='config', help='additional configuration file')
     parser.add_option('-m', '--main', dest='mainclass', help='Main class to start', default='Start')
     parser.add_option('-j', '--json', dest='json', action='store_true', help='Use the json file to setup parameters', default=False)
+    parser.add_option('-d', '--debug', dest='debug', action='store_true', help='Start the client in debug mode for IntelliJ (port 5005)', default=False)
     options, _ = parser.parse_args()
-    startclient(options.config, options.mainclass, options.json)
+    startclient(options.config, options.mainclass, options.json, options.debug)
     logging.info(options)
 
 
-def startclient(conffile, mainclass, jsonoverride):
+def startclient(conffile, mainclass, jsonoverride, debug):
     try:
         commands = Commands(conffile)
 
-        # Default debugger arguments
+        # Only add debugger arguments if debug is enabled
         debugger_args = "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
-        extraargs = debugger_args  # Start with the debugger arguments
+        extraargs = debugger_args if debug else ""
 
         if jsonoverride:
             jsonData = json.load(open(commands.jsonFile))

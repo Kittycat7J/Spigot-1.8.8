@@ -1,5 +1,4 @@
 package net.minecraft.server.v1_8_R3;
 
-public interface Registry<T> extends Iterable<T>
-{
+public interface Registry<T> extends Iterable<T> {
 }

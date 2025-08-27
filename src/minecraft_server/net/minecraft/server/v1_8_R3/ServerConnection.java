@@ -29,183 +29,140 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spigotmc.SpigotConfig;
 
-public class ServerConnection
-{
-    private static final Logger e = LogManager.getLogger();
-    public static final LazyInitVar<NioEventLoopGroup> a = new LazyInitVar()
-    {
-        protected NioEventLoopGroup a()
-        {
-            return new NioEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Server IO #%d").setDaemon(true).build());
-        }
-        protected Object init()
-        {
-            return this.a();
-        }
-    };
-    public static final LazyInitVar<EpollEventLoopGroup> b = new LazyInitVar()
-    {
-        protected EpollEventLoopGroup a()
-        {
-            return new EpollEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Epoll Server IO #%d").setDaemon(true).build());
-        }
-        protected Object init()
-        {
-            return this.a();
-        }
-    };
-    public static final LazyInitVar<LocalEventLoopGroup> c = new LazyInitVar()
-    {
-        protected LocalEventLoopGroup a()
-        {
-            return new LocalEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Local Server IO #%d").setDaemon(true).build());
-        }
-        protected Object init()
-        {
-            return this.a();
-        }
-    };
-    private final MinecraftServer f;
-    public volatile boolean d;
-    private final List<ChannelFuture> g = Collections.synchronizedList(Lists.newArrayList());
-    private final List<NetworkManager> h = Collections.synchronizedList(Lists.newArrayList());
+public class ServerConnection {
+   private static final Logger e = LogManager.getLogger();
+   public static final LazyInitVar<NioEventLoopGroup> a = new LazyInitVar() {
+      protected NioEventLoopGroup a() {
+         return new NioEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Server IO #%d").setDaemon(true).build());
+      }
 
-    public ServerConnection(MinecraftServer p_i278_1_)
-    {
-        this.f = p_i278_1_;
-        this.d = true;
-    }
+      protected Object init() {
+         return this.a();
+      }
+   };
+   public static final LazyInitVar<EpollEventLoopGroup> b = new LazyInitVar() {
+      protected EpollEventLoopGroup a() {
+         return new EpollEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Epoll Server IO #%d").setDaemon(true).build());
+      }
 
-    public void a(InetAddress p_a_1_, int p_a_2_) throws IOException
-    {
-        synchronized (this.g)
-        {
-            Class oclass;
-            LazyInitVar lazyinitvar;
+      protected Object init() {
+         return this.a();
+      }
+   };
+   public static final LazyInitVar<LocalEventLoopGroup> c = new LazyInitVar() {
+      protected LocalEventLoopGroup a() {
+         return new LocalEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Local Server IO #%d").setDaemon(true).build());
+      }
 
-            if (Epoll.isAvailable() && this.f.ai())
-            {
-                oclass = EpollServerSocketChannel.class;
-                lazyinitvar = b;
-                e.info("Using epoll channel type");
+      protected Object init() {
+         return this.a();
+      }
+   };
+   private final MinecraftServer f;
+   public volatile boolean d;
+   private final List<ChannelFuture> g = Collections.<ChannelFuture>synchronizedList(Lists.<ChannelFuture>newArrayList());
+   private final List<NetworkManager> h = Collections.<NetworkManager>synchronizedList(Lists.<NetworkManager>newArrayList());
+
+   public ServerConnection(MinecraftServer p_i278_1_) {
+      this.f = p_i278_1_;
+      this.d = true;
+   }
+
+   public void a(InetAddress p_a_1_, int p_a_2_) throws IOException {
+      synchronized(this.g) {
+         Class oclass;
+         LazyInitVar lazyinitvar;
+         if(Epoll.isAvailable() && this.f.ai()) {
+            oclass = EpollServerSocketChannel.class;
+            lazyinitvar = b;
+            e.info("Using epoll channel type");
+         } else {
+            oclass = NioServerSocketChannel.class;
+            lazyinitvar = a;
+            e.info("Using default channel type");
+         }
+
+         this.g.add(((ServerBootstrap)((ServerBootstrap)(new ServerBootstrap()).channel(oclass)).childHandler(new ChannelInitializer() {
+            protected void initChannel(Channel p_initChannel_1_) throws Exception {
+               try {
+                  p_initChannel_1_.config().setOption(ChannelOption.TCP_NODELAY, Boolean.valueOf(true));
+               } catch (ChannelException var3) {
+                  ;
+               }
+
+               p_initChannel_1_.pipeline().addLast((String)"timeout", (ChannelHandler)(new ReadTimeoutHandler(30))).addLast((String)"legacy_query", (ChannelHandler)(new LegacyPingHandler(ServerConnection.this))).addLast((String)"splitter", (ChannelHandler)(new PacketSplitter())).addLast((String)"decoder", (ChannelHandler)(new PacketDecoder(EnumProtocolDirection.SERVERBOUND))).addLast((String)"prepender", (ChannelHandler)(new PacketPrepender())).addLast((String)"encoder", (ChannelHandler)(new PacketEncoder(EnumProtocolDirection.CLIENTBOUND)));
+               NetworkManager networkmanager = new NetworkManager(EnumProtocolDirection.SERVERBOUND);
+               ServerConnection.this.h.add(networkmanager);
+               p_initChannel_1_.pipeline().addLast((String)"packet_handler", (ChannelHandler)networkmanager);
+               networkmanager.a((PacketListener)(new HandshakeListener(ServerConnection.this.f, networkmanager)));
             }
-            else
-            {
-                oclass = NioServerSocketChannel.class;
-                lazyinitvar = a;
-                e.info("Using default channel type");
-            }
+         }).group((EventLoopGroup)lazyinitvar.c()).localAddress(p_a_1_, p_a_2_)).bind().syncUninterruptibly());
+      }
+   }
 
-            this.g.add(((ServerBootstrap)((ServerBootstrap)(new ServerBootstrap()).channel(oclass)).childHandler(new ChannelInitializer()
-            {
-                protected void initChannel(Channel p_initChannel_1_) throws Exception
-                {
-                    try
-                    {
-                        p_initChannel_1_.config().setOption(ChannelOption.TCP_NODELAY, Boolean.valueOf(true));
-                    }
-                    catch (ChannelException var3)
-                    {
-                        ;
-                    }
+   public void b() {
+      this.d = false;
 
-                    p_initChannel_1_.pipeline().addLast((String)"timeout", (ChannelHandler)(new ReadTimeoutHandler(30))).addLast((String)"legacy_query", (ChannelHandler)(new LegacyPingHandler(ServerConnection.this))).addLast((String)"splitter", (ChannelHandler)(new PacketSplitter())).addLast((String)"decoder", (ChannelHandler)(new PacketDecoder(EnumProtocolDirection.SERVERBOUND))).addLast((String)"prepender", (ChannelHandler)(new PacketPrepender())).addLast((String)"encoder", (ChannelHandler)(new PacketEncoder(EnumProtocolDirection.CLIENTBOUND)));
-                    NetworkManager networkmanager = new NetworkManager(EnumProtocolDirection.SERVERBOUND);
-                    ServerConnection.this.h.add(networkmanager);
-                    p_initChannel_1_.pipeline().addLast((String)"packet_handler", (ChannelHandler)networkmanager);
-                    networkmanager.a((PacketListener)(new HandshakeListener(ServerConnection.this.f, networkmanager)));
-                }
-            }).group((EventLoopGroup)lazyinitvar.c()).localAddress(p_a_1_, p_a_2_)).bind().syncUninterruptibly());
-        }
-    }
+      for(ChannelFuture channelfuture : this.g) {
+         try {
+            channelfuture.channel().close().sync();
+         } catch (InterruptedException var3) {
+            e.error("Interrupted whilst closing channel");
+         }
+      }
+   }
 
-    public void b()
-    {
-        this.d = false;
+   public void c() {
+      synchronized(this.h) {
+         if(SpigotConfig.playerShuffle > 0 && MinecraftServer.currentTick % SpigotConfig.playerShuffle == 0) {
+            Collections.shuffle(this.h);
+         }
 
-        for (ChannelFuture channelfuture : this.g)
-        {
-            try
-            {
-                channelfuture.channel().close().sync();
-            }
-            catch (InterruptedException var3)
-            {
-                e.error("Interrupted whilst closing channel");
-            }
-        }
-    }
+         Iterator iterator = this.h.iterator();
 
-    public void c()
-    {
-        synchronized (this.h)
-        {
-            if (SpigotConfig.playerShuffle > 0 && MinecraftServer.currentTick % SpigotConfig.playerShuffle == 0)
-            {
-                Collections.shuffle(this.h);
-            }
+         while(iterator.hasNext()) {
+            final NetworkManager networkmanager = (NetworkManager)iterator.next();
+            if(!networkmanager.h()) {
+               if(!networkmanager.g()) {
+                  if(!networkmanager.preparing) {
+                     iterator.remove();
+                     networkmanager.l();
+                  }
+               } else {
+                  try {
+                     networkmanager.a();
+                  } catch (Exception exception) {
+                     if(networkmanager.c()) {
+                        CrashReport crashreport = CrashReport.a(exception, "Ticking memory connection");
+                        CrashReportSystemDetails crashreportsystemdetails = crashreport.a("Ticking connection");
+                        crashreportsystemdetails.a("Connection", new Callable() {
+                           public String a() throws Exception {
+                              return networkmanager.toString();
+                           }
 
-            Iterator iterator = this.h.iterator();
+                           public Object call() throws Exception {
+                              return this.a();
+                           }
+                        });
+                        throw new ReportedException(crashreport);
+                     }
 
-            while (iterator.hasNext())
-            {
-                final NetworkManager networkmanager = (NetworkManager)iterator.next();
-
-                if (!networkmanager.h())
-                {
-                    if (!networkmanager.g())
-                    {
-                        if (!networkmanager.preparing)
-                        {
-                            iterator.remove();
-                            networkmanager.l();
+                     e.warn((String)("Failed to handle packet for " + networkmanager.getSocketAddress()), (Throwable)exception);
+                     final ChatComponentText chatcomponenttext = new ChatComponentText("Internal server error");
+                     networkmanager.a(new PacketPlayOutKickDisconnect(chatcomponenttext), new GenericFutureListener() {
+                        public void operationComplete(Future p_operationComplete_1_) throws Exception {
+                           networkmanager.close(chatcomponenttext);
                         }
-                    }
-                    else
-                    {
-                        try
-                        {
-                            networkmanager.a();
-                        }
-                        catch (Exception exception)
-                        {
-                            if (networkmanager.c())
-                            {
-                                CrashReport crashreport = CrashReport.a(exception, "Ticking memory connection");
-                                CrashReportSystemDetails crashreportsystemdetails = crashreport.a("Ticking connection");
-                                crashreportsystemdetails.a("Connection", new Callable()
-                                {
-                                    public String a() throws Exception
-                                    {
-                                        return networkmanager.toString();
-                                    }
-                                    public Object call() throws Exception
-                                    {
-                                        return this.a();
-                                    }
-                                });
-                                throw new ReportedException(crashreport);
-                            }
-
-                            e.warn((String)("Failed to handle packet for " + networkmanager.getSocketAddress()), (Throwable)exception);
-                            final ChatComponentText chatcomponenttext = new ChatComponentText("Internal server error");
-                            networkmanager.a(new PacketPlayOutKickDisconnect(chatcomponenttext), new GenericFutureListener()
-                            {
-                                public void operationComplete(Future p_operationComplete_1_) throws Exception
-                                {
-                                    networkmanager.close(chatcomponenttext);
-                                }
-                            }, new GenericFutureListener[0]);
-                            networkmanager.k();
-                        }
-                    }
-                }
+                     }, new GenericFutureListener[0]);
+                     networkmanager.k();
+                  }
+               }
             }
-        }
-    }
+         }
+      }
+   }
 
-    public MinecraftServer d()
-    {
-        return this.f;
-    }
+   public MinecraftServer d() {
+      return this.f;
+   }
 }

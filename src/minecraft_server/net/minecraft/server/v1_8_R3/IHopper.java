@@ -1,12 +1,11 @@
 package net.minecraft.server.v1_8_R3;
 
-public interface IHopper extends IInventory
-{
-    World getWorld();
+public interface IHopper extends IInventory {
+   World getWorld();
 
-    double A();
+   double A();
 
-    double B();
+   double B();
 
-    double C();
+   double C();
 }

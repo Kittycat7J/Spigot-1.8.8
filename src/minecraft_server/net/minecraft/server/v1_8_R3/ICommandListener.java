@@ -1,24 +1,23 @@
 package net.minecraft.server.v1_8_R3;
 
-public interface ICommandListener
-{
-    String getName();
+public interface ICommandListener {
+   String getName();
 
-    IChatBaseComponent getScoreboardDisplayName();
+   IChatBaseComponent getScoreboardDisplayName();
 
-    void sendMessage(IChatBaseComponent var1);
+   void sendMessage(IChatBaseComponent var1);
 
-    boolean a(int var1, String var2);
+   boolean a(int var1, String var2);
 
-    BlockPosition getChunkCoordinates();
+   BlockPosition getChunkCoordinates();
 
-    Vec3D d();
+   Vec3D d();
 
-    World getWorld();
+   World getWorld();
 
-    Entity f();
+   Entity f();
 
-    boolean getSendCommandFeedback();
+   boolean getSendCommandFeedback();
 
-    void a(CommandObjectiveExecutor.EnumCommandResult var1, int var2);
+   void a(CommandObjectiveExecutor.EnumCommandResult var1, int var2);
 }

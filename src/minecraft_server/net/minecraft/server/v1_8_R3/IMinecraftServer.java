@@ -1,44 +1,43 @@
 package net.minecraft.server.v1_8_R3;
 
-public interface IMinecraftServer
-{
-    int a(String var1, int var2);
+public interface IMinecraftServer {
+   int a(String var1, int var2);
 
-    String a(String var1, String var2);
+   String a(String var1, String var2);
 
-    void a(String var1, Object var2);
+   void a(String var1, Object var2);
 
-    void a();
+   void a();
 
-    String b();
+   String b();
 
-    String E();
+   String E();
 
-    int F();
+   int F();
 
-    String G();
+   String G();
 
-    String getVersion();
+   String getVersion();
 
-    int I();
+   int I();
 
-    int J();
+   int J();
 
-    String[] getPlayers();
+   String[] getPlayers();
 
-    String U();
+   String U();
 
-    String getPlugins();
+   String getPlugins();
 
-    String executeRemoteCommand(String var1);
+   String executeRemoteCommand(String var1);
 
-    boolean isDebugging();
+   boolean isDebugging();
 
-    void info(String var1);
+   void info(String var1);
 
-    void warning(String var1);
+   void warning(String var1);
 
-    void g(String var1);
+   void g(String var1);
 
-    void h(String var1);
+   void h(String var1);
 }

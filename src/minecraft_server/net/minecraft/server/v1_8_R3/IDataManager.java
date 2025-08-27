@@ -3,27 +3,26 @@ package net.minecraft.server.v1_8_R3;
 import java.io.File;
 import java.util.UUID;
 
-public interface IDataManager
-{
-    WorldData getWorldData();
+public interface IDataManager {
+   WorldData getWorldData();
 
-    void checkSession() throws ExceptionWorldConflict;
+   void checkSession() throws ExceptionWorldConflict;
 
-    IChunkLoader createChunkLoader(WorldProvider var1);
+   IChunkLoader createChunkLoader(WorldProvider var1);
 
-    void saveWorldData(WorldData var1, NBTTagCompound var2);
+   void saveWorldData(WorldData var1, NBTTagCompound var2);
 
-    void saveWorldData(WorldData var1);
+   void saveWorldData(WorldData var1);
 
-    IPlayerFileData getPlayerFileData();
+   IPlayerFileData getPlayerFileData();
 
-    void a();
+   void a();
 
-    File getDirectory();
+   File getDirectory();
 
-    File getDataFile(String var1);
+   File getDataFile(String var1);
 
-    String g();
+   String g();
 
-    UUID getUUID();
+   UUID getUUID();
 }
