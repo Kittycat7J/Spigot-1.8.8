@@ -101,7 +101,7 @@ public class ChatDeserializer {
    }
 
    public static String d(JsonElement p_d_0_) {
-      String s = StringUtils.abbreviateMiddle(String.valueOf(p_d_0_), "...", 10);
+      String s = StringUtils.abbreviateMiddle(String.valueOf((Object)p_d_0_), "...", 10);
       if(p_d_0_ == null) {
          return "null (missing)";
       } else if(p_d_0_.isJsonNull()) {

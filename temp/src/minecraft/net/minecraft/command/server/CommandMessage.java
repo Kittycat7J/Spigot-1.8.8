@@ -16,7 +16,7 @@ import net.minecraft.util.IChatComponent;
 
 public class CommandMessage extends CommandBase {
    public List<String> func_71514_a() {
-      return Arrays.asList(new String[]{"w", "msg"});
+      return Arrays.<String>asList(new String[]{"w", "msg"});
    }
 
    public String func_71517_b() {

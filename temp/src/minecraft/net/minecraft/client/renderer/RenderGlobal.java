@@ -1960,7 +1960,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
       final int field_178032_d;
 
       private ContainerLocalRenderInformation(RenderChunk p_i46248_2_, EnumFacing p_i46248_3_, int p_i46248_4_) {
-         this.field_178035_c = EnumSet.noneOf(EnumFacing.class);
+         this.field_178035_c = EnumSet.<EnumFacing>noneOf(EnumFacing.class);
          this.field_178036_a = p_i46248_2_;
          this.field_178034_b = p_i46248_3_;
          this.field_178032_d = p_i46248_4_;

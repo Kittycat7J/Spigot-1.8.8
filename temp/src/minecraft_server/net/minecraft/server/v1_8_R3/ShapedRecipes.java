@@ -170,6 +170,6 @@ public class ShapedRecipes implements IRecipe {
    }
 
    public List<ItemStack> getIngredients() {
-      return Arrays.asList(this.items);
+      return Arrays.<ItemStack>asList(this.items);
    }
 }

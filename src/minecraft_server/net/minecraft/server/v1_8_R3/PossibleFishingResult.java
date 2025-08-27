@@ -2,57 +2,46 @@ package net.minecraft.server.v1_8_R3;
 
 import java.util.Random;
 
-public class PossibleFishingResult extends WeightedRandom.WeightedRandomChoice
-{
-    private final ItemStack b;
-    private float c;
-    private boolean d;
+public class PossibleFishingResult extends WeightedRandom.WeightedRandomChoice {
+   private final ItemStack b;
+   private float c;
+   private boolean d;
 
-    public PossibleFishingResult(ItemStack p_i1215_1_, int p_i1215_2_)
-    {
-        super(p_i1215_2_);
-        this.b = p_i1215_1_;
-    }
+   public PossibleFishingResult(ItemStack p_i1215_1_, int p_i1215_2_) {
+      super(p_i1215_2_);
+      this.b = p_i1215_1_;
+   }
 
-    public ItemStack a(Random p_a_1_)
-    {
-        ItemStack itemstack = this.b.cloneItemStack();
+   public ItemStack a(Random p_a_1_) {
+      ItemStack itemstack = this.b.cloneItemStack();
+      if(this.c > 0.0F) {
+         int i = (int)(this.c * (float)this.b.j());
+         int j = itemstack.j() - p_a_1_.nextInt(p_a_1_.nextInt(i) + 1);
+         if(j > i) {
+            j = i;
+         }
 
-        if (this.c > 0.0F)
-        {
-            int i = (int)(this.c * (float)this.b.j());
-            int j = itemstack.j() - p_a_1_.nextInt(p_a_1_.nextInt(i) + 1);
+         if(j < 1) {
+            j = 1;
+         }
 
-            if (j > i)
-            {
-                j = i;
-            }
+         itemstack.setData(j);
+      }
 
-            if (j < 1)
-            {
-                j = 1;
-            }
+      if(this.d) {
+         EnchantmentManager.a(p_a_1_, itemstack, 30);
+      }
 
-            itemstack.setData(j);
-        }
+      return itemstack;
+   }
 
-        if (this.d)
-        {
-            EnchantmentManager.a(p_a_1_, itemstack, 30);
-        }
+   public PossibleFishingResult a(float p_a_1_) {
+      this.c = p_a_1_;
+      return this;
+   }
 
-        return itemstack;
-    }
-
-    public PossibleFishingResult a(float p_a_1_)
-    {
-        this.c = p_a_1_;
-        return this;
-    }
-
-    public PossibleFishingResult a()
-    {
-        this.d = true;
-        return this;
-    }
+   public PossibleFishingResult a() {
+      this.d = true;
+      return this;
+   }
 }

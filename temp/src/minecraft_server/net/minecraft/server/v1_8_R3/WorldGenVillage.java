@@ -15,7 +15,7 @@ import net.minecraft.server.v1_8_R3.World;
 import net.minecraft.server.v1_8_R3.WorldGenVillagePieces;
 
 public class WorldGenVillage extends StructureGenerator {
-   public static final List<BiomeBase> d = Arrays.asList(new BiomeBase[]{BiomeBase.PLAINS, BiomeBase.DESERT, BiomeBase.SAVANNA});
+   public static final List<BiomeBase> d = Arrays.<BiomeBase>asList(new BiomeBase[]{BiomeBase.PLAINS, BiomeBase.DESERT, BiomeBase.SAVANNA});
    private int f;
    private int g;
    private int h;

@@ -19,7 +19,7 @@ public class RegistrySimple<K, V> implements IRegistry<K, V> {
    }
 
    public V get(K p_get_1_) {
-      return (V)this.c.get(p_get_1_);
+      return this.c.get(p_get_1_);
    }
 
    public void a(K p_a_1_, V p_a_2_) {
@@ -33,7 +33,7 @@ public class RegistrySimple<K, V> implements IRegistry<K, V> {
    }
 
    public Set<K> keySet() {
-      return Collections.unmodifiableSet(this.c.keySet());
+      return Collections.<K>unmodifiableSet(this.c.keySet());
    }
 
    public boolean d(K p_d_1_) {

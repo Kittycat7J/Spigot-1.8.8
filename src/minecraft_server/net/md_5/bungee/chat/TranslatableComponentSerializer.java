@@ -12,34 +12,27 @@ import java.util.Arrays;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TranslatableComponent;
 
-public class TranslatableComponentSerializer extends BaseComponentSerializer implements JsonSerializer<TranslatableComponent>, JsonDeserializer<TranslatableComponent>
-{
-    public TranslatableComponent deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException
-    {
-        TranslatableComponent translatablecomponent = new TranslatableComponent();
-        JsonObject jsonobject = json.getAsJsonObject();
-        this.deserialize((JsonObject)jsonobject, (BaseComponent)translatablecomponent, context);
-        translatablecomponent.setTranslate(jsonobject.get("translate").getAsString());
+public class TranslatableComponentSerializer extends BaseComponentSerializer implements JsonSerializer<TranslatableComponent>, JsonDeserializer<TranslatableComponent> {
+   public TranslatableComponent deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+      TranslatableComponent translatablecomponent = new TranslatableComponent();
+      JsonObject jsonobject = json.getAsJsonObject();
+      this.deserialize((JsonObject)jsonobject, (BaseComponent)translatablecomponent, context);
+      translatablecomponent.setTranslate(jsonobject.get("translate").getAsString());
+      if(jsonobject.has("with")) {
+         translatablecomponent.setWith(Arrays.<BaseComponent>asList((BaseComponent[])((BaseComponent[])context.deserialize(jsonobject.get("with"), BaseComponent[].class))));
+      }
 
-        if (jsonobject.has("with"))
-        {
-            translatablecomponent.setWith(Arrays.asList((BaseComponent[])((BaseComponent[])context.deserialize(jsonobject.get("with"), BaseComponent[].class))));
-        }
+      return translatablecomponent;
+   }
 
-        return translatablecomponent;
-    }
+   public JsonElement serialize(TranslatableComponent src, Type typeOfSrc, JsonSerializationContext context) {
+      JsonObject jsonobject = new JsonObject();
+      this.serialize((JsonObject)jsonobject, (BaseComponent)src, context);
+      jsonobject.addProperty("translate", src.getTranslate());
+      if(src.getWith() != null) {
+         jsonobject.add("with", context.serialize(src.getWith()));
+      }
 
-    public JsonElement serialize(TranslatableComponent src, Type typeOfSrc, JsonSerializationContext context)
-    {
-        JsonObject jsonobject = new JsonObject();
-        this.serialize((JsonObject)jsonobject, (BaseComponent)src, context);
-        jsonobject.addProperty("translate", src.getTranslate());
-
-        if (src.getWith() != null)
-        {
-            jsonobject.add("with", context.serialize(src.getWith()));
-        }
-
-        return jsonobject;
-    }
+      return jsonobject;
+   }
 }

@@ -103,7 +103,7 @@ public class CommandSpreadPlayers extends CommandBase {
          if(entity instanceof EntityPlayer) {
             set.add(((EntityPlayer)entity).func_96124_cp());
          } else {
-            set.add((Object)null);
+            set.add((Team)null);
          }
       }
 

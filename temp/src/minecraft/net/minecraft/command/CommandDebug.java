@@ -92,7 +92,7 @@ public class CommandDebug extends CommandBase {
       stringbuilder.append("\n\n");
       stringbuilder.append("Time span: ").append(p_147204_1_).append(" ms\n");
       stringbuilder.append("Tick span: ").append(p_147204_3_).append(" ticks\n");
-      stringbuilder.append("// This is approximately ").append(String.format("%.2f", new Object[]{Float.valueOf((float)p_147204_3_ / ((float)p_147204_1_ / 1000.0F))})).append(" ticks per second. It should be ").append(20).append(" ticks per second\n\n");
+      stringbuilder.append("// This is approximately ").append(String.format("%.2f", new Object[]{Float.valueOf((float)p_147204_3_ / ((float)p_147204_1_ / 1000.0F))})).append(" ticks per second. It should be ").append((int)20).append(" ticks per second\n\n");
       stringbuilder.append("--- BEGIN PROFILE DUMP ---\n\n");
       this.func_147202_a(0, "root", stringbuilder);
       stringbuilder.append("--- END PROFILE DUMP ---\n\n");
@@ -115,7 +115,7 @@ public class CommandDebug extends CommandBase {
                try {
                   this.func_147202_a(p_147202_1_ + 1, p_147202_2_ + "." + profiler$result.field_76331_c, p_147202_3_);
                } catch (Exception exception) {
-                  p_147202_3_.append("[[ EXCEPTION ").append(exception).append(" ]]");
+                  p_147202_3_.append("[[ EXCEPTION ").append((Object)exception).append(" ]]");
                }
             }
          }

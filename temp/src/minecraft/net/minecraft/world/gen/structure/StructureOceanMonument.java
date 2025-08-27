@@ -25,7 +25,7 @@ import net.minecraft.world.gen.structure.StructureStart;
 public class StructureOceanMonument extends MapGenStructure {
    private int field_175800_f;
    private int field_175801_g;
-   public static final List<BiomeGenBase> field_175802_d = Arrays.asList(new BiomeGenBase[]{BiomeGenBase.field_76771_b, BiomeGenBase.field_150575_M, BiomeGenBase.field_76781_i, BiomeGenBase.field_76776_l, BiomeGenBase.field_76777_m});
+   public static final List<BiomeGenBase> field_175802_d = Arrays.<BiomeGenBase>asList(new BiomeGenBase[]{BiomeGenBase.field_76771_b, BiomeGenBase.field_150575_M, BiomeGenBase.field_76781_i, BiomeGenBase.field_76776_l, BiomeGenBase.field_76777_m});
    private static final List<BiomeGenBase.SpawnListEntry> field_175803_h = Lists.<BiomeGenBase.SpawnListEntry>newArrayList();
 
    public StructureOceanMonument() {

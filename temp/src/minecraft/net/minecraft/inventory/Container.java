@@ -28,7 +28,7 @@ public abstract class Container {
    protected Slot func_75146_a(Slot p_75146_1_) {
       p_75146_1_.field_75222_d = this.field_75151_b.size();
       this.field_75151_b.add(p_75146_1_);
-      this.field_75153_a.add((Object)null);
+      this.field_75153_a.add((ItemStack)null);
       return p_75146_1_;
    }
 

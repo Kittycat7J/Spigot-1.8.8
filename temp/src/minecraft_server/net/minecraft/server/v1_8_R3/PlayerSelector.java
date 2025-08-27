@@ -73,7 +73,7 @@ public class PlayerSelector {
       if(matcher.matches() && p_getPlayers_0_.a(1, "@")) {
          Map map = c(matcher.group(2));
          if(!b(p_getPlayers_0_, map)) {
-            return Collections.emptyList();
+            return Collections.<T>emptyList();
          } else {
             String s = matcher.group(1);
             BlockPosition blockposition = b(map, p_getPlayers_0_.getChunkCoordinates());
@@ -98,7 +98,7 @@ public class PlayerSelector {
             return a(arraylist, map, p_getPlayers_0_, (Class)p_getPlayers_2_, (String)s, blockposition);
          }
       } else {
-         return Collections.emptyList();
+         return Collections.<T>emptyList();
       }
    }
 
@@ -388,10 +388,10 @@ public class PlayerSelector {
       int i = a(p_a_1_, "c", !p_a_4_.equals("a") && !p_a_4_.equals("e")?1:0);
       if(!p_a_4_.equals("p") && !p_a_4_.equals("a") && !p_a_4_.equals("e")) {
          if(p_a_4_.equals("r")) {
-            Collections.shuffle((List)p_a_0_);
+            Collections.shuffle((List<?>)p_a_0_);
          }
       } else if(p_a_5_ != null) {
-         Collections.sort((List)p_a_0_, new Comparator<Entity>() {
+         Collections.sort((List<T>)p_a_0_, new Comparator<Entity>() {
             public int a(Entity p_a_1_, Entity p_a_2_) {
                return ComparisonChain.start().compare(p_a_1_.b(p_a_5_), p_a_2_.b(p_a_5_)).result();
             }
@@ -405,7 +405,7 @@ public class PlayerSelector {
 
       if(i != 0) {
          if(i < 0) {
-            Collections.reverse((List)p_a_0_);
+            Collections.reverse((List<?>)p_a_0_);
          }
 
          p_a_0_ = ((List)p_a_0_).subList(0, Math.min(Math.abs(i), ((List)p_a_0_).size()));

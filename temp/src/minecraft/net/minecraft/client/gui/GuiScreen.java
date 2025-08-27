@@ -129,7 +129,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
    }
 
    protected void func_146279_a(String p_146279_1_, int p_146279_2_, int p_146279_3_) {
-      this.func_146283_a(Arrays.asList(new String[]{p_146279_1_}), p_146279_2_, p_146279_3_);
+      this.func_146283_a(Arrays.<String>asList(new String[]{p_146279_1_}), p_146279_2_, p_146279_3_);
    }
 
    protected void func_146283_a(List<String> p_146283_1_, int p_146283_2_, int p_146283_3_) {

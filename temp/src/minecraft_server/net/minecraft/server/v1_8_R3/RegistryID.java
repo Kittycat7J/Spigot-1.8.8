@@ -16,7 +16,7 @@ public class RegistryID<T> implements Registry<T> {
       this.a.put(p_a_1_, Integer.valueOf(p_a_2_));
 
       while(this.b.size() <= p_a_2_) {
-         this.b.add((Object)null);
+         this.b.add(null);
       }
 
       this.b.set(p_a_2_, p_a_1_);

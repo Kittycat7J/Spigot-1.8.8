@@ -20,7 +20,7 @@ public class TranslatableComponentSerializer extends BaseComponentSerializer imp
       this.deserialize((JsonObject)jsonobject, (BaseComponent)translatablecomponent, context);
       translatablecomponent.setTranslate(jsonobject.get("translate").getAsString());
       if(jsonobject.has("with")) {
-         translatablecomponent.setWith(Arrays.asList((BaseComponent[])((BaseComponent[])context.deserialize(jsonobject.get("with"), BaseComponent[].class))));
+         translatablecomponent.setWith(Arrays.<BaseComponent>asList((BaseComponent[])((BaseComponent[])context.deserialize(jsonobject.get("with"), BaseComponent[].class))));
       }
 
       return translatablecomponent;

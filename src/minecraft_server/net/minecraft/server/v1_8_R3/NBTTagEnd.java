@@ -4,29 +4,23 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public class NBTTagEnd extends NBTBase
-{
-    void load(DataInput p_load_1_, int p_load_2_, NBTReadLimiter p_load_3_) throws IOException
-    {
-        p_load_3_.a(64L);
-    }
+public class NBTTagEnd extends NBTBase {
+   void load(DataInput p_load_1_, int p_load_2_, NBTReadLimiter p_load_3_) throws IOException {
+      p_load_3_.a(64L);
+   }
 
-    void write(DataOutput p_write_1_) throws IOException
-    {
-    }
+   void write(DataOutput p_write_1_) throws IOException {
+   }
 
-    public byte getTypeId()
-    {
-        return (byte)0;
-    }
+   public byte getTypeId() {
+      return (byte)0;
+   }
 
-    public String toString()
-    {
-        return "END";
-    }
+   public String toString() {
+      return "END";
+   }
 
-    public NBTBase clone()
-    {
-        return new NBTTagEnd();
-    }
+   public NBTBase clone() {
+      return new NBTTagEnd();
+   }
 }

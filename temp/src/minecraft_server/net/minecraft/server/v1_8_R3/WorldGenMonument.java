@@ -25,7 +25,7 @@ import net.minecraft.server.v1_8_R3.WorldGenMonumentPieces;
 public class WorldGenMonument extends StructureGenerator {
    private int f;
    private int g;
-   public static final List<BiomeBase> d = Arrays.asList(new BiomeBase[]{BiomeBase.OCEAN, BiomeBase.DEEP_OCEAN, BiomeBase.RIVER, BiomeBase.FROZEN_OCEAN, BiomeBase.FROZEN_RIVER});
+   public static final List<BiomeBase> d = Arrays.<BiomeBase>asList(new BiomeBase[]{BiomeBase.OCEAN, BiomeBase.DEEP_OCEAN, BiomeBase.RIVER, BiomeBase.FROZEN_OCEAN, BiomeBase.FROZEN_RIVER});
    private static final List<BiomeBase.BiomeMeta> h = Lists.<BiomeBase.BiomeMeta>newArrayList();
 
    public WorldGenMonument() {

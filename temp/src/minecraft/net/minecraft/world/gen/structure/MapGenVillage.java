@@ -15,7 +15,7 @@ import net.minecraft.world.gen.structure.StructureStart;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
 
 public class MapGenVillage extends MapGenStructure {
-   public static final List<BiomeGenBase> field_75055_e = Arrays.asList(new BiomeGenBase[]{BiomeGenBase.field_76772_c, BiomeGenBase.field_76769_d, BiomeGenBase.field_150588_X});
+   public static final List<BiomeGenBase> field_75055_e = Arrays.<BiomeGenBase>asList(new BiomeGenBase[]{BiomeGenBase.field_76772_c, BiomeGenBase.field_76769_d, BiomeGenBase.field_150588_X});
    private int field_75054_f;
    private int field_82665_g;
    private int field_82666_h;

@@ -172,7 +172,7 @@ public class WorldLoaderServer extends WorldLoader {
          }
       }
 
-      File[] afile = file1.listFiles(new ChunkFilenameFilter());
+      File[] afile = file1.listFiles((FilenameFilter)(new ChunkFilenameFilter()));
       if(afile != null) {
          Collections.addAll(p_a_2_, afile);
       }

@@ -10,7 +10,7 @@ import net.minecraft.server.v1_8_R3.World;
 
 public class RecipeMapClone extends ShapelessRecipes implements IRecipe {
    public RecipeMapClone() {
-      super(new ItemStack(Items.MAP, 0, -1), Arrays.asList(new ItemStack[]{new ItemStack(Items.MAP, 0, 0)}));
+      super(new ItemStack(Items.MAP, 0, -1), Arrays.<ItemStack>asList(new ItemStack[]{new ItemStack(Items.MAP, 0, 0)}));
    }
 
    public boolean a(InventoryCrafting p_a_1_, World p_a_2_) {

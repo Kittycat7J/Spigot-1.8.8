@@ -28,7 +28,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance {
       this.field_111132_f = p_i1608_2_.func_111110_b();
 
       for(int i = 0; i < 3; ++i) {
-         this.field_111137_c.put(Integer.valueOf(i), Sets.newHashSet());
+         this.field_111137_c.put(Integer.valueOf(i), Sets.<AttributeModifier>newHashSet());
       }
 
    }

@@ -16,7 +16,7 @@ import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 
 public class RecipeRepair extends ShapelessRecipes implements IRecipe {
    public RecipeRepair() {
-      super(new ItemStack(Items.LEATHER_HELMET), Arrays.asList(new ItemStack[]{new ItemStack(Items.LEATHER_HELMET)}));
+      super(new ItemStack(Items.LEATHER_HELMET), Arrays.<ItemStack>asList(new ItemStack[]{new ItemStack(Items.LEATHER_HELMET)}));
    }
 
    public boolean a(InventoryCrafting p_a_1_, World p_a_2_) {

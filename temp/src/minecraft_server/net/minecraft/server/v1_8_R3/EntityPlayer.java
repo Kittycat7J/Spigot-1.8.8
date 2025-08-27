@@ -374,7 +374,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
             this.bL = this.getHealth() + this.getAbsorptionHearts();
 
             for(ScoreboardObjective scoreboardobjective : this.getScoreboard().getObjectivesForCriteria(IScoreboardCriteria.g)) {
-               this.getScoreboard().getPlayerScoreForObjective(this.getName(), scoreboardobjective).updateForList(Arrays.asList(new EntityHuman[]{this}));
+               this.getScoreboard().getPlayerScoreForObjective(this.getName(), scoreboardobjective).updateForList(Arrays.<EntityHuman>asList(new EntityHuman[]{this}));
             }
 
             this.world.getServer().getScoreboardManager().updateAllScoresForList(IScoreboardCriteria.g, this.getName(), ImmutableList.<EntityPlayer>of(this));

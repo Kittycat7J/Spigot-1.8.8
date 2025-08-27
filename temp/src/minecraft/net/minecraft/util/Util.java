@@ -13,7 +13,7 @@ public class Util {
    public static <V> V func_181617_a(FutureTask<V> p_181617_0_, Logger p_181617_1_) {
       try {
          p_181617_0_.run();
-         return (V)p_181617_0_.get();
+         return p_181617_0_.get();
       } catch (ExecutionException executionexception) {
          p_181617_1_.fatal((String)"Error executing task", (Throwable)executionexception);
       } catch (InterruptedException interruptedexception) {

@@ -35,7 +35,7 @@ public abstract class CommandBase implements ICommand {
    }
 
    public List<String> func_71514_a() {
-      return Collections.emptyList();
+      return Collections.<String>emptyList();
    }
 
    public boolean func_71519_b(ICommandSender p_71519_1_) {

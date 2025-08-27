@@ -54,7 +54,7 @@ public abstract class Container {
    protected Slot a(Slot p_a_1_) {
       p_a_1_.rawSlotIndex = this.c.size();
       this.c.add(p_a_1_);
-      this.b.add((Object)null);
+      this.b.add((ItemStack)null);
       return p_a_1_;
    }
 

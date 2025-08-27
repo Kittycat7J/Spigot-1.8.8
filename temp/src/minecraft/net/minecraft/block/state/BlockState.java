@@ -101,7 +101,7 @@ public class BlockState {
       }
 
       public Collection<IProperty> func_177227_a() {
-         return Collections.unmodifiableCollection(this.field_177237_b.keySet());
+         return Collections.<IProperty>unmodifiableCollection(this.field_177237_b.keySet());
       }
 
       public <T extends Comparable<T>> T func_177229_b(IProperty<T> p_177229_1_) {
@@ -147,7 +147,7 @@ public class BlockState {
             for(IProperty<? extends Comparable> iproperty : this.field_177237_b.keySet()) {
                for(Comparable comparable : iproperty.func_177700_c()) {
                   if(comparable != this.field_177237_b.get(iproperty)) {
-                     table.put(iproperty, comparable, (IBlockState)p_177235_1_.get(this.func_177236_b(iproperty, comparable)));
+                     table.put(iproperty, comparable, p_177235_1_.get(this.func_177236_b(iproperty, comparable)));
                   }
                }
             }

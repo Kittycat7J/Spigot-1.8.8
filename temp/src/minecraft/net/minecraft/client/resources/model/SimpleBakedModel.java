@@ -97,7 +97,7 @@ public class SimpleBakedModel implements IBakedModel {
          this.field_177654_b = Lists.<List<BakedQuad>>newArrayListWithCapacity(6);
 
          for(EnumFacing enumfacing : EnumFacing.values()) {
-            this.field_177654_b.add(Lists.newArrayList());
+            this.field_177654_b.add(Lists.<BakedQuad>newArrayList());
          }
 
          this.field_177655_c = p_i46076_1_;

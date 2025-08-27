@@ -88,7 +88,7 @@ public class GuiSpectator extends Gui implements ISpectatorMenuRecipient {
          GlStateManager.func_179131_c(f, f, f, p_175266_4_);
          p_175266_5_.func_178663_a(f, i);
          GlStateManager.func_179121_F();
-         String s = String.valueOf(GameSettings.func_74298_c(this.field_175268_g.field_71474_y.field_151456_ac[p_175266_1_].func_151463_i()));
+         String s = String.valueOf((Object)GameSettings.func_74298_c(this.field_175268_g.field_71474_y.field_151456_ac[p_175266_1_].func_151463_i()));
          if(i > 3 && p_175266_5_.func_178662_A_()) {
             this.field_175268_g.field_71466_p.func_175063_a(s, (float)(p_175266_2_ + 19 - 2 - this.field_175268_g.field_71466_p.func_78256_a(s)), p_175266_3_ + 6.0F + 3.0F, 16777215 + (i << 24));
          }

@@ -141,7 +141,7 @@ public class LoginListener implements PacketLoginInListener, IUpdatePlayerListBo
    }
 
    public String d() {
-      return this.i != null?this.i.toString() + " (" + this.networkManager.getSocketAddress().toString() + ")":String.valueOf(this.networkManager.getSocketAddress());
+      return this.i != null?this.i.toString() + " (" + this.networkManager.getSocketAddress().toString() + ")":String.valueOf((Object)this.networkManager.getSocketAddress());
    }
 
    public void a(PacketLoginInStart p_a_1_) {
@@ -158,7 +158,7 @@ public class LoginListener implements PacketLoginInListener, IUpdatePlayerListBo
                   (LoginListener.this.new LoginHandler()).fireEvents();
                } catch (Exception exception) {
                   LoginListener.this.disconnect("Failed to verify username!");
-                  LoginListener.this.server.server.getLogger().log(Level.WARNING, "Exception verifying " + LoginListener.this.i.getName(), exception);
+                  LoginListener.this.server.server.getLogger().log(Level.WARNING, (String)("Exception verifying " + LoginListener.this.i.getName()), (Throwable)exception);
                }
 
             }
@@ -208,7 +208,7 @@ public class LoginListener implements PacketLoginInListener, IUpdatePlayerListBo
                   }
                } catch (Exception exception) {
                   LoginListener.this.disconnect("Failed to verify username!");
-                  LoginListener.this.server.server.getLogger().log(Level.WARNING, "Exception verifying " + gameprofile.getName(), exception);
+                  LoginListener.this.server.server.getLogger().log(Level.WARNING, (String)("Exception verifying " + gameprofile.getName()), (Throwable)exception);
                }
 
             }

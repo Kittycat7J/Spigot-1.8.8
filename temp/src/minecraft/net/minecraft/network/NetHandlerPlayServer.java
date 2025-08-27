@@ -355,7 +355,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
    }
 
    public void func_147364_a(double p_147364_1_, double p_147364_3_, double p_147364_5_, float p_147364_7_, float p_147364_8_) {
-      this.func_175089_a(p_147364_1_, p_147364_3_, p_147364_5_, p_147364_7_, p_147364_8_, Collections.emptySet());
+      this.func_175089_a(p_147364_1_, p_147364_3_, p_147364_5_, p_147364_7_, p_147364_8_, Collections.<S08PacketPlayerPosLook.EnumFlags>emptySet());
    }
 
    public void func_175089_a(double p_175089_1_, double p_175089_3_, double p_175089_5_, float p_175089_7_, float p_175089_8_, Set<S08PacketPlayerPosLook.EnumFlags> p_175089_9_) {

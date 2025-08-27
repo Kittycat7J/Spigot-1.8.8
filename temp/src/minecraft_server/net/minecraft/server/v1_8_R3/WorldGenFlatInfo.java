@@ -46,7 +46,7 @@ public class WorldGenFlatInfo {
 
    public String toString() {
       StringBuilder stringbuilder = new StringBuilder();
-      stringbuilder.append(3);
+      stringbuilder.append((int)3);
       stringbuilder.append(";");
 
       for(int i = 0; i < this.layers.size(); ++i) {
@@ -219,7 +219,7 @@ public class WorldGenFlatInfo {
                      }
                   }
                } else {
-                  worldgenflatinfo.b().put("village", Maps.newHashMap());
+                  worldgenflatinfo.b().put("village", Maps.<String, String>newHashMap());
                }
 
                return worldgenflatinfo;
@@ -239,7 +239,7 @@ public class WorldGenFlatInfo {
       worldgenflatinfo.c().add(new WorldGenFlatLayerInfo(2, Blocks.DIRT));
       worldgenflatinfo.c().add(new WorldGenFlatLayerInfo(1, Blocks.GRASS));
       worldgenflatinfo.d();
-      worldgenflatinfo.b().put("village", Maps.newHashMap());
+      worldgenflatinfo.b().put("village", Maps.<String, String>newHashMap());
       return worldgenflatinfo;
    }
 }

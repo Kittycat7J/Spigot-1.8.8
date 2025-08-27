@@ -88,6 +88,6 @@ public class ShapelessRecipes implements IRecipe {
    }
 
    public List<ItemStack> getIngredients() {
-      return Collections.unmodifiableList(this.ingredients);
+      return Collections.<ItemStack>unmodifiableList(this.ingredients);
    }
 }

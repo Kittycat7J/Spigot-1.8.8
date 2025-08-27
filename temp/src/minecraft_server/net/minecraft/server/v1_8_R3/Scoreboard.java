@@ -40,7 +40,7 @@ public class Scoreboard {
             Object object = (List)this.objectivesByCriteria.get(p_registerObjective_2_);
             if(object == null) {
                object = Lists.newArrayList();
-               this.objectivesByCriteria.put(p_registerObjective_2_, object);
+               this.objectivesByCriteria.put(p_registerObjective_2_, (List<ScoreboardObjective>)object);
             }
 
             ((List)object).add(scoreboardobjective);
@@ -73,7 +73,7 @@ public class Scoreboard {
          Object object = (Map)this.playerScores.get(p_getPlayerScoreForObjective_1_);
          if(object == null) {
             object = Maps.newHashMap();
-            this.playerScores.put(p_getPlayerScoreForObjective_1_, object);
+            this.playerScores.put(p_getPlayerScoreForObjective_1_, (Map<ScoreboardObjective, ScoreboardScore>)object);
          }
 
          ScoreboardScore scoreboardscore = (ScoreboardScore)((Map)object).get(p_getPlayerScoreForObjective_2_);

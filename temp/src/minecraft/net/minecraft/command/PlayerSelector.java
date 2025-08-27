@@ -71,7 +71,7 @@ public class PlayerSelector {
       if(matcher.matches() && p_179656_0_.func_70003_b(1, "@")) {
          Map<String, String> map = func_82381_h(matcher.group(2));
          if(!func_179655_b(p_179656_0_, map)) {
-            return Collections.emptyList();
+            return Collections.<T>emptyList();
          } else {
             String s = matcher.group(1);
             BlockPos blockpos = func_179664_b(map, p_179656_0_.func_180425_c());
@@ -96,7 +96,7 @@ public class PlayerSelector {
             return func_179658_a(list1, map, p_179656_0_, p_179656_2_, s, blockpos);
          }
       } else {
-         return Collections.emptyList();
+         return Collections.<T>emptyList();
       }
    }
 
@@ -347,16 +347,16 @@ public class PlayerSelector {
             if(l >= 0) {
                AxisAlignedBB axisalignedbb1 = new AxisAlignedBB((double)(p_179660_5_.func_177958_n() - l), (double)(p_179660_5_.func_177956_o() - l), (double)(p_179660_5_.func_177952_p() - l), (double)(p_179660_5_.func_177958_n() + l + 1), (double)(p_179660_5_.func_177956_o() + l + 1), (double)(p_179660_5_.func_177952_p() + l + 1));
                if(flag && flag2 && !flag1) {
-                  list.addAll(p_179660_4_.func_175661_b(p_179660_1_, predicate1));
+                  list.addAll(p_179660_4_.<T>func_175661_b(p_179660_1_, predicate1));
                } else {
-                  list.addAll(p_179660_4_.func_175647_a(p_179660_1_, axisalignedbb1, predicate1));
+                  list.addAll(p_179660_4_.<T>func_175647_a(p_179660_1_, axisalignedbb1, predicate1));
                }
             } else if(p_179660_3_.equals("a")) {
-               list.addAll(p_179660_4_.func_175661_b(p_179660_1_, predicate));
+               list.addAll(p_179660_4_.<T>func_175661_b(p_179660_1_, predicate));
             } else if(!p_179660_3_.equals("p") && (!p_179660_3_.equals("r") || flag1)) {
-               list.addAll(p_179660_4_.func_175644_a(p_179660_1_, predicate1));
+               list.addAll(p_179660_4_.<T>func_175644_a(p_179660_1_, predicate1));
             } else {
-               list.addAll(p_179660_4_.func_175661_b(p_179660_1_, predicate1));
+               list.addAll(p_179660_4_.<T>func_175661_b(p_179660_1_, predicate1));
             }
          } else {
             final AxisAlignedBB axisalignedbb = func_179661_a(p_179660_5_, i, j, k);
@@ -366,17 +366,17 @@ public class PlayerSelector {
                      return p_apply_1_.field_70165_t >= axisalignedbb.field_72340_a && p_apply_1_.field_70163_u >= axisalignedbb.field_72338_b && p_apply_1_.field_70161_v >= axisalignedbb.field_72339_c?p_apply_1_.field_70165_t < axisalignedbb.field_72336_d && p_apply_1_.field_70163_u < axisalignedbb.field_72337_e && p_apply_1_.field_70161_v < axisalignedbb.field_72334_f:false;
                   }
                };
-               list.addAll(p_179660_4_.func_175661_b(p_179660_1_, Predicates.<T>and(predicate1, predicate2)));
+               list.addAll(p_179660_4_.<T>func_175661_b(p_179660_1_, Predicates.<T>and(predicate1, predicate2)));
             } else {
-               list.addAll(p_179660_4_.func_175647_a(p_179660_1_, axisalignedbb, predicate1));
+               list.addAll(p_179660_4_.<T>func_175647_a(p_179660_1_, axisalignedbb, predicate1));
             }
          }
       } else if(p_179660_3_.equals("a")) {
-         list.addAll(p_179660_4_.func_175661_b(p_179660_1_, predicate));
+         list.addAll(p_179660_4_.<T>func_175661_b(p_179660_1_, predicate));
       } else if(!p_179660_3_.equals("p") && (!p_179660_3_.equals("r") || flag1)) {
-         list.addAll(p_179660_4_.func_175644_a(p_179660_1_, predicate1));
+         list.addAll(p_179660_4_.<T>func_175644_a(p_179660_1_, predicate1));
       } else {
-         list.addAll(p_179660_4_.func_175661_b(p_179660_1_, predicate1));
+         list.addAll(p_179660_4_.<T>func_175661_b(p_179660_1_, predicate1));
       }
 
       return list;
@@ -386,10 +386,10 @@ public class PlayerSelector {
       int i = func_179653_a(p_179658_1_, "c", !p_179658_4_.equals("a") && !p_179658_4_.equals("e")?1:0);
       if(!p_179658_4_.equals("p") && !p_179658_4_.equals("a") && !p_179658_4_.equals("e")) {
          if(p_179658_4_.equals("r")) {
-            Collections.shuffle((List)p_179658_0_);
+            Collections.shuffle((List<?>)p_179658_0_);
          }
       } else if(p_179658_5_ != null) {
-         Collections.sort((List)p_179658_0_, new Comparator<Entity>() {
+         Collections.sort((List<T>)p_179658_0_, new Comparator<Entity>() {
             public int compare(Entity p_compare_1_, Entity p_compare_2_) {
                return ComparisonChain.start().compare(p_compare_1_.func_174818_b(p_179658_5_), p_compare_2_.func_174818_b(p_179658_5_)).result();
             }
@@ -403,7 +403,7 @@ public class PlayerSelector {
 
       if(i != 0) {
          if(i < 0) {
-            Collections.reverse((List)p_179658_0_);
+            Collections.reverse((List<?>)p_179658_0_);
          }
 
          p_179658_0_ = ((List)p_179658_0_).subList(0, Math.min(Math.abs(i), ((List)p_179658_0_).size()));

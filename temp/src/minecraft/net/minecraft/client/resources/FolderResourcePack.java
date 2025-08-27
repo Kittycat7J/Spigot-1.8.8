@@ -3,6 +3,7 @@ package net.minecraft.client.resources;
 import com.google.common.collect.Sets;
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,7 +28,7 @@ public class FolderResourcePack extends AbstractResourcePack {
       Set<String> set = Sets.<String>newHashSet();
       File file1 = new File(this.field_110597_b, "assets/");
       if(file1.isDirectory()) {
-         for(File file2 : file1.listFiles(DirectoryFileFilter.DIRECTORY)) {
+         for(File file2 : file1.listFiles((FileFilter)DirectoryFileFilter.DIRECTORY)) {
             String s = func_110595_a(file1, file2);
             if(!s.equals(s.toLowerCase())) {
                this.func_110594_c(s);

@@ -36,7 +36,7 @@ public abstract class CommandAbstract implements ICommand {
    }
 
    public List<String> b() {
-      return Collections.emptyList();
+      return Collections.<String>emptyList();
    }
 
    public boolean canUse(ICommandListener p_canUse_1_) {

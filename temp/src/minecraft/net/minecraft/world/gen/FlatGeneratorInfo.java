@@ -44,7 +44,7 @@ public class FlatGeneratorInfo {
 
    public String toString() {
       StringBuilder stringbuilder = new StringBuilder();
-      stringbuilder.append(3);
+      stringbuilder.append((int)3);
       stringbuilder.append(";");
 
       for(int i = 0; i < this.field_82655_a.size(); ++i) {
@@ -217,7 +217,7 @@ public class FlatGeneratorInfo {
                      }
                   }
                } else {
-                  flatgeneratorinfo.func_82644_b().put("village", Maps.newHashMap());
+                  flatgeneratorinfo.func_82644_b().put("village", Maps.<String, String>newHashMap());
                }
 
                return flatgeneratorinfo;
@@ -237,7 +237,7 @@ public class FlatGeneratorInfo {
       flatgeneratorinfo.func_82650_c().add(new FlatLayerInfo(2, Blocks.field_150346_d));
       flatgeneratorinfo.func_82650_c().add(new FlatLayerInfo(1, Blocks.field_150349_c));
       flatgeneratorinfo.func_82645_d();
-      flatgeneratorinfo.func_82644_b().put("village", Maps.newHashMap());
+      flatgeneratorinfo.func_82644_b().put("village", Maps.<String, String>newHashMap());
       return flatgeneratorinfo;
    }
 }

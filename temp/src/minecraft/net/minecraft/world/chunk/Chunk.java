@@ -81,7 +81,7 @@ public class Chunk {
          this.field_76645_j[i] = new ClassInheritanceMultiMap(Entity.class);
       }
 
-      Arrays.fill(this.field_76638_b, -999);
+      Arrays.fill((int[])this.field_76638_b, (int)-999);
       Arrays.fill(this.field_76651_r, (byte)-1);
    }
 

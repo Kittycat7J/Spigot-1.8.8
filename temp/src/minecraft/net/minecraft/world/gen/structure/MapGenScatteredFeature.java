@@ -17,7 +17,7 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
 
 public class MapGenScatteredFeature extends MapGenStructure {
-   private static final List<BiomeGenBase> field_75061_e = Arrays.asList(new BiomeGenBase[]{BiomeGenBase.field_76769_d, BiomeGenBase.field_76786_s, BiomeGenBase.field_76782_w, BiomeGenBase.field_76792_x, BiomeGenBase.field_76780_h});
+   private static final List<BiomeGenBase> field_75061_e = Arrays.<BiomeGenBase>asList(new BiomeGenBase[]{BiomeGenBase.field_76769_d, BiomeGenBase.field_76786_s, BiomeGenBase.field_76782_w, BiomeGenBase.field_76792_x, BiomeGenBase.field_76780_h});
    private List<BiomeGenBase.SpawnListEntry> field_82668_f;
    private int field_82669_g;
    private int field_82670_h;

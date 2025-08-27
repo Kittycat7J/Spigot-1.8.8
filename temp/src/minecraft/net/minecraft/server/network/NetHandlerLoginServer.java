@@ -116,7 +116,7 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable 
    }
 
    public String func_147317_d() {
-      return this.field_147337_i != null?this.field_147337_i.toString() + " (" + this.field_147333_a.func_74430_c().toString() + ")":String.valueOf(this.field_147333_a.func_74430_c());
+      return this.field_147337_i != null?this.field_147337_i.toString() + " (" + this.field_147333_a.func_74430_c().toString() + ")":String.valueOf((Object)this.field_147333_a.func_74430_c());
    }
 
    public void func_147316_a(C00PacketLoginStart p_147316_1_) {

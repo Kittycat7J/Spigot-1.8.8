@@ -46,7 +46,7 @@ import org.apache.logging.log4j.Logger;
 public class OldServerPinger {
    private static final Splitter field_147230_a = Splitter.on('\u0000').limit(6);
    private static final Logger field_147228_b = LogManager.getLogger();
-   private final List<NetworkManager> field_147229_c = Collections.synchronizedList(Lists.newArrayList());
+   private final List<NetworkManager> field_147229_c = Collections.<NetworkManager>synchronizedList(Lists.<NetworkManager>newArrayList());
 
    public void func_147224_a(final ServerData p_147224_1_) throws UnknownHostException {
       ServerAddress serveraddress = ServerAddress.func_78860_a(p_147224_1_.field_78845_b);

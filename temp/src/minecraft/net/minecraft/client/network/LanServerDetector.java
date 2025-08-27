@@ -55,7 +55,7 @@ public class LanServerDetector {
       }
 
       public synchronized List<LanServerDetector.LanServer> func_77554_c() {
-         return Collections.unmodifiableList(this.field_77555_b);
+         return Collections.<LanServerDetector.LanServer>unmodifiableList(this.field_77555_b);
       }
 
       public synchronized void func_77551_a(String p_77551_1_, InetAddress p_77551_2_) {

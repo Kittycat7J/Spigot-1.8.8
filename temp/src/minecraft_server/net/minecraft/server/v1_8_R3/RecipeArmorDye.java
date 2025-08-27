@@ -15,7 +15,7 @@ import net.minecraft.server.v1_8_R3.World;
 
 public class RecipeArmorDye extends ShapelessRecipes implements IRecipe {
    public RecipeArmorDye() {
-      super(new ItemStack(Items.LEATHER_HELMET, 0, 0), Arrays.asList(new ItemStack[]{new ItemStack(Items.DYE, 0, 5)}));
+      super(new ItemStack(Items.LEATHER_HELMET, 0, 0), Arrays.<ItemStack>asList(new ItemStack[]{new ItemStack(Items.DYE, 0, 5)}));
    }
 
    public boolean a(InventoryCrafting p_a_1_, World p_a_2_) {

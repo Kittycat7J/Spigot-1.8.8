@@ -43,7 +43,7 @@ public class ThreadWatchdog implements Runnable {
                   error.setStackTrace(threadinfo.getStackTrace());
                }
 
-               stringbuilder.append(threadinfo);
+               stringbuilder.append((Object)threadinfo);
                stringbuilder.append("\n");
             }
 

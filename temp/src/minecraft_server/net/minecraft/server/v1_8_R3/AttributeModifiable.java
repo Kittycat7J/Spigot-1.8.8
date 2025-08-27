@@ -28,7 +28,7 @@ public class AttributeModifiable implements AttributeInstance {
       this.f = p_i1153_2_.b();
 
       for(int i = 0; i < 3; ++i) {
-         this.c.put(Integer.valueOf(i), Sets.newHashSet());
+         this.c.put(Integer.valueOf(i), Sets.<AttributeModifier>newHashSet());
       }
 
    }
@@ -77,7 +77,7 @@ public class AttributeModifiable implements AttributeInstance {
          Object object = (Set)this.d.get(p_b_1_.b());
          if(object == null) {
             object = Sets.newHashSet();
-            this.d.put(p_b_1_.b(), object);
+            this.d.put(p_b_1_.b(), (Set<AttributeModifier>)object);
          }
 
          ((Set)this.c.get(Integer.valueOf(p_b_1_.c()))).add(p_b_1_);

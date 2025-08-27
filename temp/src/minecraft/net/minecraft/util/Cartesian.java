@@ -43,7 +43,7 @@ public class Cartesian {
       }
 
       public List<T> apply(Object[] p_apply_1_) {
-         return Arrays.asList((Object[])p_apply_1_);
+         return Arrays.<T>asList((Object[])p_apply_1_);
       }
    }
 

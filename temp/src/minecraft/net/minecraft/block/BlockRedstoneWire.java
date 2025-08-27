@@ -252,7 +252,7 @@ public class BlockRedstoneWire extends Block {
          } else if(p_180656_4_ == EnumFacing.UP) {
             return i;
          } else {
-            EnumSet<EnumFacing> enumset = EnumSet.noneOf(EnumFacing.class);
+            EnumSet<EnumFacing> enumset = EnumSet.<EnumFacing>noneOf(EnumFacing.class);
 
             for(EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL) {
                if(this.func_176339_d(p_180656_1_, p_180656_2_, enumfacing)) {

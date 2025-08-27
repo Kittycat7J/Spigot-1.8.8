@@ -34,7 +34,7 @@ public class CommandHelp extends CommandAbstract {
    }
 
    public List<String> b() {
-      return Arrays.asList(new String[]{"?"});
+      return Arrays.<String>asList(new String[]{"?"});
    }
 
    public void execute(ICommandListener p_execute_1_, String[] p_execute_2_) throws CommandException {

@@ -11,6 +11,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.spec.AlgorithmParameterSpec;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 import javax.crypto.BadPaddingException;
@@ -118,7 +119,7 @@ public class MinecraftEncryption {
    public static Cipher a(int p_a_0_, Key p_a_1_) {
       try {
          Cipher cipher = Cipher.getInstance("AES/CFB8/NoPadding");
-         cipher.init(p_a_0_, p_a_1_, new IvParameterSpec(p_a_1_.getEncoded()));
+         cipher.init(p_a_0_, (Key)p_a_1_, (AlgorithmParameterSpec)(new IvParameterSpec(p_a_1_.getEncoded())));
          return cipher;
       } catch (GeneralSecurityException generalsecurityexception) {
          throw new RuntimeException(generalsecurityexception);

@@ -35,7 +35,7 @@ import org.apache.logging.log4j.Logger;
 public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
    private static final Logger field_151505_a = LogManager.getLogger();
    private Map<ChunkCoordIntPair, NBTTagCompound> field_75828_a = new ConcurrentHashMap();
-   private Set<ChunkCoordIntPair> field_75826_b = Collections.newSetFromMap(new ConcurrentHashMap());
+   private Set<ChunkCoordIntPair> field_75826_b = Collections.<ChunkCoordIntPair>newSetFromMap(new ConcurrentHashMap());
    private final File field_75825_d;
    private boolean field_183014_e = false;
 

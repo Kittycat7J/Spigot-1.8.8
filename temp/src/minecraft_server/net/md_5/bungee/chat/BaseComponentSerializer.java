@@ -43,7 +43,7 @@ public class BaseComponentSerializer {
       }
 
       if(object.has("extra")) {
-         component.setExtra(Arrays.asList((Object[])context.deserialize(object.get("extra"), BaseComponent[].class)));
+         component.setExtra(Arrays.<BaseComponent>asList((Object[])context.deserialize(object.get("extra"), BaseComponent[].class)));
       }
 
       if(object.has("clickEvent")) {
@@ -123,7 +123,7 @@ public class BaseComponentSerializer {
       } finally {
          ((HashSet)ComponentSerializer.serializedComponents.get()).remove(component);
          if(flag) {
-            ComponentSerializer.serializedComponents.set((Object)null);
+            ComponentSerializer.serializedComponents.set((HashSet<BaseComponent>)null);
          }
 
       }

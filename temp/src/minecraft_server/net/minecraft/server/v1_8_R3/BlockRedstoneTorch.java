@@ -25,7 +25,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 
    private boolean a(World p_a_1_, BlockPosition p_a_2_, boolean p_a_3_) {
       if(!b.containsKey(p_a_1_)) {
-         b.put(p_a_1_, Lists.newArrayList());
+         b.put(p_a_1_, Lists.<BlockRedstoneTorch.RedstoneUpdateInfo>newArrayList());
       }
 
       List list = (List)b.get(p_a_1_);

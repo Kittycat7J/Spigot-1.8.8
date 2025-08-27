@@ -12,7 +12,7 @@ import net.minecraft.server.v1_8_R3.World;
 
 public class RecipeBookClone extends ShapelessRecipes implements IRecipe {
    public RecipeBookClone() {
-      super(new ItemStack(Items.WRITTEN_BOOK, 0, -1), Arrays.asList(new ItemStack[]{new ItemStack(Items.WRITABLE_BOOK, 0, 0)}));
+      super(new ItemStack(Items.WRITTEN_BOOK, 0, -1), Arrays.<ItemStack>asList(new ItemStack[]{new ItemStack(Items.WRITABLE_BOOK, 0, 0)}));
    }
 
    public boolean a(InventoryCrafting p_a_1_, World p_a_2_) {

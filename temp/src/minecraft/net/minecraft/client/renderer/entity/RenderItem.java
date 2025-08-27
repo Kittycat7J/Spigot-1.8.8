@@ -332,7 +332,7 @@ public class RenderItem implements IResourceManagerReloadListener {
             CrashReportCategory crashreportcategory = crashreport.func_85058_a("Item being rendered");
             crashreportcategory.func_71500_a("Item Type", new Callable<String>() {
                public String call() throws Exception {
-                  return String.valueOf(p_180450_1_.func_77973_b());
+                  return String.valueOf((Object)p_180450_1_.func_77973_b());
                }
             });
             crashreportcategory.func_71500_a("Item Aux", new Callable<String>() {
@@ -342,7 +342,7 @@ public class RenderItem implements IResourceManagerReloadListener {
             });
             crashreportcategory.func_71500_a("Item NBT", new Callable<String>() {
                public String call() throws Exception {
-                  return String.valueOf(p_180450_1_.func_77978_p());
+                  return String.valueOf((Object)p_180450_1_.func_77978_p());
                }
             });
             crashreportcategory.func_71500_a("Item Foil", new Callable<String>() {

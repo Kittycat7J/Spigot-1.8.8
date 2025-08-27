@@ -22,7 +22,7 @@ public class FactoryBlockPattern {
    private int field_177664_e;
 
    private FactoryBlockPattern() {
-      this.field_177666_c.put(Character.valueOf(' '), Predicates.alwaysTrue());
+      this.field_177666_c.put(Character.valueOf(' '), Predicates.<BlockWorldState>alwaysTrue());
    }
 
    public FactoryBlockPattern func_177659_a(String... p_177659_1_) {
@@ -42,7 +42,7 @@ public class FactoryBlockPattern {
 
                for(char c0 : s.toCharArray()) {
                   if(!this.field_177666_c.containsKey(Character.valueOf(c0))) {
-                     this.field_177666_c.put(Character.valueOf(c0), (Object)null);
+                     this.field_177666_c.put(Character.valueOf(c0), (Predicate<BlockWorldState>)null);
                   }
                }
             }

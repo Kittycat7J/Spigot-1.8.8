@@ -23,7 +23,7 @@ public class GuiKeyBindingList extends GuiListExtended {
       this.field_148189_l = p_i45031_2_;
       KeyBinding[] akeybinding = (KeyBinding[])ArrayUtils.clone(p_i45031_2_.field_71474_y.field_74324_K);
       this.field_148190_m = new GuiListExtended.IGuiListEntry[akeybinding.length + KeyBinding.func_151467_c().size()];
-      Arrays.sort(akeybinding);
+      Arrays.sort((Object[])akeybinding);
       int i = 0;
       String s = null;
 

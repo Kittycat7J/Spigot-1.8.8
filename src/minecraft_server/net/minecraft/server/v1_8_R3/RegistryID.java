@@ -7,36 +7,30 @@ import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.List;
 
-public class RegistryID<T> implements Registry<T>
-{
-    private final IdentityHashMap<T, Integer> a = new IdentityHashMap(512);
-    private final List<T> b = Lists.<T>newArrayList();
+public class RegistryID<T> implements Registry<T> {
+   private final IdentityHashMap<T, Integer> a = new IdentityHashMap(512);
+   private final List<T> b = Lists.<T>newArrayList();
 
-    public void a(T p_a_1_, int p_a_2_)
-    {
-        this.a.put(p_a_1_, Integer.valueOf(p_a_2_));
+   public void a(T p_a_1_, int p_a_2_) {
+      this.a.put(p_a_1_, Integer.valueOf(p_a_2_));
 
-        while (this.b.size() <= p_a_2_)
-        {
-            this.b.add((Object)null);
-        }
+      while(this.b.size() <= p_a_2_) {
+         this.b.add(null);
+      }
 
-        this.b.set(p_a_2_, p_a_1_);
-    }
+      this.b.set(p_a_2_, p_a_1_);
+   }
 
-    public int b(T p_b_1_)
-    {
-        Integer integer = (Integer)this.a.get(p_b_1_);
-        return integer == null ? -1 : integer.intValue();
-    }
+   public int b(T p_b_1_) {
+      Integer integer = (Integer)this.a.get(p_b_1_);
+      return integer == null?-1:integer.intValue();
+   }
 
-    public final T a(int p_a_1_)
-    {
-        return (T)(p_a_1_ >= 0 && p_a_1_ < this.b.size() ? this.b.get(p_a_1_) : null);
-    }
+   public final T a(int p_a_1_) {
+      return (T)(p_a_1_ >= 0 && p_a_1_ < this.b.size()?this.b.get(p_a_1_):null);
+   }
 
-    public Iterator<T> iterator()
-    {
-        return Iterators.filter(this.b.iterator(), Predicates.notNull());
-    }
+   public Iterator<T> iterator() {
+      return Iterators.filter(this.b.iterator(), Predicates.notNull());
+   }
 }

@@ -19,6 +19,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.Proxy;
 import java.security.KeyPair;
 import java.text.SimpleDateFormat;
@@ -591,7 +592,7 @@ public abstract class MinecraftServer implements Runnable, ICommandListener, IAs
             BufferedImage bufferedimage = ImageIO.read(file1);
             Validate.validState(bufferedimage.getWidth() == 64, "Must be 64 pixels wide", new Object[0]);
             Validate.validState(bufferedimage.getHeight() == 64, "Must be 64 pixels high", new Object[0]);
-            ImageIO.write(bufferedimage, "PNG", new ByteBufOutputStream(bytebuf));
+            ImageIO.write(bufferedimage, "PNG", (OutputStream)(new ByteBufOutputStream(bytebuf)));
             ByteBuf bytebuf1 = Base64.encode(bytebuf);
             p_a_1_.setFavicon("data:image/png;base64," + bytebuf1.toString(Charsets.UTF_8));
          } catch (Exception exception) {

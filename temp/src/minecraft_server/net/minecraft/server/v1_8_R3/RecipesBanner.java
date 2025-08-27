@@ -26,7 +26,7 @@ public class RecipesBanner {
 
    static class AddRecipe extends ShapelessRecipes implements IRecipe {
       private AddRecipe() {
-         super(new ItemStack(Items.BANNER, 0, 0), Arrays.asList(new ItemStack[]{new ItemStack(Items.BANNER)}));
+         super(new ItemStack(Items.BANNER, 0, 0), Arrays.<ItemStack>asList(new ItemStack[]{new ItemStack(Items.BANNER)}));
       }
 
       public boolean a(InventoryCrafting p_a_1_, World p_a_2_) {
@@ -201,7 +201,7 @@ public class RecipesBanner {
 
    static class DuplicateRecipe extends ShapelessRecipes implements IRecipe {
       private DuplicateRecipe() {
-         super(new ItemStack(Items.BANNER, 0, 0), Arrays.asList(new ItemStack[]{new ItemStack(Items.DYE, 0, 5)}));
+         super(new ItemStack(Items.BANNER, 0, 0), Arrays.<ItemStack>asList(new ItemStack[]{new ItemStack(Items.DYE, 0, 5)}));
       }
 
       public boolean a(InventoryCrafting p_a_1_, World p_a_2_) {

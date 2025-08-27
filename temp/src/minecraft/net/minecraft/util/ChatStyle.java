@@ -211,27 +211,27 @@ public class ChatStyle {
       } else {
          StringBuilder stringbuilder = new StringBuilder();
          if(this.func_150215_a() != null) {
-            stringbuilder.append(this.func_150215_a());
+            stringbuilder.append((Object)this.func_150215_a());
          }
 
          if(this.func_150223_b()) {
-            stringbuilder.append(EnumChatFormatting.BOLD);
+            stringbuilder.append((Object)EnumChatFormatting.BOLD);
          }
 
          if(this.func_150242_c()) {
-            stringbuilder.append(EnumChatFormatting.ITALIC);
+            stringbuilder.append((Object)EnumChatFormatting.ITALIC);
          }
 
          if(this.func_150234_e()) {
-            stringbuilder.append(EnumChatFormatting.UNDERLINE);
+            stringbuilder.append((Object)EnumChatFormatting.UNDERLINE);
          }
 
          if(this.func_150233_f()) {
-            stringbuilder.append(EnumChatFormatting.OBFUSCATED);
+            stringbuilder.append((Object)EnumChatFormatting.OBFUSCATED);
          }
 
          if(this.func_150236_d()) {
-            stringbuilder.append(EnumChatFormatting.STRIKETHROUGH);
+            stringbuilder.append((Object)EnumChatFormatting.STRIKETHROUGH);
          }
 
          return stringbuilder.toString();

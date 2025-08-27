@@ -103,7 +103,7 @@ public class BlockStateList {
       }
 
       public Collection<IBlockState> a() {
-         return Collections.unmodifiableCollection(this.b.keySet());
+         return Collections.<IBlockState>unmodifiableCollection(this.b.keySet());
       }
 
       public <T extends Comparable<T>> T get(IBlockState<T> p_get_1_) {

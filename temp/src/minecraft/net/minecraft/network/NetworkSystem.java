@@ -67,8 +67,8 @@ public class NetworkSystem {
    };
    private final MinecraftServer field_151273_d;
    public volatile boolean field_151277_a;
-   private final List<ChannelFuture> field_151274_e = Collections.synchronizedList(Lists.newArrayList());
-   private final List<NetworkManager> field_151272_f = Collections.synchronizedList(Lists.newArrayList());
+   private final List<ChannelFuture> field_151274_e = Collections.<ChannelFuture>synchronizedList(Lists.<ChannelFuture>newArrayList());
+   private final List<NetworkManager> field_151272_f = Collections.<NetworkManager>synchronizedList(Lists.<NetworkManager>newArrayList());
 
    public NetworkSystem(MinecraftServer p_i45292_1_) {
       this.field_151273_d = p_i45292_1_;

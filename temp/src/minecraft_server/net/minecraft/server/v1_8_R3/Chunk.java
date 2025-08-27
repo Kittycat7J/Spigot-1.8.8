@@ -129,7 +129,7 @@ public class Chunk {
          this.entitySlices[i] = new UnsafeList();
       }
 
-      Arrays.fill(this.f, -999);
+      Arrays.fill((int[])this.f, (int)-999);
       Arrays.fill(this.e, (byte)-1);
       if(!(this instanceof EmptyChunk)) {
          this.bukkitChunk = new CraftChunk(this);

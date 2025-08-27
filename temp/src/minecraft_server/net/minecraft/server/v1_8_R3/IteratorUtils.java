@@ -44,7 +44,7 @@ public class IteratorUtils {
       }
 
       public List<T> a(Object[] p_a_1_) {
-         return Arrays.asList((Object[])p_a_1_);
+         return Arrays.<T>asList((Object[])p_a_1_);
       }
    }
 

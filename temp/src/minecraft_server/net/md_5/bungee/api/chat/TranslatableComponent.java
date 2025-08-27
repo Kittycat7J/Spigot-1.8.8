@@ -151,25 +151,25 @@ public class TranslatableComponent extends BaseComponent {
    }
 
    private void addFormat(StringBuilder builder) {
-      builder.append(this.getColor());
+      builder.append((Object)this.getColor());
       if(this.isBold()) {
-         builder.append(ChatColor.BOLD);
+         builder.append((Object)ChatColor.BOLD);
       }
 
       if(this.isItalic()) {
-         builder.append(ChatColor.ITALIC);
+         builder.append((Object)ChatColor.ITALIC);
       }
 
       if(this.isUnderlined()) {
-         builder.append(ChatColor.UNDERLINE);
+         builder.append((Object)ChatColor.UNDERLINE);
       }
 
       if(this.isStrikethrough()) {
-         builder.append(ChatColor.STRIKETHROUGH);
+         builder.append((Object)ChatColor.STRIKETHROUGH);
       }
 
       if(this.isObfuscated()) {
-         builder.append(ChatColor.MAGIC);
+         builder.append((Object)ChatColor.MAGIC);
       }
 
    }

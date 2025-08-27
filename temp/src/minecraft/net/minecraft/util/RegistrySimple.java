@@ -19,7 +19,7 @@ public class RegistrySimple<K, V> implements IRegistry<K, V> {
    }
 
    public V func_82594_a(K p_82594_1_) {
-      return (V)this.field_82596_a.get(p_82594_1_);
+      return this.field_82596_a.get(p_82594_1_);
    }
 
    public void func_82595_a(K p_82595_1_, V p_82595_2_) {
@@ -33,7 +33,7 @@ public class RegistrySimple<K, V> implements IRegistry<K, V> {
    }
 
    public Set<K> func_148742_b() {
-      return Collections.unmodifiableSet(this.field_82596_a.keySet());
+      return Collections.<K>unmodifiableSet(this.field_82596_a.keySet());
    }
 
    public boolean func_148741_d(K p_148741_1_) {

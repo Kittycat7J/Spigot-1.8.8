@@ -60,7 +60,7 @@ import org.spigotmc.SpigotConfig;
 
 public class DedicatedServer extends MinecraftServer implements IMinecraftServer {
    private static final Logger LOGGER = LogManager.getLogger();
-   private final List<ServerCommand> l = Collections.synchronizedList(Lists.newArrayList());
+   private final List<ServerCommand> l = Collections.<ServerCommand>synchronizedList(Lists.<ServerCommand>newArrayList());
    private RemoteStatusListener m;
    private RemoteControlListener n;
    public PropertyManager propertyManager;

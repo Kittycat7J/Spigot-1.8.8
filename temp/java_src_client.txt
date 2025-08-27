@@ -1548,6 +1548,7 @@ src/minecraft/net/minecraft/command/CommandXP.java
 src/minecraft/net/minecraft/command/CommandDefaultGameMode.java
 src/minecraft/net/minecraft/command/CommandEffect.java
 src/minecraft/net/minecraft/command/CommandGameMode.java
+src/minecraft/net/minecraft/command/CommandRepopulate.java
 src/minecraft/net/minecraft/command/PlayerSelector.java
 src/minecraft/net/minecraft/command/CommandStats.java
 src/minecraft/net/minecraft/command/CommandPlaySound.java
@@ -1611,3 +1612,4 @@ src/minecraft/net/minecraft/command/server/CommandMessage.java
 src/minecraft/net/minecraft/command/server/CommandOp.java
 src/minecraft/net/minecraft/command/server/CommandTestForBlock.java
 src/minecraft/net/minecraft/command/server/CommandBanIp.java
+src/minecraft/net/custom/CustomRandom.java

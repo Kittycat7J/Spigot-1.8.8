@@ -17,7 +17,7 @@ public class RecipeFireworks extends ShapelessRecipes implements IRecipe {
    private ItemStack a;
 
    public RecipeFireworks() {
-      super(new ItemStack(Items.FIREWORKS, 0, 0), Arrays.asList(new ItemStack[]{new ItemStack(Items.GUNPOWDER, 0, 5)}));
+      super(new ItemStack(Items.FIREWORKS, 0, 0), Arrays.<ItemStack>asList(new ItemStack[]{new ItemStack(Items.GUNPOWDER, 0, 5)}));
    }
 
    public boolean a(InventoryCrafting p_a_1_, World p_a_2_) {

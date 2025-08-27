@@ -258,7 +258,7 @@ public enum EnumProtocol {
       Object object = (BiMap)this.j.get(p_a_1_);
       if(object == null) {
          object = HashBiMap.create();
-         this.j.put(p_a_1_, object);
+         this.j.put(p_a_1_, (BiMap<Integer, Class<? extends Packet>>)object);
       }
 
       if(((BiMap)object).containsValue(p_a_2_)) {

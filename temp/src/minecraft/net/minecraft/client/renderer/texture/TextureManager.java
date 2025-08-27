@@ -60,7 +60,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
       } catch (IOException ioexception) {
          field_147646_a.warn((String)("Failed to load texture: " + p_110579_1_), (Throwable)ioexception);
          p_110579_2_ = TextureUtil.field_111001_a;
-         this.field_110585_a.put(p_110579_1_, p_110579_2_);
+         this.field_110585_a.put(p_110579_1_, (ITextureObject)p_110579_2_);
          flag = false;
       } catch (Throwable throwable) {
          CrashReport crashreport = CrashReport.func_85055_a(throwable, "Registering texture");
@@ -74,7 +74,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
          throw new ReportedException(crashreport);
       }
 
-      this.field_110585_a.put(p_110579_1_, p_110579_2_);
+      this.field_110585_a.put(p_110579_1_, (ITextureObject)p_110579_2_);
       return flag;
    }
 

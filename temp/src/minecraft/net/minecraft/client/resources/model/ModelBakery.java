@@ -282,7 +282,7 @@ public class ModelBakery {
    private List<String> func_177596_a(Item p_177596_1_) {
       List<String> list = (List)this.field_177613_u.get(p_177596_1_);
       if(list == null) {
-         list = Collections.singletonList(((ResourceLocation)Item.field_150901_e.func_177774_c(p_177596_1_)).toString());
+         list = Collections.<String>singletonList(((ResourceLocation)Item.field_150901_e.func_177774_c(p_177596_1_)).toString());
       }
 
       return list;

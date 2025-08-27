@@ -55,7 +55,7 @@ public class FileResourcePack extends AbstractResourcePack implements Closeable 
       try {
          zipfile = this.func_110599_c();
       } catch (IOException var8) {
-         return Collections.emptySet();
+         return Collections.<String>emptySet();
       }
 
       Enumeration<? extends ZipEntry> enumeration = zipfile.entries();

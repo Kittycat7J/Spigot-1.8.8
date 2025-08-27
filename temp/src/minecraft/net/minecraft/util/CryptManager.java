@@ -11,6 +11,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.spec.AlgorithmParameterSpec;
 import java.security.spec.EncodedKeySpec;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
@@ -134,7 +135,7 @@ public class CryptManager {
    public static Cipher func_151229_a(int p_151229_0_, Key p_151229_1_) {
       try {
          Cipher cipher = Cipher.getInstance("AES/CFB8/NoPadding");
-         cipher.init(p_151229_0_, p_151229_1_, new IvParameterSpec(p_151229_1_.getEncoded()));
+         cipher.init(p_151229_0_, (Key)p_151229_1_, (AlgorithmParameterSpec)(new IvParameterSpec(p_151229_1_.getEncoded())));
          return cipher;
       } catch (GeneralSecurityException generalsecurityexception) {
          throw new RuntimeException(generalsecurityexception);

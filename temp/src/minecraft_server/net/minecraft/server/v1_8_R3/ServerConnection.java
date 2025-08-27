@@ -76,8 +76,8 @@ public class ServerConnection {
    };
    private final MinecraftServer f;
    public volatile boolean d;
-   private final List<ChannelFuture> g = Collections.synchronizedList(Lists.newArrayList());
-   private final List<NetworkManager> h = Collections.synchronizedList(Lists.newArrayList());
+   private final List<ChannelFuture> g = Collections.<ChannelFuture>synchronizedList(Lists.<ChannelFuture>newArrayList());
+   private final List<NetworkManager> h = Collections.<NetworkManager>synchronizedList(Lists.<NetworkManager>newArrayList());
 
    public ServerConnection(MinecraftServer p_i278_1_) {
       this.f = p_i278_1_;

@@ -7,7 +7,7 @@ import net.minecraft.world.storage.IThreadedFileIO;
 
 public class ThreadedFileIOBase implements Runnable {
    private static final ThreadedFileIOBase field_75741_a = new ThreadedFileIOBase();
-   private List<IThreadedFileIO> field_75739_b = Collections.synchronizedList(Lists.newArrayList());
+   private List<IThreadedFileIO> field_75739_b = Collections.<IThreadedFileIO>synchronizedList(Lists.<IThreadedFileIO>newArrayList());
    private volatile long field_75740_c;
    private volatile long field_75737_d;
    private volatile boolean field_75738_e;

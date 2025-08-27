@@ -106,7 +106,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
       this.datawatcher.a(16, Integer.valueOf(0));
       this.datawatcher.a(19, Byte.valueOf((byte)0));
       this.datawatcher.a(20, Integer.valueOf(0));
-      this.datawatcher.a(21, String.valueOf(""));
+      this.datawatcher.a(21, String.valueOf((Object)""));
       this.datawatcher.a(22, Integer.valueOf(0));
    }
 

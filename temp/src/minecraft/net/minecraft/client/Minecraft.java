@@ -635,7 +635,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
          field_147123_G.info((String)"Caught error stitching, removing all assigned resourcepacks", (Throwable)runtimeexception);
          list.clear();
          list.addAll(this.field_110449_ao);
-         this.field_110448_aq.func_148527_a(Collections.emptyList());
+         this.field_110448_aq.func_148527_a(Collections.<ResourcePackRepository.Entry>emptyList());
          this.field_110451_am.func_110541_a(list);
          this.field_71474_y.field_151453_l.clear();
          this.field_71474_y.field_183018_l.clear();

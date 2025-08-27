@@ -8,7 +8,7 @@ public class SystemUtils {
    public static <V> V a(FutureTask<V> p_a_0_, Logger p_a_1_) {
       try {
          p_a_0_.run();
-         return (V)p_a_0_.get();
+         return p_a_0_.get();
       } catch (ExecutionException executionexception) {
          p_a_1_.fatal((String)"Error executing task", (Throwable)executionexception);
       } catch (InterruptedException interruptedexception) {

@@ -23,7 +23,7 @@ public class ShapeDetectorBuilder {
    private int e;
 
    private ShapeDetectorBuilder() {
-      this.c.put(Character.valueOf(' '), Predicates.alwaysTrue());
+      this.c.put(Character.valueOf(' '), Predicates.<ShapeDetectorBlock>alwaysTrue());
    }
 
    public ShapeDetectorBuilder a(String... p_a_1_) {
@@ -43,7 +43,7 @@ public class ShapeDetectorBuilder {
 
                for(char c0 : s.toCharArray()) {
                   if(!this.c.containsKey(Character.valueOf(c0))) {
-                     this.c.put(Character.valueOf(c0), (Object)null);
+                     this.c.put(Character.valueOf(c0), (Predicate<ShapeDetectorBlock>)null);
                   }
                }
             }

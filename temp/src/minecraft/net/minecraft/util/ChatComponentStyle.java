@@ -70,7 +70,7 @@ public abstract class ChatComponentStyle implements IChatComponent {
       for(IChatComponent ichatcomponent : this) {
          stringbuilder.append(ichatcomponent.func_150256_b().func_150218_j());
          stringbuilder.append(ichatcomponent.func_150261_e());
-         stringbuilder.append(EnumChatFormatting.RESET);
+         stringbuilder.append((Object)EnumChatFormatting.RESET);
       }
 
       return stringbuilder.toString();

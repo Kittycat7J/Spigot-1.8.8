@@ -23,7 +23,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 
    private boolean func_176598_a(World p_176598_1_, BlockPos p_176598_2_, boolean p_176598_3_) {
       if(!field_150112_b.containsKey(p_176598_1_)) {
-         field_150112_b.put(p_176598_1_, Lists.newArrayList());
+         field_150112_b.put(p_176598_1_, Lists.<BlockRedstoneTorch.Toggle>newArrayList());
       }
 
       List<BlockRedstoneTorch.Toggle> list = (List)field_150112_b.get(p_176598_1_);

@@ -79,7 +79,7 @@ public class ScreenShotHelper {
             file2 = new File(file1, p_148259_1_);
          }
 
-         ImageIO.write(bufferedimage, "png", file2);
+         ImageIO.write(bufferedimage, "png", (File)file2);
          IChatComponent ichatcomponent = new ChatComponentText(file2.getName());
          ichatcomponent.func_150256_b().func_150241_a(new ClickEvent(ClickEvent.Action.OPEN_FILE, file2.getAbsolutePath()));
          ichatcomponent.func_150256_b().func_150228_d(Boolean.valueOf(true));

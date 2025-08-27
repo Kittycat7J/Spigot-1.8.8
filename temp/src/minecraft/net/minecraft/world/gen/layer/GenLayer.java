@@ -163,12 +163,12 @@ public abstract class GenLayer {
             crashreportcategory.func_71507_a("Biome B ID", Integer.valueOf(p_151616_1_));
             crashreportcategory.func_71500_a("Biome A", new Callable<String>() {
                public String call() throws Exception {
-                  return String.valueOf(biomegenbase);
+                  return String.valueOf((Object)biomegenbase);
                }
             });
             crashreportcategory.func_71500_a("Biome B", new Callable<String>() {
                public String call() throws Exception {
-                  return String.valueOf(biomegenbase1);
+                  return String.valueOf((Object)biomegenbase1);
                }
             });
             throw new ReportedException(crashreport);

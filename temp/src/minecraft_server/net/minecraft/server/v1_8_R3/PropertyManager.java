@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +26,7 @@ public class PropertyManager {
 
          try {
             fileinputstream = new FileInputStream(p_i130_1_);
-            this.properties.load(fileinputstream);
+            this.properties.load((InputStream)fileinputstream);
          } catch (Exception exception) {
             a.warn((String)("Failed to load " + p_i130_1_), (Throwable)exception);
             this.a();
@@ -65,7 +67,7 @@ public class PropertyManager {
       try {
          if(!this.file.exists() || this.file.canWrite()) {
             fileoutputstream = new FileOutputStream(this.file);
-            this.properties.store(fileoutputstream, "Minecraft server properties");
+            this.properties.store((OutputStream)fileoutputstream, "Minecraft server properties");
             return;
          }
       } catch (Exception exception) {

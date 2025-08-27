@@ -28,7 +28,7 @@ import org.apache.logging.log4j.Logger;
 
 public class RealmsServerStatusPinger {
    private static final Logger LOGGER = LogManager.getLogger();
-   private final List<NetworkManager> connections = Collections.synchronizedList(Lists.newArrayList());
+   private final List<NetworkManager> connections = Collections.<NetworkManager>synchronizedList(Lists.<NetworkManager>newArrayList());
 
    public void pingServer(final String p_pingServer_1_, final RealmsServerPing p_pingServer_2_) throws UnknownHostException {
       if(p_pingServer_1_ != null && !p_pingServer_1_.startsWith("0.0.0.0") && !p_pingServer_1_.isEmpty()) {

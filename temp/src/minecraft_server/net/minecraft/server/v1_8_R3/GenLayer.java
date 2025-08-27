@@ -163,12 +163,12 @@ public abstract class GenLayer {
             crashreportsystemdetails.a((String)"Biome B ID", Integer.valueOf(p_a_1_));
             crashreportsystemdetails.a("Biome A", new Callable<String>() {
                public String a() throws Exception {
-                  return String.valueOf(biomebase);
+                  return String.valueOf((Object)biomebase);
                }
             });
             crashreportsystemdetails.a("Biome B", new Callable<String>() {
                public String a() throws Exception {
-                  return String.valueOf(biomebase1);
+                  return String.valueOf((Object)biomebase1);
                }
             });
             throw new ReportedException(crashreport);

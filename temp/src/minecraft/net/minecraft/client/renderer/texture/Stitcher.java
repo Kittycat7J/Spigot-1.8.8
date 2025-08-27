@@ -47,7 +47,7 @@ public class Stitcher {
 
    public void func_94305_f() {
       Stitcher.Holder[] astitcher$holder = (Stitcher.Holder[])this.field_94319_a.toArray(new Stitcher.Holder[this.field_94319_a.size()]);
-      Arrays.sort(astitcher$holder);
+      Arrays.sort((Object[])astitcher$holder);
 
       for(Stitcher.Holder stitcher$holder : astitcher$holder) {
          if(!this.func_94310_b(stitcher$holder)) {

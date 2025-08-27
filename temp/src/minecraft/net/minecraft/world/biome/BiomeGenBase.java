@@ -275,7 +275,7 @@ public abstract class BiomeGenBase {
       case AMBIENT:
          return this.field_82914_M;
       default:
-         return Collections.emptyList();
+         return Collections.<BiomeGenBase.SpawnListEntry>emptyList();
       }
    }
 

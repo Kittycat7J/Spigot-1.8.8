@@ -34,7 +34,7 @@ public class CommandHelp extends CommandBase {
    }
 
    public List<String> func_71514_a() {
-      return Arrays.asList(new String[]{"?"});
+      return Arrays.<String>asList(new String[]{"?"});
    }
 
    public void func_71515_b(ICommandSender p_71515_1_, String[] p_71515_2_) throws CommandException {

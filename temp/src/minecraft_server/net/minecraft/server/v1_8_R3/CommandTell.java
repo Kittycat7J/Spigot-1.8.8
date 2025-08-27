@@ -17,7 +17,7 @@ import net.minecraft.server.v1_8_R3.MinecraftServer;
 
 public class CommandTell extends CommandAbstract {
    public List<String> b() {
-      return Arrays.asList(new String[]{"w", "msg"});
+      return Arrays.<String>asList(new String[]{"w", "msg"});
    }
 
    public String getCommand() {

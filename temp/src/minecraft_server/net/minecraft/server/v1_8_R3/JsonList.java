@@ -165,9 +165,9 @@ public class JsonList<K, V extends JsonListEntry<K>> {
          bufferedreader = Files.newReader(this.c, Charsets.UTF_8);
          collection = (Collection)this.b.fromJson((Reader)bufferedreader, f);
       } catch (FileNotFoundException var8) {
-         Bukkit.getLogger().log(Level.INFO, "Unable to find file {0}, creating it.", this.c);
+         Bukkit.getLogger().log(Level.INFO, (String)"Unable to find file {0}, creating it.", (Object)this.c);
       } catch (JsonSyntaxException var9) {
-         Bukkit.getLogger().log(Level.WARNING, "Unable to read file {0}, backing it up to {0}.backup and creating new copy.", this.c);
+         Bukkit.getLogger().log(Level.WARNING, (String)"Unable to read file {0}, backing it up to {0}.backup and creating new copy.", (Object)this.c);
          File file1 = new File(this.c + ".backup");
          this.c.renameTo(file1);
          this.c.delete();

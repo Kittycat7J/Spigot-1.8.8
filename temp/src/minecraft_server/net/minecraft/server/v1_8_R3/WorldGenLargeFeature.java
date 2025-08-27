@@ -17,7 +17,7 @@ import net.minecraft.server.v1_8_R3.World;
 import net.minecraft.server.v1_8_R3.WorldGenRegistration;
 
 public class WorldGenLargeFeature extends StructureGenerator {
-   private static final List<BiomeBase> d = Arrays.asList(new BiomeBase[]{BiomeBase.DESERT, BiomeBase.DESERT_HILLS, BiomeBase.JUNGLE, BiomeBase.JUNGLE_HILLS, BiomeBase.SWAMPLAND});
+   private static final List<BiomeBase> d = Arrays.<BiomeBase>asList(new BiomeBase[]{BiomeBase.DESERT, BiomeBase.DESERT_HILLS, BiomeBase.JUNGLE, BiomeBase.JUNGLE_HILLS, BiomeBase.SWAMPLAND});
    private List<BiomeBase.BiomeMeta> f;
    private int g;
    private int h;

@@ -138,7 +138,7 @@ public abstract class EntityInsentient extends EntityLiving {
             }
 
             if(p_setGoalTarget_2_ == TargetReason.UNKNOWN) {
-               this.world.getServer().getLogger().log(Level.WARNING, "Unknown target reason, please report on the issue tracker", new Exception());
+               this.world.getServer().getLogger().log(Level.WARNING, (String)"Unknown target reason, please report on the issue tracker", (Throwable)(new Exception()));
             }
 
             CraftLivingEntity craftlivingentity = null;

@@ -21,7 +21,7 @@ public class RegionRenderCache extends ChunkCache {
       this.field_175633_g = p_i46273_2_.func_177973_b(new Vec3i(p_i46273_4_, p_i46273_4_, p_i46273_4_));
       int i = 8000;
       this.field_175634_h = new int[8000];
-      Arrays.fill(this.field_175634_h, -1);
+      Arrays.fill((int[])this.field_175634_h, (int)-1);
       this.field_175635_i = new IBlockState[8000];
    }
 

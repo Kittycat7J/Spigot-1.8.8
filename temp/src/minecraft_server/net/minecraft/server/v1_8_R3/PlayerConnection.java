@@ -513,7 +513,7 @@ public class PlayerConnection implements PacketListenerPlayIn, IUpdatePlayerList
    }
 
    public void a(double p_a_1_, double p_a_3_, double p_a_5_, float p_a_7_, float p_a_8_) {
-      this.a(p_a_1_, p_a_3_, p_a_5_, p_a_7_, p_a_8_, Collections.emptySet());
+      this.a(p_a_1_, p_a_3_, p_a_5_, p_a_7_, p_a_8_, Collections.<PacketPlayOutPosition.EnumPlayerTeleportFlags>emptySet());
    }
 
    public void a(double p_a_1_, double p_a_3_, double p_a_5_, float p_a_7_, float p_a_8_, Set<PacketPlayOutPosition.EnumPlayerTeleportFlags> p_a_9_) {
@@ -1087,7 +1087,7 @@ public class PlayerConnection implements PacketListenerPlayIn, IUpdatePlayerList
             }
          } catch (org.bukkit.command.CommandException commandexception) {
             craftplayer.sendMessage(ChatColor.RED + "An internal error occurred while attempting to perform this command");
-            java.util.logging.Logger.getLogger(PlayerConnection.class.getName()).log(Level.SEVERE, (String)null, commandexception);
+            java.util.logging.Logger.getLogger(PlayerConnection.class.getName()).log(Level.SEVERE, (String)null, (Throwable)commandexception);
             SpigotTimings.playerCommandTimer.stopTiming();
             return;
          }

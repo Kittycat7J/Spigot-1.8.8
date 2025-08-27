@@ -99,7 +99,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
       this.field_70180_af.func_75682_a(16, Integer.valueOf(0));
       this.field_70180_af.func_75682_a(19, Byte.valueOf((byte)0));
       this.field_70180_af.func_75682_a(20, Integer.valueOf(0));
-      this.field_70180_af.func_75682_a(21, String.valueOf(""));
+      this.field_70180_af.func_75682_a(21, String.valueOf((Object)""));
       this.field_70180_af.func_75682_a(22, Integer.valueOf(0));
    }
 

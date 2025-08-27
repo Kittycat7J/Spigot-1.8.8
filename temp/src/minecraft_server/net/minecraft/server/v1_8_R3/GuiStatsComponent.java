@@ -63,7 +63,7 @@ public class GuiStatsComponent extends JComponent {
       for(int k = 0; k < this.d.length; ++k) {
          String s = this.d[k];
          if(s != null) {
-            p_paint_1_.drawString(s, 32, 116 + k * 16);
+            p_paint_1_.drawString((String)s, 32, 116 + k * 16);
          }
       }
 

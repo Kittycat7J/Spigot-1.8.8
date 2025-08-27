@@ -266,7 +266,7 @@ public abstract class BiomeBase {
       case AMBIENT:
          return this.aw;
       default:
-         return Collections.emptyList();
+         return Collections.<BiomeBase.BiomeMeta>emptyList();
       }
    }
 

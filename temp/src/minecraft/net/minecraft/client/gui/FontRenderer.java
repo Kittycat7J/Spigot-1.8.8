@@ -514,7 +514,7 @@ public class FontRenderer implements IResourceManagerReloadListener {
          }
 
          if(p_78262_3_) {
-            stringbuilder.insert(0, c0);
+            stringbuilder.insert(0, (char)c0);
          } else {
             stringbuilder.append(c0);
          }
@@ -563,7 +563,7 @@ public class FontRenderer implements IResourceManagerReloadListener {
    }
 
    public List<String> func_78271_c(String p_78271_1_, int p_78271_2_) {
-      return Arrays.asList(this.func_78280_d(p_78271_1_, p_78271_2_).split("\n"));
+      return Arrays.<String>asList(this.func_78280_d(p_78271_1_, p_78271_2_).split("\n"));
    }
 
    String func_78280_d(String p_78280_1_, int p_78280_2_) {

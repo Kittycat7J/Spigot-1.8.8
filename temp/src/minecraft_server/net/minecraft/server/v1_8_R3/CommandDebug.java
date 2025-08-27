@@ -92,7 +92,7 @@ public class CommandDebug extends CommandAbstract {
       stringbuilder.append("\n\n");
       stringbuilder.append("Time span: ").append(p_b_1_).append(" ms\n");
       stringbuilder.append("Tick span: ").append(p_b_3_).append(" ticks\n");
-      stringbuilder.append("// This is approximately ").append(String.format("%.2f", new Object[]{Float.valueOf((float)p_b_3_ / ((float)p_b_1_ / 1000.0F))})).append(" ticks per second. It should be ").append(20).append(" ticks per second\n\n");
+      stringbuilder.append("// This is approximately ").append(String.format("%.2f", new Object[]{Float.valueOf((float)p_b_3_ / ((float)p_b_1_ / 1000.0F))})).append(" ticks per second. It should be ").append((int)20).append(" ticks per second\n\n");
       stringbuilder.append("--- BEGIN PROFILE DUMP ---\n\n");
       this.a(0, "root", stringbuilder);
       stringbuilder.append("--- END PROFILE DUMP ---\n\n");
@@ -115,7 +115,7 @@ public class CommandDebug extends CommandAbstract {
                try {
                   this.a(p_a_1_ + 1, p_a_2_ + "." + methodprofiler$profilerinfo.c, p_a_3_);
                } catch (Exception exception) {
-                  p_a_3_.append("[[ EXCEPTION ").append(exception).append(" ]]");
+                  p_a_3_.append("[[ EXCEPTION ").append((Object)exception).append(" ]]");
                }
             }
          }

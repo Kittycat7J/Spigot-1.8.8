@@ -1,14 +1,13 @@
 package net.minecraft.server.v1_8_R3;
 
-public interface IAttribute
-{
-    String getName();
+public interface IAttribute {
+   String getName();
 
-    double a(double var1);
+   double a(double var1);
 
-    double b();
+   double b();
 
-    boolean c();
+   boolean c();
 
-    IAttribute d();
+   IAttribute d();
 }

@@ -24,6 +24,6 @@ public class TextureMetadataSection implements IMetadataSection {
    }
 
    public List<Integer> func_148535_c() {
-      return Collections.unmodifiableList(this.field_148536_c);
+      return Collections.<Integer>unmodifiableList(this.field_148536_c);
    }
 }

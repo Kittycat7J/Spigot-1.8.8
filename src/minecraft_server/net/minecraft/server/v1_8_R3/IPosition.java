@@ -1,10 +1,9 @@
 package net.minecraft.server.v1_8_R3;
 
-public interface IPosition
-{
-    double getX();
+public interface IPosition {
+   double getX();
 
-    double getY();
+   double getY();
 
-    double getZ();
+   double getZ();
 }

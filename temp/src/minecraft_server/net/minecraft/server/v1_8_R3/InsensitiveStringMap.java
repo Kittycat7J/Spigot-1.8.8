@@ -26,15 +26,15 @@ public class InsensitiveStringMap<V> implements Map<String, V> {
    }
 
    public V get(Object p_get_1_) {
-      return (V)this.a.get(p_get_1_.toString().toLowerCase());
+      return this.a.get(p_get_1_.toString().toLowerCase());
    }
 
    public V a(String p_a_1_, V p_a_2_) {
-      return (V)this.a.put(p_a_1_.toLowerCase(), p_a_2_);
+      return this.a.put(p_a_1_.toLowerCase(), p_a_2_);
    }
 
    public V remove(Object p_remove_1_) {
-      return (V)this.a.remove(p_remove_1_.toString().toLowerCase());
+      return this.a.remove(p_remove_1_.toString().toLowerCase());
    }
 
    public void putAll(Map<? extends String, ? extends V> p_putAll_1_) {

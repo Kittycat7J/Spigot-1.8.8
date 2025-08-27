@@ -1,16 +1,15 @@
 package net.minecraft.server.v1_8_R3;
 
-public interface ISourceBlock extends ILocationSource
-{
-    double getX();
+public interface ISourceBlock extends ILocationSource {
+   double getX();
 
-    double getY();
+   double getY();
 
-    double getZ();
+   double getZ();
 
-    BlockPosition getBlockPosition();
+   BlockPosition getBlockPosition();
 
-    int f();
+   int f();
 
-    <T extends TileEntity> T getTileEntity();
+   <T extends TileEntity> T getTileEntity();
 }

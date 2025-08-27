@@ -299,7 +299,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting {
             this.field_130068_bO = this.func_110143_aJ() + this.func_110139_bj();
 
             for(ScoreObjective scoreobjective : this.func_96123_co().func_96520_a(IScoreObjectiveCriteria.field_96638_f)) {
-               this.func_96123_co().func_96529_a(this.func_70005_c_(), scoreobjective).func_96651_a(Arrays.asList(new EntityPlayer[]{this}));
+               this.func_96123_co().func_96529_a(this.func_70005_c_(), scoreobjective).func_96651_a(Arrays.<EntityPlayer>asList(new EntityPlayer[]{this}));
             }
          }
 

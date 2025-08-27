@@ -7,7 +7,7 @@ import net.minecraft.server.v1_8_R3.IAsyncChunkSaver;
 
 public class FileIOThread implements Runnable {
    private static final FileIOThread a = new FileIOThread();
-   private List<IAsyncChunkSaver> b = Collections.synchronizedList(Lists.newArrayList());
+   private List<IAsyncChunkSaver> b = Collections.<IAsyncChunkSaver>synchronizedList(Lists.<IAsyncChunkSaver>newArrayList());
    private volatile long c;
    private volatile long d;
    private volatile boolean e;
