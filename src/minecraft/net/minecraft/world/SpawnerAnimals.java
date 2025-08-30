@@ -17,8 +17,11 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class SpawnerAnimals {
+    private static final Logger logger = LogManager.getLogger();
    private static final int MOB_COUNT_DIV = (int)Math.pow(17.0D, 2.0D);
    private final Set<ChunkCoordIntPair> eligibleChunksForSpawning = Sets.<ChunkCoordIntPair>newHashSet();
 
@@ -77,8 +80,11 @@ public final class SpawnerAnimals {
                            IEntityLivingData ientitylivingdata = null;
 
                            for(int l3 = 0; l3 < 4; ++l3) {
+                               logger.info("custon logger SpawnerAnimals: l2 += p_77192_1_.rand.nextInt({}) - p_77192_1_.rand.nextInt({});",k3,k3);
                               l2 += p_77192_1_.rand.nextInt(k3) - p_77192_1_.rand.nextInt(k3);
+                              logger.info("custon logger SpawnerAnimals: i3 += p_77192_1_.rand.nextInt(1) - p_77192_1_.rand.nextInt(1);");
                               i3 += p_77192_1_.rand.nextInt(1) - p_77192_1_.rand.nextInt(1);
+                                logger.info("custon logger SpawnerAnimals: j3 += p_77192_1_.rand.nextInt({}) - p_77192_1_.rand.nextInt({});",k3,k3);
                               j3 += p_77192_1_.rand.nextInt(k3) - p_77192_1_.rand.nextInt(k3);
                               BlockPos blockpos1 = new BlockPos(l2, i3, j3);
                               float f = (float)l2 + 0.5F;
@@ -100,6 +106,7 @@ public final class SpawnerAnimals {
                                        return i4;
                                     }
 
+                                    logger.info("custom logger SpawnerAnimals: p_77192_1_.rand.nextFloat(); p_77192_1_ is WorldServer");
                                     entityliving.setLocationAndAngles((double)f, (double)i3, (double)f1, p_77192_1_.rand.nextFloat() * 360.0F, 0.0F);
                                     if(entityliving.getCanSpawnHere() && entityliving.isNotColliding()) {
                                        ientitylivingdata = entityliving.onInitialSpawn(p_77192_1_.getDifficultyForLocation(new BlockPos(entityliving)), ientitylivingdata);
@@ -130,9 +137,11 @@ public final class SpawnerAnimals {
 
    protected static BlockPos getRandomChunkPosition(World worldIn, int x, int z) {
       Chunk chunk = worldIn.getChunkFromChunkCoords(x, z);
+      logger.info("custom logger SpawnerAnimals: worldIn.rand.nextInt(16); worldIn.rand.nextInt(16); ")
       int i = x * 16 + worldIn.rand.nextInt(16);
       int j = z * 16 + worldIn.rand.nextInt(16);
       int k = MathHelper.func_154354_b(chunk.getHeight(new BlockPos(i, 0, j)) + 1, 16);
+      logger.info("custom logger SpawnerAnimals:worldIn.rand.nextInt({}); ",k > 0?k:chunk.getTopFilledSegment() + 16 - 1);
       int l = worldIn.rand.nextInt(k > 0?k:chunk.getTopFilledSegment() + 16 - 1);
       return new BlockPos(i, l, j);
    }

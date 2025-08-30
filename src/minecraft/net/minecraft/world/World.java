@@ -100,6 +100,7 @@ public abstract class World implements IBlockAccess {
    int[] lightUpdateBlockList;
 
    protected World(ISaveHandler saveHandlerIn, WorldInfo info, WorldProvider providerIn, Profiler profilerIn, boolean client) {
+      logger.info("Custom logger World: called this.rand.nextInt(12000);");
       this.ambientTickCountdown = this.rand.nextInt(12000);
       this.spawnHostileMobs = true;
       this.spawnPeacefulMobs = true;
@@ -1754,8 +1755,10 @@ public abstract class World implements IBlockAccess {
             int j = this.worldInfo.getThunderTime();
             if(j <= 0) {
                if(this.worldInfo.isThundering()) {
+                   logger.info("custom logger World: called this.rand.nextInt(12000) + 3600");
                   this.worldInfo.setThunderTime(this.rand.nextInt(12000) + 3600);
                } else {
+                   logger.info("custom logger World: called this.rand.nextInt(168000) + 12000");
                   this.worldInfo.setThunderTime(this.rand.nextInt(168000) + 12000);
                }
             } else {
@@ -1777,8 +1780,10 @@ public abstract class World implements IBlockAccess {
             int k = this.worldInfo.getRainTime();
             if(k <= 0) {
                if(this.worldInfo.isRaining()) {
+                   logger.info("custom logger World: called this.rand.nextInt(12000) + 12000");
                   this.worldInfo.setRainTime(this.rand.nextInt(12000) + 12000);
                } else {
+                     logger.info("custom logger World: called this.rand.nextInt(168000) + 12000");
                   this.worldInfo.setRainTime(this.rand.nextInt(168000) + 12000);
                }
             } else {

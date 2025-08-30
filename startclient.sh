@@ -1,7 +1,7 @@
 #!/bin/bash
 
 IMAGE=spigot-1.8.8
-
+set -x
 # Detect host OS and set up GUI forwarding
 OS=$(uname -s)
 DOCKER_ARGS="-v $(pwd):/workspace -w /workspace"
@@ -9,7 +9,7 @@ DOCKER_ARGS="-v $(pwd):/workspace -w /workspace"
 if [[ "$OS" == "Linux" ]]; then
     if [[ -n "$DISPLAY" && -S /tmp/.X11-unix/X0 ]]; then
         echo "Using X11 forwarding"
-        DOCKER_ARGS="$DOCKER_ARGS -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix"
+        DOCKER_ARGS="$DOCKER_ARGS -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/root/.Xauthority:ro -e XAUTHORITY=/root/.Xauthority"
     elif [[ -n "$WAYLAND_DISPLAY" && -S /run/user/$(id -u)/$WAYLAND_DISPLAY ]]; then
         echo "Using Wayland forwarding (XWayland may still be required)"
         DOCKER_ARGS="$DOCKER_ARGS -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY -v /run/user/$(id -u)/$WAYLAND_DISPLAY:/run/user/$(id -u)/$WAYLAND_DISPLAY"
