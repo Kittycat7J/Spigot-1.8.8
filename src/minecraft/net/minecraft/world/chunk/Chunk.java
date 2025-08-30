@@ -661,6 +661,7 @@ public class Chunk {
 
    public void addTileEntity(BlockPos pos, TileEntity tileEntityIn) {
       tileEntityIn.setWorldObj(this.worldObj);
+      logger.info("Adding tile entity at " + pos + " (" + this.xPosition + ", " + this.zPosition + ")", new Object[]{tileEntityIn});
       tileEntityIn.setPos(pos);
       if(this.getBlock(pos) instanceof ITileEntityProvider) {
          if(this.chunkTileEntityMap.containsKey(pos)) {

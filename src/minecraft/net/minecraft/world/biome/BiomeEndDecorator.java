@@ -4,13 +4,17 @@ import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.gen.feature.WorldGenSpikes;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BiomeEndDecorator extends BiomeDecorator {
    protected WorldGenerator spikeGen = new WorldGenSpikes(Blocks.end_stone);
-
+    private static final Logger logger = LogManager.getLogger();
    protected void genDecorations(BiomeGenBase biomeGenBaseIn) {
       this.generateOres();
+      logger.info("custom logger BiomeEndDecorator: calling if(this.randomGenerator.nextInt(5) == 0)");
       if(this.randomGenerator.nextInt(5) == 0) {
+          logger.info("custom logger BiomeEndDecorator: calling int i = this.randomGenerator.nextInt(16) + 8;   j = this.randomGenerator.nextInt(16) + 8;");
          int i = this.randomGenerator.nextInt(16) + 8;
          int j = this.randomGenerator.nextInt(16) + 8;
          this.spikeGen.generate(this.currentWorld, this.randomGenerator, this.currentWorld.getTopSolidOrLiquidBlock(this.field_180294_c.add(i, 0, j)));

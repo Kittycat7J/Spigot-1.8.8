@@ -53,9 +53,12 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldInfo;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public abstract class World implements IBlockAccess {
    private int field_181546_a = 63;
+    private static final Logger logger = LogManager.getLogger();
    protected boolean scheduledUpdatesAreImmediate;
    public final List<Entity> loadedEntityList = Lists.<Entity>newArrayList();
    protected final List<Entity> unloadedEntityList = Lists.<Entity>newArrayList();
@@ -1822,8 +1825,10 @@ public abstract class World implements IBlockAccess {
 
       this.theProfiler.startSection("playerCheckLight");
       if(!this.playerEntities.isEmpty()) {
+          logger.info("custom logger World: called this.rand.nextInt(this.playerEntities.size()); this.playerEntities.size() = {}",this.playerEntities.size());
          int k1 = this.rand.nextInt(this.playerEntities.size());
          EntityPlayer entityplayer1 = (EntityPlayer)this.playerEntities.get(k1);
+         logger.info("custom logger World: called this.rand.nextInt(11) - 5 three times");
          int l1 = MathHelper.floor_double(entityplayer1.posX) + this.rand.nextInt(11) - 5;
          int i2 = MathHelper.floor_double(entityplayer1.posY) + this.rand.nextInt(11) - 5;
          int j2 = MathHelper.floor_double(entityplayer1.posZ) + this.rand.nextInt(11) - 5;
@@ -2540,6 +2545,7 @@ public abstract class World implements IBlockAccess {
 
    public Random setRandomSeed(int p_72843_1_, int p_72843_2_, int p_72843_3_) {
       long i = (long)p_72843_1_ * 341873128712L + (long)p_72843_2_ * 132897987541L + this.getWorldInfo().getSeed() + (long)p_72843_3_;
+      logger.info("custom logger World: called this.rand.setSeed(i); i = {}",i);
       this.rand.setSeed(i);
       return this.rand;
    }

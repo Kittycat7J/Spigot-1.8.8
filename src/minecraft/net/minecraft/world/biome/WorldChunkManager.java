@@ -12,8 +12,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class WorldChunkManager {
+    private static final Logger logger = LogManager.getLogger();
    private GenLayer genBiomes;
    private GenLayer biomeIndexLayer;
    private BiomeCache biomeCache;
@@ -191,6 +194,7 @@ public class WorldChunkManager {
          int i2 = i + l1 % i1 << 2;
          int j2 = j + l1 / i1 << 2;
          BiomeGenBase biomegenbase = BiomeGenBase.getBiome(aint[l1]);
+         logger.info("custom logger WorldChunkManager: if(biomes.contains(biomegenbase) && (blockpos == null || random.nextInt({} + 1) == 0))",k1);
          if(biomes.contains(biomegenbase) && (blockpos == null || random.nextInt(k1 + 1) == 0)) {
             blockpos = new BlockPos(i2, 0, j2);
             ++k1;

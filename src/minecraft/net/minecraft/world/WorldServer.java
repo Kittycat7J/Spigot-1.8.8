@@ -290,6 +290,7 @@ public class WorldServer extends World implements IThreadListener {
             this.theProfiler.endStartSection("tickChunk");
             chunk.func_150804_b(false);
             this.theProfiler.endStartSection("thunder");
+            logger.info("custom logger WorldServer: this.rand.nextInt(100000)");
             if(this.rand.nextInt(100000) == 0 && this.isRaining() && this.isThundering()) {
                this.updateLCG = this.updateLCG * 3 + 1013904223;
                int i1 = this.updateLCG >> 2;
@@ -300,6 +301,7 @@ public class WorldServer extends World implements IThreadListener {
             }
 
             this.theProfiler.endStartSection("iceandsnow");
+            logger.info("custom logger WorldServer: called this.rand.nextInt(16) == 0)");
             if(this.rand.nextInt(16) == 0) {
                this.updateLCG = this.updateLCG * 3 + 1013904223;
                int k2 = this.updateLCG >> 2;
@@ -354,6 +356,7 @@ public class WorldServer extends World implements IThreadListener {
             return p_apply_1_ != null && p_apply_1_.isEntityAlive() && WorldServer.this.canSeeSky(p_apply_1_.getPosition());
          }
       });
+      logger.info("custom logger WorldServer: this.rand.nextInt({})",list.size());
       return !list.isEmpty()?((EntityLivingBase)list.get(this.rand.nextInt(list.size()))).getPosition():blockpos;
    }
 
@@ -632,6 +635,7 @@ public class WorldServer extends World implements IThreadListener {
          int l = 0;
 
          while(!this.provider.canCoordinateBeSpawn(i, k)) {
+             logger.info("custom logger WorldServer: {} += random.nextInt(64) - random.nextInt(64);    {} += random.nextInt(64) - random.nextInt(64);",i,k);
             i += random.nextInt(64) - random.nextInt(64);
             k += random.nextInt(64) - random.nextInt(64);
             ++l;
