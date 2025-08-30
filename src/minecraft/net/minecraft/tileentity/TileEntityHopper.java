@@ -1,5 +1,4 @@
 package net.minecraft.tileentity;
-
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
@@ -415,6 +414,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 
    private IInventory getInventoryForHopperTransfer() {
       EnumFacing enumfacing = BlockHopper.getFacing(this.getBlockMetadata());
+//      logger.info("getting hopper inv, using this.getWorld()");
       return getInventoryAtPosition(this.getWorld(), (double)(this.pos.getX() + enumfacing.getFrontOffsetX()), (double)(this.pos.getY() + enumfacing.getFrontOffsetY()), (double)(this.pos.getZ() + enumfacing.getFrontOffsetZ()));
    }
 

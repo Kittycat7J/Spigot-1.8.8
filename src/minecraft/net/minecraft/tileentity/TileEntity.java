@@ -36,6 +36,7 @@ public abstract class TileEntity {
 
    public World getWorld() {
       return this.worldObj;
+//      logger.info("TileEntity.java: getWorld() called");
    }
 
    public void setWorldObj(World worldIn) {
