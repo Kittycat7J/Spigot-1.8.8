@@ -16,11 +16,13 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BlockRedstoneRepeater extends BlockRedstoneDiode {
    public static final PropertyBool LOCKED = PropertyBool.create("locked");
    public static final PropertyInteger DELAY = PropertyInteger.create("delay", 1, 4);
-
+   private static final Logger logger = LogManager.getLogger();
    protected BlockRedstoneRepeater(boolean powered) {
       super(powered);
       this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(DELAY, Integer.valueOf(1)).withProperty(LOCKED, Boolean.valueOf(false)));
@@ -80,10 +82,12 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode {
    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
       if(this.isRepeaterPowered) {
          EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+         logger.info("custom logger BlockRedstoneRepeater: rand.nextDouble() three times");
          double d0 = (double)((float)pos.getX() + 0.5F) + (double)(rand.nextFloat() - 0.5F) * 0.2D;
          double d1 = (double)((float)pos.getY() + 0.4F) + (double)(rand.nextFloat() - 0.5F) * 0.2D;
          double d2 = (double)((float)pos.getZ() + 0.5F) + (double)(rand.nextFloat() - 0.5F) * 0.2D;
          float f = -5.0F;
+         logger.info("custom logger BlockRedstoneRepeater: called if(rand.nextBoolean()) { ");
          if(rand.nextBoolean()) {
             f = (float)(((Integer)state.getValue(DELAY)).intValue() * 2 - 1);
          }

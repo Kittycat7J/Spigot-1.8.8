@@ -590,47 +590,47 @@ public class ChunkProviderSettings {
          jsonobject.addProperty("biomeSize", (Number)Integer.valueOf(p_serialize_1_.field_177877_H));
          jsonobject.addProperty("riverSize", (Number)Integer.valueOf(p_serialize_1_.field_177878_I));
          jsonobject.addProperty("dirtSize", (Number)Integer.valueOf(p_serialize_1_.field_177879_J));
-         jsonobject.addProperty("dirtCount", (Number)Integer.valueOf(p_serialize_1_.field_177880_K));
+         jsonobject.addProperty("dirtCount", (Number)Integer.valueOf(p_serialize_1_.field_177880_K)); //10
          jsonobject.addProperty("dirtMinHeight", (Number)Integer.valueOf(p_serialize_1_.field_177873_L));
          jsonobject.addProperty("dirtMaxHeight", (Number)Integer.valueOf(p_serialize_1_.field_177874_M));
          jsonobject.addProperty("gravelSize", (Number)Integer.valueOf(p_serialize_1_.field_177875_N));
-         jsonobject.addProperty("gravelCount", (Number)Integer.valueOf(p_serialize_1_.field_177876_O));
+         jsonobject.addProperty("gravelCount", (Number)Integer.valueOf(p_serialize_1_.field_177876_O));//8
          jsonobject.addProperty("gravelMinHeight", (Number)Integer.valueOf(p_serialize_1_.field_177886_P));
          jsonobject.addProperty("gravelMaxHeight", (Number)Integer.valueOf(p_serialize_1_.field_177885_Q));
          jsonobject.addProperty("graniteSize", (Number)Integer.valueOf(p_serialize_1_.field_177888_R));
-         jsonobject.addProperty("graniteCount", (Number)Integer.valueOf(p_serialize_1_.field_177887_S));
+         jsonobject.addProperty("graniteCount", (Number)Integer.valueOf(p_serialize_1_.field_177887_S));//10
          jsonobject.addProperty("graniteMinHeight", (Number)Integer.valueOf(p_serialize_1_.field_177882_T));
          jsonobject.addProperty("graniteMaxHeight", (Number)Integer.valueOf(p_serialize_1_.field_177881_U));
          jsonobject.addProperty("dioriteSize", (Number)Integer.valueOf(p_serialize_1_.field_177884_V));
-         jsonobject.addProperty("dioriteCount", (Number)Integer.valueOf(p_serialize_1_.field_177883_W));
+         jsonobject.addProperty("dioriteCount", (Number)Integer.valueOf(p_serialize_1_.field_177883_W));//10
          jsonobject.addProperty("dioriteMinHeight", (Number)Integer.valueOf(p_serialize_1_.field_177891_X));
          jsonobject.addProperty("dioriteMaxHeight", (Number)Integer.valueOf(p_serialize_1_.field_177890_Y));
          jsonobject.addProperty("andesiteSize", (Number)Integer.valueOf(p_serialize_1_.field_177892_Z));
-         jsonobject.addProperty("andesiteCount", (Number)Integer.valueOf(p_serialize_1_.field_177936_aa));
+         jsonobject.addProperty("andesiteCount", (Number)Integer.valueOf(p_serialize_1_.field_177936_aa));//10
          jsonobject.addProperty("andesiteMinHeight", (Number)Integer.valueOf(p_serialize_1_.field_177937_ab));
          jsonobject.addProperty("andesiteMaxHeight", (Number)Integer.valueOf(p_serialize_1_.field_177934_ac));
          jsonobject.addProperty("coalSize", (Number)Integer.valueOf(p_serialize_1_.field_177935_ad));
-         jsonobject.addProperty("coalCount", (Number)Integer.valueOf(p_serialize_1_.field_177941_ae));
+         jsonobject.addProperty("coalCount", (Number)Integer.valueOf(p_serialize_1_.field_177941_ae));//20
          jsonobject.addProperty("coalMinHeight", (Number)Integer.valueOf(p_serialize_1_.field_177943_af));
          jsonobject.addProperty("coalMaxHeight", (Number)Integer.valueOf(p_serialize_1_.field_177938_ag));
          jsonobject.addProperty("ironSize", (Number)Integer.valueOf(p_serialize_1_.field_177939_ah));
-         jsonobject.addProperty("ironCount", (Number)Integer.valueOf(p_serialize_1_.field_177922_ai));
+         jsonobject.addProperty("ironCount", (Number)Integer.valueOf(p_serialize_1_.field_177922_ai));//20
          jsonobject.addProperty("ironMinHeight", (Number)Integer.valueOf(p_serialize_1_.field_177924_aj));
          jsonobject.addProperty("ironMaxHeight", (Number)Integer.valueOf(p_serialize_1_.field_177918_ak));
          jsonobject.addProperty("goldSize", (Number)Integer.valueOf(p_serialize_1_.field_177920_al));
-         jsonobject.addProperty("goldCount", (Number)Integer.valueOf(p_serialize_1_.field_177930_am));
+         jsonobject.addProperty("goldCount", (Number)Integer.valueOf(p_serialize_1_.field_177930_am));//2
          jsonobject.addProperty("goldMinHeight", (Number)Integer.valueOf(p_serialize_1_.field_177932_an));
          jsonobject.addProperty("goldMaxHeight", (Number)Integer.valueOf(p_serialize_1_.field_177926_ao));
          jsonobject.addProperty("redstoneSize", (Number)Integer.valueOf(p_serialize_1_.field_177928_ap));
-         jsonobject.addProperty("redstoneCount", (Number)Integer.valueOf(p_serialize_1_.field_177908_aq));
+         jsonobject.addProperty("redstoneCount", (Number)Integer.valueOf(p_serialize_1_.field_177908_aq));//8
          jsonobject.addProperty("redstoneMinHeight", (Number)Integer.valueOf(p_serialize_1_.field_177906_ar));
          jsonobject.addProperty("redstoneMaxHeight", (Number)Integer.valueOf(p_serialize_1_.field_177904_as));
          jsonobject.addProperty("diamondSize", (Number)Integer.valueOf(p_serialize_1_.field_177902_at));
-         jsonobject.addProperty("diamondCount", (Number)Integer.valueOf(p_serialize_1_.field_177916_au));
+         jsonobject.addProperty("diamondCount", (Number)Integer.valueOf(p_serialize_1_.field_177916_au));//1
          jsonobject.addProperty("diamondMinHeight", (Number)Integer.valueOf(p_serialize_1_.field_177914_av));
          jsonobject.addProperty("diamondMaxHeight", (Number)Integer.valueOf(p_serialize_1_.field_177912_aw));
          jsonobject.addProperty("lapisSize", (Number)Integer.valueOf(p_serialize_1_.field_177910_ax));
-         jsonobject.addProperty("lapisCount", (Number)Integer.valueOf(p_serialize_1_.field_177897_ay));
+         jsonobject.addProperty("lapisCount", (Number)Integer.valueOf(p_serialize_1_.field_177897_ay));//1
          jsonobject.addProperty("lapisCenterHeight", (Number)Integer.valueOf(p_serialize_1_.field_177895_az));
          jsonobject.addProperty("lapisSpread", (Number)Integer.valueOf(p_serialize_1_.field_177889_aA));
          return jsonobject;

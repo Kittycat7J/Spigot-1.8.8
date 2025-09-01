@@ -447,8 +447,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
          List<Entity> list = worldIn.getEntitiesInAABBexcluding((Entity)null, new AxisAlignedBB(x - 0.5D, y - 0.5D, z - 0.5D, x + 0.5D, y + 0.5D, z + 0.5D), EntitySelectors.selectInventories);
          if(list.size() > 0) {
             iinventory = (IInventory)list.get(worldIn.rand.nextInt(list.size()));
-            logger.info("hopper: Found inventory: " + iinventory);
-            logger.info("hopper: rand call made: worldIn.rand.nextInt({})", list.size());
+            logger.info("custom logger TileEntityHopper: rand call made: worldIn.rand.nextInt({})", list.size());
          }
       }
 

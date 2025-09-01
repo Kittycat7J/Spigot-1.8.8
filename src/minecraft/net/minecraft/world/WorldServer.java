@@ -290,7 +290,7 @@ public class WorldServer extends World implements IThreadListener {
             this.theProfiler.endStartSection("tickChunk");
             chunk.func_150804_b(false);
             this.theProfiler.endStartSection("thunder");
-            logger.info("custom logger WorldServer: this.rand.nextInt(100000)");
+//            logger.info("custom logger WorldServer: this.rand.nextInt(100000)");
             if(this.rand.nextInt(100000) == 0 && this.isRaining() && this.isThundering()) {
                this.updateLCG = this.updateLCG * 3 + 1013904223;
                int i1 = this.updateLCG >> 2;
@@ -301,7 +301,7 @@ public class WorldServer extends World implements IThreadListener {
             }
 
             this.theProfiler.endStartSection("iceandsnow");
-            logger.info("custom logger WorldServer: called this.rand.nextInt(16) == 0)");
+//            logger.info("custom logger WorldServer: called this.rand.nextInt(16) == 0)");
             if(this.rand.nextInt(16) == 0) {
                this.updateLCG = this.updateLCG * 3 + 1013904223;
                int k2 = this.updateLCG >> 2;

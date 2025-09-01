@@ -32,8 +32,11 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Block {
+   private static final Logger logger = LogManager.getLogger();
    private static final ResourceLocation AIR_ID = new ResourceLocation("air");
    public static final RegistryNamespacedDefaultedByKey<ResourceLocation, Block> blockRegistry = new RegistryNamespacedDefaultedByKey(AIR_ID);
    public static final ObjectIntIdentityMap<IBlockState> BLOCK_STATE_IDS = new ObjectIntIdentityMap();
@@ -390,6 +393,7 @@ public class Block {
          int i = this.quantityDroppedWithBonus(fortune, worldIn.rand);
 
          for(int j = 0; j < i; ++j) {
+            logger.info("custom logger Block: worldIn.rand.nextFloat()");
             if(worldIn.rand.nextFloat() <= chance) {
                Item item = this.getItemDropped(state, worldIn.rand, fortune);
                if(item != null) {
@@ -403,6 +407,7 @@ public class Block {
    public static void spawnAsEntity(World worldIn, BlockPos pos, ItemStack stack) {
       if(!worldIn.isRemote && worldIn.getGameRules().getBoolean("doTileDrops")) {
          float f = 0.5F;
+         logger.info("custom logger Block: worldIn.rand.nextFloat() three times");
          double d0 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
          double d1 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
          double d2 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;

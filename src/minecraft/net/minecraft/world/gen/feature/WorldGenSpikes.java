@@ -20,9 +20,12 @@ public class WorldGenSpikes extends WorldGenerator {
 
    public boolean generate(World worldIn, Random rand, BlockPos position) {
       if(worldIn.isAirBlock(position) && worldIn.getBlockState(position.down()).getBlock() == this.baseBlockRequired) {
-         int i = rand.nextInt(32) + 6;
+          logger.info("custom log WorldGenSpikes: rand.nextInt(32) + 6; rand.nextInt(4) + 1;");
+          int i = rand.nextInt(32) + 6;
          int j = rand.nextInt(4) + 1;
-         logger.info("i:{} j:{}",i,j);
+         logger.info("custom log WorldGenSpikes: i:{} j:{}",i,j);
+         logger.info("custom log WorldGenSpikes: rand.nextInt(32) = {}",i-6);
+         logger.info("custom logger WorldGenSpikes: seed: {} chunk coords {}",rand,position);
          BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
          for(int k = position.getX() - j; k <= position.getX() + j; ++k) {
@@ -48,11 +51,12 @@ public class WorldGenSpikes extends WorldGenerator {
          }
 
          Entity entity = new EntityEnderCrystal(worldIn);
+         logger.info("custom log WorldGenSpikes: rand.nextFloat()");
          entity.setLocationAndAngles((double)((float)position.getX() + 0.5F), (double)(position.getY() + i), (double)((float)position.getZ() + 0.5F), rand.nextFloat() * 360.0F, 0.0F);
 
          worldIn.spawnEntityInWorld(entity);
          worldIn.setBlockState(position.up(i), Blocks.bedrock.getDefaultState(), 2);
-         logger.info("custom log WorldGenSpikes: bedrock at {} and i is {}. called position.up(i): {}",position, i, position.up(i));
+         logger.info("custom log WorldGenSpikes: bedrock at {} and i is {} and j is {}. called position.up(i): {}",position, i, j, position.up(i));
          return true;
       } else {
          return false;
