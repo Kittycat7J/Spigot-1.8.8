@@ -34,8 +34,11 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.storage.SaveDataMemoryStorage;
 import net.minecraft.world.storage.SaveHandlerMP;
 import net.minecraft.world.storage.WorldInfo;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class WorldClient extends World {
+   private static final Logger logger = LogManager.getLogger();
    private NetHandlerPlayClient sendQueue;
    private ChunkProviderClient clientChunkProvider;
    private final Set<Entity> entityList = Sets.<Entity>newHashSet();
@@ -218,6 +221,7 @@ public class WorldClient extends World {
       BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
       for(int j = 0; j < 1000; ++j) {
+//         logger.info("custom logger WorldClient: int k = p_73029_1_ + this.rand.nextInt({}) - this.rand.nextInt({});  int l = p_73029_2_ + this.rand.nextInt({}) - this.rand.nextInt({}); int i1 = p_73029_3_ + this.rand.nextInt({}) - this.rand.nextInt({});",i,i,i,i,i,i);
          int k = p_73029_1_ + this.rand.nextInt(i) - this.rand.nextInt(i);
          int l = p_73029_2_ + this.rand.nextInt(i) - this.rand.nextInt(i);
          int i1 = p_73029_3_ + this.rand.nextInt(i) - this.rand.nextInt(i);

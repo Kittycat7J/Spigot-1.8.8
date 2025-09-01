@@ -4,10 +4,13 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.util.ResourceLocation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class SoundEventAccessorComposite implements ISoundEventAccessor<SoundPoolEntry> {
    private final List<ISoundEventAccessor<SoundPoolEntry>> soundPool = Lists.<ISoundEventAccessor<SoundPoolEntry>>newArrayList();
    private final Random rnd = new Random();
+   private static final Logger logger = LogManager.getLogger();
    private final ResourceLocation soundLocation;
    private final SoundCategory category;
    private double eventPitch;
@@ -33,6 +36,7 @@ public class SoundEventAccessorComposite implements ISoundEventAccessor<SoundPoo
    public SoundPoolEntry cloneEntry() {
       int i = this.getWeight();
       if(!this.soundPool.isEmpty() && i != 0) {
+         logger.info("custom logger SoundEventAccessorComposite: this.rnd.nextInt({})",i);
          int j = this.rnd.nextInt(i);
 
          for(ISoundEventAccessor<SoundPoolEntry> isoundeventaccessor : this.soundPool) {

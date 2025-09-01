@@ -137,7 +137,7 @@ public final class SpawnerAnimals {
 
    protected static BlockPos getRandomChunkPosition(World worldIn, int x, int z) {
       Chunk chunk = worldIn.getChunkFromChunkCoords(x, z);
-      logger.info("custom logger SpawnerAnimals: worldIn.rand.nextInt(16); worldIn.rand.nextInt(16); ")
+      logger.info("custom logger SpawnerAnimals: worldIn.rand.nextInt(16); worldIn.rand.nextInt(16); ");
       int i = x * 16 + worldIn.rand.nextInt(16);
       int j = z * 16 + worldIn.rand.nextInt(16);
       int k = MathHelper.func_154354_b(chunk.getHeight(new BlockPos(i, 0, j)) + 1, 16);

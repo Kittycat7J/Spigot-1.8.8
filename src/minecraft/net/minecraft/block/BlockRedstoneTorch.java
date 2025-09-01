@@ -14,11 +14,14 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BlockRedstoneTorch extends BlockTorch {
    private static Map<World, List<BlockRedstoneTorch.Toggle>> toggles = Maps.<World, List<BlockRedstoneTorch.Toggle>>newHashMap();
    private final boolean isOn;
-
+   private final Random rnd = new Random();
+   private static final Logger logger = LogManager.getLogger();
    private boolean isBurnedOut(World worldIn, BlockPos pos, boolean turnOff) {
       if(!toggles.containsKey(worldIn)) {
          toggles.put(worldIn, Lists.<BlockRedstoneTorch.Toggle>newArrayList());
@@ -133,6 +136,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 
    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
       if(this.isOn) {
+         logger.info("custom logger BlockRedstoneTorch: rand.nextDouble() three times");
          double d0 = (double)pos.getX() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
          double d1 = (double)pos.getY() + 0.7D + (rand.nextDouble() - 0.5D) * 0.2D;
          double d2 = (double)pos.getZ() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
