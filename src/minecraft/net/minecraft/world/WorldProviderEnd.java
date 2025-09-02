@@ -7,8 +7,11 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderEnd;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class WorldProviderEnd extends WorldProvider {
+    private static final Logger logger = LogManager.getLogger();
    public void registerWorldChunkManager() {
       this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.sky, 0.0F);
       this.dimensionId = 1;
@@ -16,6 +19,7 @@ public class WorldProviderEnd extends WorldProvider {
    }
 
    public IChunkProvider createChunkGenerator() {
+       logger.info("custom logger WorldProviderEnd: createChunkGenerator() called");
       return new ChunkProviderEnd(this.worldObj, this.worldObj.getSeed());
    }
 

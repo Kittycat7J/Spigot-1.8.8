@@ -551,6 +551,7 @@ public class WorldServer extends World implements IThreadListener {
    protected IChunkProvider createChunkProvider() {
       IChunkLoader ichunkloader = this.saveHandler.getChunkLoader(this.provider);
       this.theChunkProviderServer = new ChunkProviderServer(this, ichunkloader, this.provider.createChunkGenerator());
+      logger.info("custom logger WorldServer: this.theChunkProviderServer = new ChunkProviderServer(this, ichunkloader, this.provider.createChunkGenerator());");
       return this.theChunkProviderServer;
    }
 

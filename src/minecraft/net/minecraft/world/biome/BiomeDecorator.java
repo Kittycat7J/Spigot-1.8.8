@@ -356,18 +356,26 @@ public class BiomeDecorator {
       }
 
       for(int j = 0; j < blockCount; ++j) {
-         logger.info("custom logger BiomeDecorator ore1:this.field_180294_c.add(this.randomGenerator.nextInt(16)\nthis.randomGenerator.nextInt({});\nthis.randomGenerator.nextInt(16));",maxHeight - minHeight);
+//         logger.info("custom logger BiomeDecorator ore1:this.field_180294_c.add(this.randomGenerator.nextInt(16)\nthis.randomGenerator.nextInt({});\nthis.randomGenerator.nextInt(16));",maxHeight - minHeight);
          BlockPos blockpos = this.field_180294_c.add(this.randomGenerator.nextInt(16), this.randomGenerator.nextInt(maxHeight - minHeight) + minHeight, this.randomGenerator.nextInt(16));
-//         generator.generate(this.currentWorld, this.randomGenerator, blockpos);
+         generator.generate(this.currentWorld, this.randomGenerator, blockpos);
       }
    }
 
    protected void genStandardOre2(int blockCount, WorldGenerator generator, int centerHeight, int spread) {
-      for(int i = 0; i < blockCount; ++i) {
-         logger.info("custom logger BiomeDecorator ore2:this.randomGenerator.nextInt(16)\nthis.randomGenerator.nextInt({})\nthis.randomGenerator.nextInt({})\nthis.randomGenerator.nextInt(16));",spread,spread);
+//       this.randomGenerator.setSeed(2873990483555L);
+
+       for(int i = 0; i < blockCount; ++i) {
+//         logger.info("custom logger BiomeDecorator ore2:this.randomGenerator.nextInt(16)\nthis.randomGenerator.nextInt({})\nthis.randomGenerator.nextInt({})\nthis.randomGenerator.nextInt(16));",spread,spread);
          BlockPos blockpos = this.field_180294_c.add(this.randomGenerator.nextInt(16), this.randomGenerator.nextInt(spread) + this.randomGenerator.nextInt(spread) + centerHeight - spread, this.randomGenerator.nextInt(16));
-//         generator.generate(this.currentWorld, this.randomGenerator, blockpos);
+         generator.generate(this.currentWorld, this.randomGenerator, blockpos);
+
       }
+//       int chance = this.randomGenerator.nextInt(5);
+//       logger.info("\ncustom logger BiomeDecorator: this.randomGenerator.nextInt(16) = {}",chance);
+//       int x = this.randomGenerator.nextInt(16) + 8;
+//       int z = this.randomGenerator.nextInt(16) + 8;
+//       logger.info("custom logger BiomeDecorator: x:{}, z:{}",x,z);
    }
 
    protected void generateOres() {
@@ -382,8 +390,6 @@ public class BiomeDecorator {
       this.genStandardOre1(this.chunkProviderSettings.redstoneCount,/*8*/ this.redstoneGen, this.chunkProviderSettings.redstoneMinHeight/*0*/, this.chunkProviderSettings.redstoneMaxHeight/*16*/);
       this.genStandardOre1(this.chunkProviderSettings.diamondCount,/*1*/ this.diamondGen, this.chunkProviderSettings.diamondMinHeight/*0*/, this.chunkProviderSettings.diamondMaxHeight/*16*/);
       this.genStandardOre2(this.chunkProviderSettings.lapisCount,/*1*/ this.lapisGen, this.chunkProviderSettings.lapisCenterHeight/*16*/, this.chunkProviderSettings.lapisSpread/*16*/);
-//      int chance = this.randomGenerator.nextInt(5);
-//      logger.info("\ncustom logger BiomeDecorator: this.randomGenerator.nextInt(5) = {}n",chance);
 
    }
 }

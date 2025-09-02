@@ -36,7 +36,7 @@ public class SoundEventAccessorComposite implements ISoundEventAccessor<SoundPoo
    public SoundPoolEntry cloneEntry() {
       int i = this.getWeight();
       if(!this.soundPool.isEmpty() && i != 0) {
-         logger.info("custom logger SoundEventAccessorComposite: this.rnd.nextInt({})",i);
+//         logger.info("custom logger SoundEventAccessorComposite: this.rnd.nextInt({})",i);
          int j = this.rnd.nextInt(i);
 
          for(ISoundEventAccessor<SoundPoolEntry> isoundeventaccessor : this.soundPool) {
