@@ -11,10 +11,10 @@ public class BiomeEndDecorator extends BiomeDecorator {
    protected WorldGenerator spikeGen = new WorldGenSpikes(Blocks.end_stone);
     private static final Logger logger = LogManager.getLogger();
    protected void genDecorations(BiomeGenBase biomeGenBaseIn) {
-      this.randomGenerator.setSeed(9716264376862L);
-//      this.randomGenerator.setSeed(9716264376862L);
+
       this.generateOres();
 //      logger.info("nextInt(1):{}",this.randomGenerator.nextInt(1));
+//       this.randomGenerator.setSeed(119861556137096L);
       logger.info("custom logger BiomeEndDecorator: calling if(this.randomGenerator.nextInt(5) == 0)");
       int chance = this.randomGenerator.nextInt(5);
       logger.info("custom logger BiomeEndDecorator: this.randomGenerator.nextInt(5) = {}",chance);
