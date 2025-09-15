@@ -832,6 +832,19 @@ public class EntityRenderer implements IResourceManagerReloadListener {
             this.smoothCamPitch = 0.0F;
             this.mc.thePlayer.setAngles(f2, f3 * (float)i);
          }
+         Keyboard.enableRepeatEvents(true);
+         if(Keyboard.isKeyDown(200)) {
+             this.mc.thePlayer.setAngles(0, 10 * f1);
+         }
+         if(Keyboard.isKeyDown(208)) {
+             this.mc.thePlayer.setAngles(0, -10 * f1);
+         }
+         if (Keyboard.isKeyDown(203)) {
+             this.mc.thePlayer.setAngles(-10 * f1, 0);
+         }
+         if(Keyboard.isKeyDown(205)) {
+             this.mc.thePlayer.setAngles(10 * f1, 0);
+         }
       }
       float f = this.mc.gameSettings.mouseSensitivity * 0.6F + 0.2F;
       float f1 = f * f * f * 8.0F;
