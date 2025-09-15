@@ -1,40 +1,30 @@
-# Dockerfile for Spigot-1.8.8 development
+# Dockerfile for Spigot 1.8.8 GUI dev with VNC
 FROM openjdk:8-jdk
 
-# Set non-interactive frontend for apt
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install Python 2.7, Java 8, and other dependencies
+# Install required packages
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         python2.7 python2.7-dev \
-        x11-apps \
-	    scala \
-        git \
-	    patch \
-	    wine \
-        wget \
-	    sudo \
-        unzip \
-        ca-certificates \
-        libxext6 libxrender1 libxtst6 libxi6 libgl1-mesa-glx mesa-utils x11-xserver-utils && \
+        x11-apps mesa-utils \
+        libgl1-mesa-dri libgl1-mesa-glx libglu1-mesa \
+        libxext6 libxrender1 libxtst6 libxi6 libxrandr2 \
+        x11vnc xvfb wget sudo unzip git patch scala wine \
+        x11-xserver-utils && \
+    wget -qO- https://github.com/novnc/noVNC/archive/refs/tags/v1.4.0.tar.gz | tar xz -C /opt && \
+    ln -s /opt/noVNC-1.4.0 /opt/novnc && \
+    wget -qO- https://github.com/novnc/websockify/archive/refs/tags/v0.10.0.tar.gz | tar xz -C /opt && \
+    ln -s /opt/websockify-0.10.0 /opt/novnc/utils/websockify && \
     ln -sf /usr/bin/python2.7 /usr/bin/python && \
     rm -rf /var/lib/apt/lists/*
 
-# Set JAVA_HOME
-# ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-# ENV PATH="$JAVA_HOME/bin:$PATH"
-
-# Create a user to avoid running as root
+# Create non-root user
 RUN useradd -ms /bin/bash spigot && echo "spigot ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER spigot
 WORKDIR /home/spigot
 
-# Entrypoint for interactive use
-CMD ["/bin/bash"]
+COPY dockerVNC.sh /home/spigot/dockerVNC.sh
+RUN sudo chmod +x /home/spigot/dockerVNC.sh
 
-# Usage:
-#   docker build -t spigot-1.8.8 .
-#   docker run -it --rm -v $(pwd):/workspace -w /workspace spigot-1.8.8
-# For GUI: add -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix
-# For server: add -p 25565:25565
+CMD ["/bin/bash"]
