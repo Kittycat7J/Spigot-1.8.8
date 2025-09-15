@@ -225,7 +225,7 @@ public class ChunkProviderEnd implements IChunkProvider {
    }
 
    public void populate(IChunkProvider p_73153_1_, int p_73153_2_, int p_73153_3_) {
-       this.endWorld.rand.setSeed(259039937694307L);
+       this.endWorld.rand.setSeed(125452248375284L);
        BlockFalling.fallInstantly = true;
       BlockPos blockpos = new BlockPos(p_73153_2_ * 16, 0, p_73153_3_ * 16);
       this.endWorld.getBiomeGenForCoords(blockpos.add(16, 0, 16)).decorate(this.endWorld, this.endWorld.rand, blockpos);

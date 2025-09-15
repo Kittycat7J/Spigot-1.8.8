@@ -61,6 +61,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
@@ -832,8 +833,24 @@ public class EntityRenderer implements IResourceManagerReloadListener {
             this.mc.thePlayer.setAngles(f2, f3 * (float)i);
          }
       }
+      float f = this.mc.gameSettings.mouseSensitivity * 0.6F + 0.2F;
+      float f1 = f * f * f * 8.0F;
+      Keyboard.enableRepeatEvents(true);
+//      logger.info("Key down: " + Keyboard.getKeyName(Keyboard.getEventKey()) + " (" + Keyboard.getEventKey() + ")");
+      if(Keyboard.isKeyDown(200)) {
+         this.mc.thePlayer.setAngles(0, 10 * f1);
+      }
+      if(Keyboard.isKeyDown(208)) {
+         this.mc.thePlayer.setAngles(0, -10 * f1);
+      }
+      if (Keyboard.isKeyDown(203)) {
+         this.mc.thePlayer.setAngles(-10 * f1, 0);
+      }
+      if(Keyboard.isKeyDown(205)) {
+         this.mc.thePlayer.setAngles(10 * f1, 0);
+      }
 
-      this.mc.mcProfiler.endSection();
+        this.mc.mcProfiler.endSection();
       if(!this.mc.skipRenderWorld) {
          anaglyphEnable = this.mc.gameSettings.anaglyph;
          final ScaledResolution scaledresolution = new ScaledResolution(this.mc);
