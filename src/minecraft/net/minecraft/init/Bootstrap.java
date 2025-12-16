@@ -51,6 +51,7 @@ import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.custom.DBLogger;
 
 public class Bootstrap {
    private static final PrintStream SYSOUT = System.out;
@@ -151,8 +152,11 @@ public class Bootstrap {
             double d2 = iposition.getZ() + (double)((float)enumfacing.getFrontOffsetZ() * 0.3F);
             World world = source.getWorld();
             Random random = world.rand;
+            DBLogger.log("Bootstrap.java", random, "nextGaussian", -1, "dispenser behavior");
             double d3 = random.nextGaussian() * 0.05D + (double)enumfacing.getFrontOffsetX();
+            DBLogger.log("Bootstrap.java", random, "nextGaussian", -1, "dispenser behavior");
             double d4 = random.nextGaussian() * 0.05D + (double)enumfacing.getFrontOffsetY();
+            DBLogger.log("Bootstrap.java", random, "nextGaussian", -1, "dispenser behavior");
             double d5 = random.nextGaussian() * 0.05D + (double)enumfacing.getFrontOffsetZ();
             world.spawnEntityInWorld(new EntitySmallFireball(world, d0, d1, d2, d3, d4, d5));
             stack.splitStack(1);

@@ -22,6 +22,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeColorHelper;
+import net.custom.DBLogger;
 
 public class BlockDoublePlant extends BlockBush implements IGrowable {
    public static final PropertyEnum<BlockDoublePlant.EnumPlantType> VARIANT = PropertyEnum.<BlockDoublePlant.EnumPlantType>create("variant", BlockDoublePlant.EnumPlantType.class);
@@ -98,6 +99,7 @@ public class BlockDoublePlant extends BlockBush implements IGrowable {
          return null;
       } else {
          BlockDoublePlant.EnumPlantType blockdoubleplant$enumplanttype = (BlockDoublePlant.EnumPlantType)state.getValue(VARIANT);
+         if (!(blockdoubleplant$enumplanttype == BlockDoublePlant.EnumPlantType.FERN) && (blockdoubleplant$enumplanttype == BlockDoublePlant.EnumPlantType.GRASS)) {DBLogger.log("BlockDoublePlant.java", rand, "nextInt", 8, "Getting dropped item for double plant");};
          return blockdoubleplant$enumplanttype == BlockDoublePlant.EnumPlantType.FERN?null:(blockdoubleplant$enumplanttype == BlockDoublePlant.EnumPlantType.GRASS?(rand.nextInt(8) == 0?Items.wheat_seeds:null):Item.getItemFromBlock(this));
       }
    }

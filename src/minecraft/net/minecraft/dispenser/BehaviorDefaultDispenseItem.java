@@ -5,6 +5,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.custom.DBLogger;
 
 public class BehaviorDefaultDispenseItem implements IBehaviorDispenseItem {
    public final ItemStack dispense(IBlockSource source, ItemStack stack) {
@@ -33,12 +34,16 @@ public class BehaviorDefaultDispenseItem implements IBehaviorDispenseItem {
       }
 
       EntityItem entityitem = new EntityItem(worldIn, d0, d1, d2, stack);
+      DBLogger.log("BehaviorDefaultDispenseItem.java", worldIn.rand, "nextDouble", -1, "Dispense item motion calculation");
       double d3 = worldIn.rand.nextDouble() * 0.1D + 0.2D;
       entityitem.motionX = (double)facing.getFrontOffsetX() * d3;
       entityitem.motionY = 0.20000000298023224D;
       entityitem.motionZ = (double)facing.getFrontOffsetZ() * d3;
+      DBLogger.log("BehaviorDefaultDispenseItem.java", worldIn.rand, "nextGaussian", -1, "Dispense item motion randomization");
       entityitem.motionX += worldIn.rand.nextGaussian() * 0.007499999832361937D * (double)speed;
+      DBLogger.log("BehaviorDefaultDispenseItem.java", worldIn.rand, "nextGaussian", -1, "Dispense item motion randomization");
       entityitem.motionY += worldIn.rand.nextGaussian() * 0.007499999832361937D * (double)speed;
+      DBLogger.log("BehaviorDefaultDispenseItem.java", worldIn.rand, "nextGaussian", -1, "Dispense item motion randomization");
       entityitem.motionZ += worldIn.rand.nextGaussian() * 0.007499999832361937D * (double)speed;
       worldIn.spawnEntityInWorld(entityitem);
    }

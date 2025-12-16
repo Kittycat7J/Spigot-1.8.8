@@ -19,10 +19,14 @@ public class BlockMelon extends Block {
    }
 
    public int quantityDropped(Random random) {
+      // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+      DBLogger.log("BlockMelon.java", random, "nextInt", 5, "Melon drop count");
       return 3 + random.nextInt(5);
    }
 
    public int quantityDroppedWithBonus(int fortune, Random random) {
+      DBLogger.log("BlockMelon.java", random, "nextInt", 1 + fortune, "Melon drop count, bound is 1 + fortune");
       return Math.min(9, this.quantityDropped(random) + random.nextInt(1 + fortune));
    }
 }

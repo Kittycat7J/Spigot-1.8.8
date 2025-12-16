@@ -27,7 +27,9 @@ public abstract class WorldProvider {
    private final float[] colorsSunriseSunset = new float[4];
 
    public final void registerWorld(World worldIn) {
+
       this.worldObj = worldIn;
+//      this.worldObj.rand.setSeed(125452248375284L);
       this.terrainType = worldIn.getWorldInfo().getTerrainType();
       this.generatorSettings = worldIn.getWorldInfo().getGeneratorOptions();
       this.registerWorldChunkManager();

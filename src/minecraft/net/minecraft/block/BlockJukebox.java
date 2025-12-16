@@ -59,8 +59,11 @@ public class BlockJukebox extends BlockContainer {
                worldIn.playRecord(pos, (String)null);
                blockjukebox$tileentityjukebox.setRecord((ItemStack)null);
                float f = 0.7F;
+               DBLogger.log("BlockJukebox.java", worldIn.rand, "nextFloat", -1, "record drop coordinates");
                double d0 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+               DBLogger.log("BlockJukebox.java", worldIn.rand, "nextFloat", -1, "record drop coordinates");
                double d1 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.2D + 0.6D;
+               DBLogger.log("BlockJukebox.java", worldIn.rand, "nextFloat", -1, "record drop coordinates");
                double d2 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
                ItemStack itemstack1 = itemstack.copy();
                EntityItem entityitem = new EntityItem(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, itemstack1);

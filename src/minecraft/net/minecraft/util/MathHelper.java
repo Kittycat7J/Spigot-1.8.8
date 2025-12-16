@@ -2,6 +2,7 @@ package net.minecraft.util;
 
 import java.util.Random;
 import java.util.UUID;
+import net.custom.DBLogger;
 
 public class MathHelper {
    public static final float SQRT_2 = sqrt_float(2.0F);
@@ -101,14 +102,17 @@ public class MathHelper {
    }
 
    public static int getRandomIntegerInRange(Random p_76136_0_, int p_76136_1_, int p_76136_2_) {
+      if (!(p_76136_1_ >= p_76136_2_)) {DBLogger.log("MathHelper.java", p_76136_0_, "nextInt",p_76136_2_ - p_76136_1_ + 1 , "getRandomIntegerInRange called");};
       return p_76136_1_ >= p_76136_2_?p_76136_1_:p_76136_0_.nextInt(p_76136_2_ - p_76136_1_ + 1) + p_76136_1_;
    }
 
    public static float randomFloatClamp(Random p_151240_0_, float p_151240_1_, float p_151240_2_) {
+       if (!(p_151240_1_ >= p_151240_2_)) {DBLogger.log("MathHelper.java", p_151240_0_, "nextFloat", -1,"randomFloatClamp called");};
       return p_151240_1_ >= p_151240_2_?p_151240_1_:p_151240_0_.nextFloat() * (p_151240_2_ - p_151240_1_) + p_151240_1_;
    }
 
    public static double getRandomDoubleInRange(Random p_82716_0_, double p_82716_1_, double p_82716_3_) {
+      if (!(p_82716_1_ >= p_82716_3_)) {DBLogger.log("MathHelper.java", p_82716_0_, "nextDouble", -1, "getRandomDoubleInRange called");};
       return p_82716_1_ >= p_82716_3_?p_82716_1_:p_82716_0_.nextDouble() * (p_82716_3_ - p_82716_1_) + p_82716_1_;
    }
 
@@ -256,7 +260,9 @@ public class MathHelper {
    }
 
    public static UUID getRandomUuid(Random rand) {
+      DBLogger.log("MathHelper.java", rand, "nextLong", -1, "getRandomUuid called");
       long i = rand.nextLong() & -61441L | 16384L;
+      DBLogger.log("MathHelper.java", rand, "nextLong", -1, "getRandomUuid called");
       long j = rand.nextLong() & 4611686018427387903L | Long.MIN_VALUE;
       return new UUID(i, j);
    }

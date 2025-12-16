@@ -23,6 +23,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.custom.DBLogger;
 
 public class BlockPistonBase extends Block {
    public static final PropertyDirection FACING = PropertyDirection.create("facing");
@@ -120,7 +121,8 @@ public class BlockPistonBase extends Block {
          }
 
          worldIn.setBlockState(pos, state.withProperty(EXTENDED, Boolean.valueOf(true)), 2);
-         logger.info("custom logger BlockPistonBase: worldIn.rand.nextFloat()");
+         // logger.info("custom logger BlockPistonBase: worldIn.rand.nextFloat()");
+         DBLogger.log("BlockPistonBase.java", worldIn.rand, "nextFloat()", -1, "Piston extending sound");
          worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, "tile.piston.out", 0.5F, worldIn.rand.nextFloat() * 0.25F + 0.6F);
       } else if(eventID == 1) {
          TileEntity tileentity1 = worldIn.getTileEntity(pos.offset(enumfacing));
@@ -151,7 +153,8 @@ public class BlockPistonBase extends Block {
          } else {
             worldIn.setBlockToAir(pos.offset(enumfacing));
          }
-         logger.info("custom logger BlockPistonBase: worldIn.rand.nextFloat()");
+         // logger.info("custom logger BlockPistonBase: worldIn.rand.nextFloat()");
+         DBLogger.log("BlockPistonBase.java", worldIn.rand, "nextFloat()", -1, "Piston retracting sound");
          worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, "tile.piston.in", 0.5F, worldIn.rand.nextFloat() * 0.15F + 0.6F);
       }
 

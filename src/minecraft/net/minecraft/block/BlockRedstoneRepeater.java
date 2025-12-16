@@ -18,6 +18,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.custom.DBLogger;
 
 public class BlockRedstoneRepeater extends BlockRedstoneDiode {
    public static final PropertyBool LOCKED = PropertyBool.create("locked");
@@ -82,12 +83,16 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode {
    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
       if(this.isRepeaterPowered) {
          EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
-         logger.info("custom logger BlockRedstoneRepeater: rand.nextDouble() three times");
+//         logger.info("custom logger BlockRedstoneRepeater: rand.nextDouble() three times");
+          DBLogger.log("BlockRedstoneRepeater.java", rand, "nextFloat", -1, "Particle spawn coordinates");
          double d0 = (double)((float)pos.getX() + 0.5F) + (double)(rand.nextFloat() - 0.5F) * 0.2D;
+         DBLogger.log("BlockRedstoneRepeater.java", rand, "nextFloat", -1, "Particle spawn coordinates");
          double d1 = (double)((float)pos.getY() + 0.4F) + (double)(rand.nextFloat() - 0.5F) * 0.2D;
+         DBLogger.log("BlockRedstoneRepeater.java", rand, "nextFloat", -1, "Particle spawn coordinates");
          double d2 = (double)((float)pos.getZ() + 0.5F) + (double)(rand.nextFloat() - 0.5F) * 0.2D;
          float f = -5.0F;
-         logger.info("custom logger BlockRedstoneRepeater: called if(rand.nextBoolean()) { ");
+//         logger.info("custom logger BlockRedstoneRepeater: called if(rand.nextBoolean()) { ");
+          DBLogger.log("BlockRedstoneRepeater.java", rand, "nextBoolean", -1, "Randomly adjust particle offset");
          if(rand.nextBoolean()) {
             f = (float)(((Integer)state.getValue(DELAY)).intValue() * 2 - 1);
          }

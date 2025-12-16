@@ -51,6 +51,7 @@ public class WorldClient extends World {
       this.sendQueue = p_i45063_1_;
       this.getWorldInfo().setDifficulty(p_i45063_4_);
       this.setSpawnPoint(new BlockPos(8, 64, 8));
+//      this.rand.setSeed(125452248375284L);
       this.provider.registerWorld(this);
       this.chunkProvider = this.createChunkProvider();
       this.mapStorage = new SaveDataMemoryStorage();

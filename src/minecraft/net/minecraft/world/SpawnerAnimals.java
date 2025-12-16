@@ -19,6 +19,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.custom.DBLogger;
 
 public final class SpawnerAnimals {
     private static final Logger logger = LogManager.getLogger();
@@ -81,11 +82,17 @@ public final class SpawnerAnimals {
 
                            for(int l3 = 0; l3 < 4; ++l3) {
 //                               logger.info("custon logger SpawnerAnimals: l2 += p_77192_1_.rand.nextInt({}) - p_77192_1_.rand.nextInt({});",k3,k3);
-                              l2 += p_77192_1_.rand.nextInt(k3) - p_77192_1_.rand.nextInt(k3);
+                              DBLogger.log("SpawnerAnimals.java", p_77192_1_.rand, "nextInt", k3, "Calculating spawn position offset for l2, bound is k3");
+                              DBLogger.log("SpawnerAnimals.java", p_77192_1_.rand, "nextInt", k3, "Calculating spawn position offset for l2, bound is k3");
+                               l2 += p_77192_1_.rand.nextInt(k3) - p_77192_1_.rand.nextInt(k3);
 //                              logger.info("custon logger SpawnerAnimals: i3 += p_77192_1_.rand.nextInt(1) - p_77192_1_.rand.nextInt(1);");
-                              i3 += p_77192_1_.rand.nextInt(1) - p_77192_1_.rand.nextInt(1);
+                              DBLogger.log("SpawnerAnimals.java", p_77192_1_.rand, "nextInt", 1, "Calculating spawn position offset for i3");
+                              DBLogger.log("SpawnerAnimals.java", p_77192_1_.rand, "nextInt", 1, "Calculating spawn position offset for i3");
+                               i3 += p_77192_1_.rand.nextInt(1) - p_77192_1_.rand.nextInt(1);
 //                                logger.info("custon logger SpawnerAnimals: j3 += p_77192_1_.rand.nextInt({}) - p_77192_1_.rand.nextInt({});",k3,k3);
-                              j3 += p_77192_1_.rand.nextInt(k3) - p_77192_1_.rand.nextInt(k3);
+                              DBLogger.log("SpawnerAnimals.java", p_77192_1_.rand, "nextInt", k3, "Calculating spawn position offset for l2, bound is k3");
+                              DBLogger.log("SpawnerAnimals.java", p_77192_1_.rand, "nextInt", k3, "Calculating spawn position offset for l2, bound is k3");
+                               j3 += p_77192_1_.rand.nextInt(k3) - p_77192_1_.rand.nextInt(k3);
                               BlockPos blockpos1 = new BlockPos(l2, i3, j3);
                               float f = (float)l2 + 0.5F;
                               float f1 = (float)j3 + 0.5F;
@@ -107,7 +114,8 @@ public final class SpawnerAnimals {
                                     }
 
 //                                    logger.info("custom logger SpawnerAnimals: p_77192_1_.rand.nextFloat(); p_77192_1_ is WorldServer");
-                                    entityliving.setLocationAndAngles((double)f, (double)i3, (double)f1, p_77192_1_.rand.nextFloat() * 360.0F, 0.0F);
+                                    DBLogger.log("SpawnerAnimals.java", p_77192_1_.rand, "nextFloat", -1, "Calculating random spawn rotation for entity");
+                                     entityliving.setLocationAndAngles((double)f, (double)i3, (double)f1, p_77192_1_.rand.nextFloat() * 360.0F, 0.0F);
                                     if(entityliving.getCanSpawnHere() && entityliving.isNotColliding()) {
                                        ientitylivingdata = entityliving.onInitialSpawn(p_77192_1_.getDifficultyForLocation(new BlockPos(entityliving)), ientitylivingdata);
                                        if(entityliving.isNotColliding()) {
@@ -138,10 +146,13 @@ public final class SpawnerAnimals {
    protected static BlockPos getRandomChunkPosition(World worldIn, int x, int z) {
       Chunk chunk = worldIn.getChunkFromChunkCoords(x, z);
 //      logger.info("custom logger SpawnerAnimals: worldIn.rand.nextInt(16); worldIn.rand.nextInt(16); ");
+      DBLogger.log("SpawnerAnimals.java", worldIn.rand, "nextInt", 16, "Calculating random spawn position offset for i");
       int i = x * 16 + worldIn.rand.nextInt(16);
+      DBLogger.log("SpawnerAnimals.java", worldIn.rand, "nextInt", 16, "Calculating random spawn position offset for j");
       int j = z * 16 + worldIn.rand.nextInt(16);
       int k = MathHelper.func_154354_b(chunk.getHeight(new BlockPos(i, 0, j)) + 1, 16);
 //      logger.info("custom logger SpawnerAnimals:worldIn.rand.nextInt({}); ",k > 0?k:chunk.getTopFilledSegment() + 16 - 1);
+      DBLogger.log("SpawnerAnimals.java", worldIn.rand, "nextInt", k > 0?k:chunk.getTopFilledSegment() + 16 - 1, "Calculating random spawn position offset for k, bound is k > 0?k:chunk.getTopFilledSegment() + 16 - 1");
       int l = worldIn.rand.nextInt(k > 0?k:chunk.getTopFilledSegment() + 16 - 1);
       return new BlockPos(i, l, j);
    }
@@ -169,11 +180,15 @@ public final class SpawnerAnimals {
    public static void performWorldGenSpawning(World worldIn, BiomeGenBase p_77191_1_, int p_77191_2_, int p_77191_3_, int p_77191_4_, int p_77191_5_, Random p_77191_6_) {
       List<BiomeGenBase.SpawnListEntry> list = p_77191_1_.getSpawnableList(EnumCreatureType.CREATURE);
       if(!list.isEmpty()) {
-         while(p_77191_6_.nextFloat() < p_77191_1_.getSpawningChance()) {
+         while ((p_77191_6_.nextFloat()) < p_77191_1_.getSpawningChance()) {
+            DBLogger.log("SpawnerAnimals.java", p_77191_6_, "nextFloat", -1, "Calculating random spawn roll for entity");
             BiomeGenBase.SpawnListEntry biomegenbase$spawnlistentry = (BiomeGenBase.SpawnListEntry)WeightedRandom.getRandomItem(worldIn.rand, list);
+            DBLogger.log("SpawnerAnimals.java", p_77191_6_, "nextInt", 1 + biomegenbase$spawnlistentry.maxGroupCount - biomegenbase$spawnlistentry.minGroupCount, "Calculating random spawn group size for entity, bound is 1 + biomegenbase$spawnlistentry.maxGroupCount - biomegenbase$spawnlistentry.minGroupCount");
             int i = biomegenbase$spawnlistentry.minGroupCount + p_77191_6_.nextInt(1 + biomegenbase$spawnlistentry.maxGroupCount - biomegenbase$spawnlistentry.minGroupCount);
             IEntityLivingData ientitylivingdata = null;
+            DBLogger.log("SpawnerAnimals.java", p_77191_6_, "nextInt", p_77191_4_, "Calculating random spawn position offset for j, bound is p_77191_4_");
             int j = p_77191_2_ + p_77191_6_.nextInt(p_77191_4_);
+            DBLogger.log("SpawnerAnimals.java", p_77191_6_, "nextInt", p_77191_5_, "Calculating random spawn position offset for k, bound is p_77191_5_");
             int k = p_77191_3_ + p_77191_6_.nextInt(p_77191_5_);
             int l = j;
             int i1 = k;
@@ -191,21 +206,28 @@ public final class SpawnerAnimals {
                         exception.printStackTrace();
                         continue;
                      }
-
+                     DBLogger.log("SpawnerAnimals.java", p_77191_6_, "nextFloat", -1, "Calculating random spawn rotation for entity");
                      entityliving.setLocationAndAngles((double)((float)j + 0.5F), (double)blockpos.getY(), (double)((float)k + 0.5F), p_77191_6_.nextFloat() * 360.0F, 0.0F);
                      worldIn.spawnEntityInWorld(entityliving);
                      ientitylivingdata = entityliving.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entityliving)), ientitylivingdata);
                      flag = true;
                   }
-
+                  DBLogger.log("SpawnerAnimals.java", p_77191_6_, "nextInt", 5, "Calculating random spawn position offset for j");
+                  DBLogger.log("SpawnerAnimals.java", p_77191_6_, "nextInt", 5, "Calculating random spawn position offset for j");
                   j += p_77191_6_.nextInt(5) - p_77191_6_.nextInt(5);
-
+                  DBLogger.log("SpawnerAnimals.java", p_77191_6_, "nextInt", 5, "Calculating random spawn position offset for k");
+                  DBLogger.log("SpawnerAnimals.java", p_77191_6_, "nextInt", 5, "Calculating random spawn position offset for k");
                   for(k += p_77191_6_.nextInt(5) - p_77191_6_.nextInt(5); j < p_77191_2_ || j >= p_77191_2_ + p_77191_4_ || k < p_77191_3_ || k >= p_77191_3_ + p_77191_4_; k = i1 + p_77191_6_.nextInt(5) - p_77191_6_.nextInt(5)) {
+                     DBLogger.log("SpawnerAnimals.java", p_77191_6_, "nextInt", 5, "Calculating random spawn position offset for j");
+                     DBLogger.log("SpawnerAnimals.java", p_77191_6_, "nextInt", 5, "Calculating random spawn position offset for j");
                      j = l + p_77191_6_.nextInt(5) - p_77191_6_.nextInt(5);
+                     DBLogger.log("SpawnerAnimals.java", p_77191_6_, "nextInt", 5, "Calculating random spawn position offset for k");
+                     DBLogger.log("SpawnerAnimals.java", p_77191_6_, "nextInt", 5, "Calculating random spawn position offset for k");
                   }
                }
             }
          }
+         DBLogger.log("SpawnerAnimals.java", p_77191_6_, "nextFloat", -1, "Calculating random spawn roll for entity");
       }
    }
 }

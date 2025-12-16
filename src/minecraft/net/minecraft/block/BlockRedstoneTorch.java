@@ -16,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.custom.DBLogger;
 
 public class BlockRedstoneTorch extends BlockTorch {
    private static Map<World, List<BlockRedstoneTorch.Toggle>> toggles = Maps.<World, List<BlockRedstoneTorch.Toggle>>newHashMap();
@@ -97,11 +98,16 @@ public class BlockRedstoneTorch extends BlockTorch {
          if(flag) {
             worldIn.setBlockState(pos, Blocks.unlit_redstone_torch.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
             if(this.isBurnedOut(worldIn, pos, true)) {
+                DBLogger.log("BlockRedstoneTorch.java", worldIn.rand, "nextFloat", -1, "Redstone torch burnout effects");
+                DBLogger.log("BlockRedstoneTorch.java", worldIn.rand, "nextFloat", -1, "Redstone torch burnout effects");
                worldIn.playSoundEffect((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), "random.fizz", 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
 
                for(int i = 0; i < 5; ++i) {
+                   DBLogger.log("BlockRedstoneTorch.java", rand, "nextDouble", -1, "Redstone torch burnout smoke particle");
                   double d0 = (double)pos.getX() + rand.nextDouble() * 0.6D + 0.2D;
+                  DBLogger.log("BlockRedstoneTorch.java", rand, "nextDouble", -1, "Redstone torch burnout smoke particle");
                   double d1 = (double)pos.getY() + rand.nextDouble() * 0.6D + 0.2D;
+                    DBLogger.log("BlockRedstoneTorch.java", rand, "nextDouble", -1, "Redstone torch burnout smoke particle");
                   double d2 = (double)pos.getZ() + rand.nextDouble() * 0.6D + 0.2D;
                   worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
                }
@@ -136,9 +142,12 @@ public class BlockRedstoneTorch extends BlockTorch {
 
    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
       if(this.isOn) {
-         logger.info("custom logger BlockRedstoneTorch: rand.nextDouble() three times");
+         // logger.info("custom logger BlockRedstoneTorch: rand.nextDouble() three times");
+         DBLogger.log("BlockRedstoneTorch.java", rand, "nextDouble", -1, "Particle spawn coordinates");
          double d0 = (double)pos.getX() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
+         DBLogger.log("BlockRedstoneTorch.java", rand, "nextDouble", -1, "Particle spawn coordinates");
          double d1 = (double)pos.getY() + 0.7D + (rand.nextDouble() - 0.5D) * 0.2D;
+         DBLogger.log("BlockRedstoneTorch.java", rand, "nextDouble", -1, "Particle spawn coordinates");
          double d2 = (double)pos.getZ() + 0.5D + (rand.nextDouble() - 0.5D) * 0.2D;
          EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
          if(enumfacing.getAxis().isHorizontal()) {

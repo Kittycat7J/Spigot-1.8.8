@@ -66,9 +66,13 @@ public class BlockFurnace extends BlockContainer {
       if(this.isBurning) {
          EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
          double d0 = (double)pos.getX() + 0.5D;
+         // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+         DBLogger.log("BlockFurnace.java", rand, "nextDouble", -1, "Particle spawn coordinates");
          double d1 = (double)pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
          double d2 = (double)pos.getZ() + 0.5D;
          double d3 = 0.52D;
+         DBLogger.log("BlockFurnace.java", rand, "nextDouble", -1, "Particle spawn coordinates");
          double d4 = rand.nextDouble() * 0.6D - 0.3D;
          switch(enumfacing) {
          case WEST:

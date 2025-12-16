@@ -15,6 +15,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
+import net.custom.DBLogger;
 
 public class BlockEnchantmentTable extends BlockContainer {
    protected BlockEnchantmentTable() {
@@ -36,7 +37,7 @@ public class BlockEnchantmentTable extends BlockContainer {
             if(i > -2 && i < 2 && j == -1) {
                j = 2;
             }
-
+            DBLogger.log("BlockEnchantmentTable.java", rand, "nextInt", 16, "Particle spawn chance");
             if(rand.nextInt(16) == 0) {
                for(int k = 0; k <= 1; ++k) {
                   BlockPos blockpos = pos.add(i, k, j);
@@ -44,7 +45,9 @@ public class BlockEnchantmentTable extends BlockContainer {
                      if(!worldIn.isAirBlock(pos.add(i / 2, 0, j / 2))) {
                         break;
                      }
-
+                     DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+                     DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+                     DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
                      worldIn.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, (double)pos.getX() + 0.5D, (double)pos.getY() + 2.0D, (double)pos.getZ() + 0.5D, (double)((float)i + rand.nextFloat()) - 0.5D, (double)((float)k - rand.nextFloat() - 1.0F), (double)((float)j + rand.nextFloat()) - 0.5D, new int[0]);
                   }
                }

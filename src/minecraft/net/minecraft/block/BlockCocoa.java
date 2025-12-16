@@ -18,7 +18,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
+import net.custom.DBLogger;
 public class BlockCocoa extends BlockDirectional implements IGrowable {
    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 2);
 
@@ -29,14 +29,28 @@ public class BlockCocoa extends BlockDirectional implements IGrowable {
    }
 
    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-      if(!this.canBlockStay(worldIn, pos, state)) {
-         this.dropBlock(worldIn, pos, state);
-      } else if(worldIn.rand.nextInt(5) == 0) {
-         int i = ((Integer)state.getValue(AGE)).intValue();
-         if(i < 2) {
-            worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
-         }
-      }
+       if(this.canBlockStay(worldIn, pos, state)) {
+           DBLogger.log("BlockCauldron.java", worldIn.rand, "nextInt", 20, "Cauldron filling with rain");
+           if (worldIn.rand.nextInt(5) == 0) {
+               int i = ((Integer) state.getValue(AGE)).intValue();
+               if (i < 2) {
+                   worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
+               }
+           }
+       } else {
+           this.dropBlock(worldIn, pos, state);
+       }
+
+//       if(!this.canBlockStay(worldIn, pos, state)) {
+//         this.dropBlock(worldIn, pos, state);
+//      } else
+//          if(worldIn.rand.nextInt(5) == 0) {
+//
+//         int i = ((Integer)state.getValue(AGE)).intValue();
+//         if(i < 2) {
+//            worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
+//         }
+//      }
    }
 
    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {

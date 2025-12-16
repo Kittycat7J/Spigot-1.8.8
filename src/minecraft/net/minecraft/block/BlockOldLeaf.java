@@ -55,6 +55,9 @@ public class BlockOldLeaf extends BlockLeaves {
    }
 
    protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance) {
+      // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+      DBLogger.log("BlockOldLeaf.java", worldIn.rand, "nextInt", chance, "drop apple, bound is chance");
       if(state.getValue(VARIANT) == BlockPlanks.EnumType.OAK && worldIn.rand.nextInt(chance) == 0) {
          spawnAsEntity(worldIn, pos, new ItemStack(Items.apple, 1, 0));
       }

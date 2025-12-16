@@ -29,6 +29,10 @@ public class BlockMobSpawner extends BlockContainer {
 
    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune) {
       super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
+      // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+      DBLogger.log("BlockMobSpawner.java", worldIn.rand, "nextInt", 15, "xp spawn coordinates");
+      DBLogger.log("BlockMobSpawner.java", worldIn.rand, "nextInt", 15, "xp spawn coordinates");
       int i = 15 + worldIn.rand.nextInt(15) + worldIn.rand.nextInt(15);
       this.dropXpOnBlockBreak(worldIn, pos, i);
    }

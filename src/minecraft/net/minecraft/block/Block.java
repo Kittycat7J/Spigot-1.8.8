@@ -34,6 +34,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.custom.DBLogger;
 
 public class Block {
    private static final Logger logger = LogManager.getLogger();
@@ -393,7 +394,8 @@ public class Block {
          int i = this.quantityDroppedWithBonus(fortune, worldIn.rand);
 
          for(int j = 0; j < i; ++j) {
-            logger.info("custom logger Block: worldIn.rand.nextFloat()");
+//            logger.info("custom logger Block: worldIn.rand.nextFloat()");
+             DBLogger.log("Block.java", worldIn.rand, "nextFloat", -1,"dropBlockAsItemWithChance");
             if(worldIn.rand.nextFloat() <= chance) {
                Item item = this.getItemDropped(state, worldIn.rand, fortune);
                if(item != null) {
@@ -407,9 +409,12 @@ public class Block {
    public static void spawnAsEntity(World worldIn, BlockPos pos, ItemStack stack) {
       if(!worldIn.isRemote && worldIn.getGameRules().getBoolean("doTileDrops")) {
          float f = 0.5F;
-         logger.info("custom logger Block: worldIn.rand.nextFloat() three times");
+         // logger.info("custom logger Block: worldIn.rand.nextFloat() three times");
+         DBLogger.log("Block.java",  worldIn.rand, "nextFloat", -1,"spawnAsEntity");
          double d0 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+         DBLogger.log("Block.java", worldIn.rand, "nextFloat", -1,"spawnAsEntity");
          double d1 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+         DBLogger.log("Block.java", worldIn.rand, "nextFloat", -1,"spawnAsEntity");
          double d2 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
          EntityItem entityitem = new EntityItem(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, stack);
          entityitem.setDefaultPickupDelay();

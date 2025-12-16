@@ -37,6 +37,9 @@ public class BlockNetherWart extends BlockBush {
 
    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
       int i = ((Integer)state.getValue(AGE)).intValue();
+      // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+      DBLogger.log("BlockNetherWart.java", rand, "nextInt", 10, "Netherwart age");
       if(i < 3 && rand.nextInt(10) == 0) {
          state = state.withProperty(AGE, Integer.valueOf(i + 1));
          worldIn.setBlockState(pos, state, 2);
@@ -49,8 +52,10 @@ public class BlockNetherWart extends BlockBush {
       if(!worldIn.isRemote) {
          int i = 1;
          if(((Integer)state.getValue(AGE)).intValue() >= 3) {
+            DBLogger.log("BlockNetherWart.java", worldIn.rand, "nextInt", 3, "Netherwart drop");
             i = 2 + worldIn.rand.nextInt(3);
             if(fortune > 0) {
+               DBLogger.log("BlockNetherWart.java", worldIn.rand, "nextInt", fortune + 1, "Netherwart drop fortune, bound is fortune + 1");
                i += worldIn.rand.nextInt(fortune + 1);
             }
          }

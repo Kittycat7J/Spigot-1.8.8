@@ -53,6 +53,7 @@ import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.custom.DBLogger;
 
 public class EntityPlayerSP extends AbstractClientPlayer {
    public final NetHandlerPlayClient sendQueue;
@@ -473,7 +474,8 @@ public class EntityPlayerSP extends AbstractClientPlayer {
          }
 
          if(this.timeInPortal == 0.0F) {
-            logger.info("custom logger EntityPlayerSP: this.rand.nextFloat()");
+            // logger.info("custom logger EntityPlayerSP: this.rand.nextFloat()");
+            DBLogger.log("EntityPlayerSP.java", this.rand, "nextFloat", -1, "portal trigger");
             this.mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("portal.trigger"), this.rand.nextFloat() * 0.4F + 0.8F));
          }
 

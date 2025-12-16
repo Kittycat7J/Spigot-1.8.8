@@ -28,6 +28,9 @@ public class BlockNewLeaf extends BlockLeaves {
    }
 
    protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance) {
+      // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+      DBLogger.log("BlockNewLeaf.java", worldIn.rand, "nextInt", chance, "dropApple, bound is chance");
       if(state.getValue(VARIANT) == BlockPlanks.EnumType.DARK_OAK && worldIn.rand.nextInt(chance) == 0) {
          spawnAsEntity(worldIn, pos, new ItemStack(Items.apple, 1, 0));
       }

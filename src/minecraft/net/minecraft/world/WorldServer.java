@@ -71,6 +71,7 @@ import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.custom.DBLogger;
 
 public class WorldServer extends World implements IThreadListener {
    private static final Logger logger = LogManager.getLogger();
@@ -97,6 +98,7 @@ public class WorldServer extends World implements IThreadListener {
       this.mcServer = server;
       this.theEntityTracker = new EntityTracker(this);
       this.thePlayerManager = new PlayerManager(this);
+//      this.rand.setSeed(115376020682926L);
       this.provider.registerWorld(this);
       this.chunkProvider = this.createChunkProvider();
       this.worldTeleporter = new Teleporter(this);
@@ -259,7 +261,11 @@ public class WorldServer extends World implements IThreadListener {
       int k = 0;
 
       while(this.getGroundAboveSeaLevel(new BlockPos(i, 0, j)).getMaterial() == Material.air) {
+          DBLogger.log("WorldServer.java", this.rand, "nextInt", 8, "intial spawn");
+          DBLogger.log("WorldServer.java", this.rand, "nextInt", 8, "intial spawn");
          i += this.rand.nextInt(8) - this.rand.nextInt(8);
+          DBLogger.log("WorldServer.java", this.rand, "nextInt", 8, "intial spawn");
+          DBLogger.log("WorldServer.java", this.rand, "nextInt", 8, "intial spawn");
          j += this.rand.nextInt(8) - this.rand.nextInt(8);
          ++k;
          if(k == 10000) {
@@ -290,6 +296,7 @@ public class WorldServer extends World implements IThreadListener {
             this.theProfiler.endStartSection("tickChunk");
             chunk.func_150804_b(false);
             this.theProfiler.endStartSection("thunder");
+             DBLogger.log("WorldServer.java", this.rand, "nextInt", 100000, "thunder");
 //            logger.info("custom logger WorldServer: this.rand.nextInt(100000)");
             if(this.rand.nextInt(100000) == 0 && this.isRaining() && this.isThundering()) {
                this.updateLCG = this.updateLCG * 3 + 1013904223;
@@ -302,6 +309,7 @@ public class WorldServer extends World implements IThreadListener {
 
             this.theProfiler.endStartSection("iceandsnow");
 //            logger.info("custom logger WorldServer: called this.rand.nextInt(16) == 0)");
+            DBLogger.log("WorldServer.java", this.rand, "nextInt", 16, "ice and snow");
             if(this.rand.nextInt(16) == 0) {
                this.updateLCG = this.updateLCG * 3 + 1013904223;
                int k2 = this.updateLCG >> 2;
@@ -356,7 +364,7 @@ public class WorldServer extends World implements IThreadListener {
             return p_apply_1_ != null && p_apply_1_.isEntityAlive() && WorldServer.this.canSeeSky(p_apply_1_.getPosition());
          }
       });
-      logger.info("custom logger WorldServer: this.rand.nextInt({})",list.size());
+      if(!list.isEmpty()) {DBLogger.log("WorldServer.java", this.rand, "nextInt", list.size(), "bock pos adjust, bound is list.size");};
       return !list.isEmpty()?((EntityLivingBase)list.get(this.rand.nextInt(list.size()))).getPosition():blockpos;
    }
 
@@ -551,7 +559,7 @@ public class WorldServer extends World implements IThreadListener {
    protected IChunkProvider createChunkProvider() {
       IChunkLoader ichunkloader = this.saveHandler.getChunkLoader(this.provider);
       this.theChunkProviderServer = new ChunkProviderServer(this, ichunkloader, this.provider.createChunkGenerator());
-      logger.info("custom logger WorldServer: this.theChunkProviderServer = new ChunkProviderServer(this, ichunkloader, this.provider.createChunkGenerator());");
+      // logger.info("custom logger WorldServer: this.theChunkProviderServer = new ChunkProviderServer(this, ichunkloader, this.provider.createChunkGenerator());");
       return this.theChunkProviderServer;
    }
 
@@ -636,8 +644,11 @@ public class WorldServer extends World implements IThreadListener {
          int l = 0;
 
          while(!this.provider.canCoordinateBeSpawn(i, k)) {
-             logger.info("custom logger WorldServer: {} += random.nextInt(64) - random.nextInt(64);    {} += random.nextInt(64) - random.nextInt(64);",i,k);
+             DBLogger.log("WorldServer.java", random, "nextInt", 64, "create spawn");
+             DBLogger.log("WorldServer.java", random, "nextInt", 64, "create spawn");
             i += random.nextInt(64) - random.nextInt(64);
+            DBLogger.log("WorldServer.java", random, "nextInt", 64, "create spawn");
+            DBLogger.log("WorldServer.java", random, "nextInt", 64, "create spawn");
             k += random.nextInt(64) - random.nextInt(64);
             ++l;
             if(l == 1000) {
@@ -657,7 +668,11 @@ public class WorldServer extends World implements IThreadListener {
       WorldGeneratorBonusChest worldgeneratorbonuschest = new WorldGeneratorBonusChest(bonusChestContent, 10);
 
       for(int i = 0; i < 10; ++i) {
+          DBLogger.log("WorldServer.java", this.rand, "nextInt", 6, "bonus chest");
+          DBLogger.log("WorldServer.java", this.rand, "nextInt", 6, "bonus chest");
          int j = this.worldInfo.getSpawnX() + this.rand.nextInt(6) - this.rand.nextInt(6);
+         DBLogger.log("WorldServer.java", this.rand, "nextInt", 6, "bonus chest");
+         DBLogger.log("WorldServer.java", this.rand, "nextInt", 6, "bonus chest");
          int k = this.worldInfo.getSpawnZ() + this.rand.nextInt(6) - this.rand.nextInt(6);
          BlockPos blockpos = this.getTopSolidOrLiquidBlock(new BlockPos(j, 0, k)).up();
          if(worldgeneratorbonuschest.generate(this, this.rand, blockpos)) {

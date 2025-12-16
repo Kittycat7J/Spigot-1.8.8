@@ -57,8 +57,13 @@ public class BlockEndPortal extends BlockContainer {
    }
 
    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+      // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+// DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+// DBLogger.log("TileEntityHopper.java", worldIn.rand, "rand.nextInt", list.size(), "Selecting random inventory entity for hopper transfer, bound is list.size()");
+      DBLogger.log("BlockEndPortal.java", rand, "nextFloat", -1, "Particle spawn coordinates");
       double d0 = (double)((float)pos.getX() + rand.nextFloat());
       double d1 = (double)((float)pos.getY() + 0.8F);
+      DBLogger.log("BlockEndPortal.java", rand, "nextFloat", -1, "Particle spawn coordinates");
       double d2 = (double)((float)pos.getZ() + rand.nextFloat());
       double d3 = 0.0D;
       double d4 = 0.0D;

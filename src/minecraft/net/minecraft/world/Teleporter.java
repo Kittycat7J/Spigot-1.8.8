@@ -14,6 +14,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.LongHashMap;
 import net.minecraft.util.MathHelper;
+import net.custom.DBLogger;
 
 public class Teleporter {
    private final WorldServer worldServerInstance;
@@ -157,6 +158,7 @@ public class Teleporter {
       int j1 = k;
       int k1 = l;
       int l1 = 0;
+      DBLogger.log("Teleporter.java", this.random, "nextInt", 4, "make portal");
       int i2 = this.random.nextInt(4);
       BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
