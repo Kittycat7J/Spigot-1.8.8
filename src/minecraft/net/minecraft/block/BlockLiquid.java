@@ -170,33 +170,53 @@ public abstract class BlockLiquid extends Block {
       if(this.blockMaterial == Material.water) {
          int i = ((Integer)state.getValue(LEVEL)).intValue();
          if(i > 0 && i < 8) {
+            // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+            DBLogger.log("BlockLiquid.java", rand, "nextInt", 64, "sound water");
             if(rand.nextInt(64) == 0) {
+               DBLogger.log("BlockLiquid.java", rand, "nextFloat", -1, "sound water");
+               DBLogger.log("BlockLiquid.java", rand, "nextFloat", -1, "sound water");
                worldIn.playSound(d0 + 0.5D, d1 + 0.5D, d2 + 0.5D, "liquid.water", rand.nextFloat() * 0.25F + 0.75F, rand.nextFloat() * 1.0F + 0.5F, false);
             }
-         } else if(rand.nextInt(10) == 0) {
-            worldIn.spawnParticle(EnumParticleTypes.SUSPENDED, d0 + (double)rand.nextFloat(), d1 + (double)rand.nextFloat(), d2 + (double)rand.nextFloat(), 0.0D, 0.0D, 0.0D, new int[0]);
+         } else {
+            DBLogger.log("BlockLiquid.java", rand, "nextInt", 10, "particle water");
+            if(rand.nextInt(10) == 0) {
+               DBLogger.log("BlockLiquid.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+               DBLogger.log("BlockLiquid.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+               DBLogger.log("BlockLiquid.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+               worldIn.spawnParticle(EnumParticleTypes.SUSPENDED, d0 + (double)rand.nextFloat(), d1 + (double)rand.nextFloat(), d2 + (double)rand.nextFloat(), 0.0D, 0.0D, 0.0D, new int[0]);
+            }
          }
       }
 
       if(this.blockMaterial == Material.lava && worldIn.getBlockState(pos.up()).getBlock().getMaterial() == Material.air && !worldIn.getBlockState(pos.up()).getBlock().isOpaqueCube()) {
+         DBLogger.log("BlockLiquid.java", rand, "nextInt", 100, "particle lava");
          if(rand.nextInt(100) == 0) {
+            DBLogger.log("BlockLiquid.java", rand, "nextFloat", -1, "Particle spawn coordinates");
             double d8 = d0 + (double)rand.nextFloat();
             double d4 = d1 + this.maxY;
+            DBLogger.log("BlockLiquid.java", rand, "nextFloat", -1, "Particle spawn coordinates");
             double d6 = d2 + (double)rand.nextFloat();
             worldIn.spawnParticle(EnumParticleTypes.LAVA, d8, d4, d6, 0.0D, 0.0D, 0.0D, new int[0]);
+            DBLogger.log("BlockLiquid.java", rand, "nextFloat", -1, "sound lava");
+            DBLogger.log("BlockLiquid.java", rand, "nextFloat", -1, "sound lava");
             worldIn.playSound(d8, d4, d6, "liquid.lavapop", 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
          }
-
+         DBLogger.log("BlockLiquid.java", rand, "nextInt", 200, "sound lava");
          if(rand.nextInt(200) == 0) {
+            DBLogger.log("BlockLiquid.java", rand, "nextFloat", -1, "sound lava");
+            DBLogger.log("BlockLiquid.java", rand, "nextFloat", -1, "sound lava");
             worldIn.playSound(d0, d1, d2, "liquid.lava", 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
          }
       }
-
+      DBLogger.log("BlockLiquid.java", rand, "nextInt", 10, "particle lava");
       if(rand.nextInt(10) == 0 && World.doesBlockHaveSolidTopSurface(worldIn, pos.down())) {
          Material material = worldIn.getBlockState(pos.down(2)).getBlock().getMaterial();
          if(!material.blocksMovement() && !material.isLiquid()) {
+            DBLogger.log("BlockLiquid.java", rand, "nextFloat", -1, "Particle spawn coordinates");
             double d3 = d0 + (double)rand.nextFloat();
             double d5 = d1 - 1.05D;
+            DBLogger.log("BlockLiquid.java", rand, "nextFloat", -1, "Particle spawn coordinates");
             double d7 = d2 + (double)rand.nextFloat();
             if(this.blockMaterial == Material.water) {
                worldIn.spawnParticle(EnumParticleTypes.DRIP_WATER, d3, d5, d7, 0.0D, 0.0D, 0.0D, new int[0]);
@@ -254,6 +274,8 @@ public abstract class BlockLiquid extends Block {
       double d0 = (double)pos.getX();
       double d1 = (double)pos.getY();
       double d2 = (double)pos.getZ();
+      DBLogger.log("BlockLiquid.java", worldIn.rand, "nextFloat", -1, "sound fizz");
+      DBLogger.log("BlockLiquid.java", worldIn.rand, "nextFloat", -1, "sound fizz");
       worldIn.playSoundEffect(d0 + 0.5D, d1 + 0.5D, d2 + 0.5D, "random.fizz", 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
 
       for(int i = 0; i < 8; ++i) {

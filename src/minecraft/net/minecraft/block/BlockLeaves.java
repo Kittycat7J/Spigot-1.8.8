@@ -146,9 +146,14 @@ public abstract class BlockLeaves extends BlockLeavesBase {
    }
 
    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+      // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+      DBLogger.log("BlockLeaves.java", rand, "nextInt", 15, "display tick leaves");
       if(worldIn.canLightningStrike(pos.up()) && !World.doesBlockHaveSolidTopSurface(worldIn, pos.down()) && rand.nextInt(15) == 1) {
+         DBLogger.log("BlockLeaves.java", rand, "nextFloat", -1, "Particle spawn coordinates");
          double d0 = (double)((float)pos.getX() + rand.nextFloat());
          double d1 = (double)pos.getY() - 0.05D;
+         DBLogger.log("BlockLeaves.java", rand, "nextFloat", -1, "Particle spawn coordinates");
          double d2 = (double)((float)pos.getZ() + rand.nextFloat());
          worldIn.spawnParticle(EnumParticleTypes.DRIP_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
       }
@@ -160,6 +165,7 @@ public abstract class BlockLeaves extends BlockLeavesBase {
    }
 
    public int quantityDropped(Random random) {
+      DBLogger.log("BlockLeaves.java", random, "nextInt", 20, "drop leaves");
       return random.nextInt(20) == 0?1:0;
    }
 
@@ -176,7 +182,7 @@ public abstract class BlockLeaves extends BlockLeavesBase {
                i = 10;
             }
          }
-
+         DBLogger.log("BlockLeaves.java", worldIn.rand, "nextInt", i, "drop leaves, bound is i");
          if(worldIn.rand.nextInt(i) == 0) {
             Item item = this.getItemDropped(state, worldIn.rand, fortune);
             spawnAsEntity(worldIn, pos, new ItemStack(item, 1, this.damageDropped(state)));

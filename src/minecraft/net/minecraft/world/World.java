@@ -55,6 +55,7 @@ import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.custom.DBLogger;
 
 public abstract class World implements IBlockAccess {
    private int field_181546_a = 63;
@@ -100,7 +101,8 @@ public abstract class World implements IBlockAccess {
    int[] lightUpdateBlockList;
 
    protected World(ISaveHandler saveHandlerIn, WorldInfo info, WorldProvider providerIn, Profiler profilerIn, boolean client) {
-      logger.info("Custom logger World: called this.rand.nextInt(12000);");
+      // logger.info("Custom logger World: called this.rand.nextInt(12000);");
+      DBLogger.log("World.java", this.rand, "nextInt", 12000, "Called in World constructor");
       this.ambientTickCountdown = this.rand.nextInt(12000);
       this.spawnHostileMobs = true;
       this.spawnPeacefulMobs = true;
@@ -1755,10 +1757,12 @@ public abstract class World implements IBlockAccess {
             int j = this.worldInfo.getThunderTime();
             if(j <= 0) {
                if(this.worldInfo.isThundering()) {
-                   logger.info("custom logger World: called this.rand.nextInt(12000) + 3600");
+                  //  logger.info("custom logger World: called this.rand.nextInt(12000) + 3600");
+                  DBLogger.log("World.java", this.rand, "nextInt", 12000, "thunderTime");
                   this.worldInfo.setThunderTime(this.rand.nextInt(12000) + 3600);
                } else {
-                   logger.info("custom logger World: called this.rand.nextInt(168000) + 12000");
+                  //  logger.info("custom logger World: called this.rand.nextInt(168000) + 12000");
+                  DBLogger.log("World.java", this.rand, "nextInt", 168000, "thunderTime");
                   this.worldInfo.setThunderTime(this.rand.nextInt(168000) + 12000);
                }
             } else {
@@ -1780,10 +1784,12 @@ public abstract class World implements IBlockAccess {
             int k = this.worldInfo.getRainTime();
             if(k <= 0) {
                if(this.worldInfo.isRaining()) {
-                   logger.info("custom logger World: called this.rand.nextInt(12000) + 12000");
+                  //  logger.info("custom logger World: called this.rand.nextInt(12000) + 12000");
+                  DBLogger.log("World.java", this.rand, "nextInt", 12000, "rainTime");
                   this.worldInfo.setRainTime(this.rand.nextInt(12000) + 12000);
                } else {
-                     logger.info("custom logger World: called this.rand.nextInt(168000) + 12000");
+                     // logger.info("custom logger World: called this.rand.nextInt(168000) + 12000");
+                  DBLogger.log("World.java", this.rand, "nextInt", 168000, "rainTime");
                   this.worldInfo.setRainTime(this.rand.nextInt(168000) + 12000);
                }
             } else {
@@ -1831,11 +1837,15 @@ public abstract class World implements IBlockAccess {
       this.theProfiler.startSection("playerCheckLight");
       if(!this.playerEntities.isEmpty()) {
 //          logger.info("custom logger World: called this.rand.nextInt(this.playerEntities.size()); this.playerEntities.size() = {}",this.playerEntities.size());
+         DBLogger.log("World.java", this.rand, "nextInt", this.playerEntities.size(), "playerCheckLight, bound is this.playerEntities.size");
          int k1 = this.rand.nextInt(this.playerEntities.size());
          EntityPlayer entityplayer1 = (EntityPlayer)this.playerEntities.get(k1);
 //         logger.info("custom logger World: called this.rand.nextInt(11) - 5 three times");
+         DBLogger.log("World.java", this.rand, "nextInt", 11, "playerCheckLight");
          int l1 = MathHelper.floor_double(entityplayer1.posX) + this.rand.nextInt(11) - 5;
+         DBLogger.log("World.java", this.rand, "nextInt", 11, "playerCheckLight");
          int i2 = MathHelper.floor_double(entityplayer1.posY) + this.rand.nextInt(11) - 5;
+         DBLogger.log("World.java", this.rand, "nextInt", 11, "playerCheckLight");
          int j2 = MathHelper.floor_double(entityplayer1.posZ) + this.rand.nextInt(11) - 5;
          this.checkLight(new BlockPos(l1, i2, j2));
       }
@@ -1857,10 +1867,13 @@ public abstract class World implements IBlockAccess {
          Block block = chunkIn.getBlock(blockpos);
          j = j + p_147467_1_;
          k = k + p_147467_2_;
+         DBLogger.log("World.java", this.rand, "nextInt", 8, "something about light");
          if(block.getMaterial() == Material.air && this.getLight(blockpos) <= this.rand.nextInt(8) && this.getLightFor(EnumSkyBlock.SKY, blockpos) <= 0) {
             EntityPlayer entityplayer = this.getClosestPlayer((double)j + 0.5D, (double)l + 0.5D, (double)k + 0.5D, 8.0D);
             if(entityplayer != null && entityplayer.getDistanceSq((double)j + 0.5D, (double)l + 0.5D, (double)k + 0.5D) > 4.0D) {
+               DBLogger.log("World.java", this.rand, "nextFloat", -1, "cave noise?");
                this.playSoundEffect((double)j + 0.5D, (double)l + 0.5D, (double)k + 0.5D, "ambient.cave.cave", 0.7F, 0.8F + this.rand.nextFloat() * 0.2F);
+               DBLogger.log("World.java", this.rand, "nextInt", 12000, "ambientTickCountdown");
                this.ambientTickCountdown = this.rand.nextInt(12000) + 6000;
             }
          }

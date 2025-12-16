@@ -25,6 +25,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.custom.DBLogger;
 
 public class BlockBrewingStand extends BlockContainer {
    public static final PropertyBool[] HAS_BOTTLE = new PropertyBool[]{PropertyBool.create("has_bottle_0"), PropertyBool.create("has_bottle_1"), PropertyBool.create("has_bottle_2")};
@@ -89,8 +90,12 @@ public class BlockBrewingStand extends BlockContainer {
    }
 
    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+      
+      DBLogger.log("BlockBrewingStand.java", rand, "nextFloat", -1, "Emitting brewing stand smoke particle");
       double d0 = (double)((float)pos.getX() + 0.4F + rand.nextFloat() * 0.2F);
+      DBLogger.log("BlockBrewingStand.java", rand, "nextFloat", -1, "Emitting brewing stand smoke particle");
       double d1 = (double)((float)pos.getY() + 0.7F + rand.nextFloat() * 0.3F);
+      DBLogger.log("BlockBrewingStand.java", rand, "nextFloat", -1, "Emitting brewing stand smoke particle");
       double d2 = (double)((float)pos.getZ() + 0.4F + rand.nextFloat() * 0.2F);
       worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
    }

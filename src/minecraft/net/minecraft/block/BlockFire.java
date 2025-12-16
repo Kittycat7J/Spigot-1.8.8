@@ -136,10 +136,13 @@ public class BlockFire extends Block {
          } else {
             int i = ((Integer)state.getValue(AGE)).intValue();
             if(i < 15) {
+               // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+               DBLogger.log("BlockFire.java", rand, "nextInt", 3, "fire");
                state = state.withProperty(AGE, Integer.valueOf(i + rand.nextInt(3) / 2));
                worldIn.setBlockState(pos, state, 4);
             }
-
+            DBLogger.log("BlockFire.java", rand, "nextInt", 10, "fire");
             worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn) + rand.nextInt(10));
             if(!flag) {
                if(!this.canNeighborCatchFire(worldIn, pos)) {
@@ -149,7 +152,7 @@ public class BlockFire extends Block {
 
                   return;
                }
-
+               DBLogger.log("BlockFire.java", rand, "nextInt", 4, "fire");
                if(!this.canCatchFire(worldIn, pos.down()) && i == 15 && rand.nextInt(4) == 0) {
                   worldIn.setBlockToAir(pos);
                   return;
@@ -186,7 +189,9 @@ public class BlockFire extends Block {
                               l1 /= 2;
                            }
 
+                           DBLogger.log("BlockFire.java", rand, "nextInt", j1, "fire, bound is j1");   
                            if(l1 > 0 && rand.nextInt(j1) <= l1 && (!worldIn.isRaining() || !this.canDie(worldIn, blockpos))) {
+                              DBLogger.log("BlockFire.java", rand, "nextInt", 5, "fire");
                               int i2 = i + rand.nextInt(5) / 4;
                               if(i2 > 15) {
                                  i2 = 15;
@@ -223,9 +228,12 @@ public class BlockFire extends Block {
 
    private void catchOnFire(World worldIn, BlockPos pos, int chance, Random random, int age) {
       int i = this.getFlammability(worldIn.getBlockState(pos).getBlock());
+      DBLogger.log("BlockFire.java", random, "nextInt", chance, "catch fire, bound is chance");
       if(random.nextInt(chance) < i) {
          IBlockState iblockstate = worldIn.getBlockState(pos);
+         DBLogger.log("BlockFire.java", random, "nextInt", age + 10, "catch fire, bound is age + 10");
          if(random.nextInt(age + 10) < 5 && !worldIn.canLightningStrike(pos)) {
+            DBLogger.log("BlockFire.java", random, "nextInt", 5, "catch fire");
             int j = age + random.nextInt(5) / 4;
             if(j > 15) {
                j = 15;
@@ -289,21 +297,28 @@ public class BlockFire extends Block {
          if(!World.doesBlockHaveSolidTopSurface(worldIn, pos.down()) && !this.canNeighborCatchFire(worldIn, pos)) {
             worldIn.setBlockToAir(pos);
          } else {
+            DBLogger.log("BlockFire.java", worldIn.rand, "nextInt", 10, "fire block added");
             worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn) + worldIn.rand.nextInt(10));
          }
       }
    }
 
    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+      DBLogger.log("BlockFire.java", rand, "nextInt", 24, "fire display tick");
       if(rand.nextInt(24) == 0) {
+         DBLogger.log("BlockFire.java", rand, "nextFloat", -1, "fire display tick");
+         DBLogger.log("BlockFire.java", rand, "nextFloat", -1, "fire display tick");
          worldIn.playSound((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), "fire.fire", 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
       }
 
       if(!World.doesBlockHaveSolidTopSurface(worldIn, pos.down()) && !Blocks.fire.canCatchFire(worldIn, pos.down())) {
          if(Blocks.fire.canCatchFire(worldIn, pos.west())) {
             for(int j = 0; j < 2; ++j) {
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "fire does block have solid top surface");
                double d3 = (double)pos.getX() + rand.nextDouble() * 0.10000000149011612D;
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "fire does block have solid top surface");
                double d8 = (double)pos.getY() + rand.nextDouble();
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "fire does block have solid top surface");
                double d13 = (double)pos.getZ() + rand.nextDouble();
                worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d3, d8, d13, 0.0D, 0.0D, 0.0D, new int[0]);
             }
@@ -311,8 +326,11 @@ public class BlockFire extends Block {
 
          if(Blocks.fire.canCatchFire(worldIn, pos.east())) {
             for(int k = 0; k < 2; ++k) {
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "can catch fire");
                double d4 = (double)(pos.getX() + 1) - rand.nextDouble() * 0.10000000149011612D;
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "can catch fire");
                double d9 = (double)pos.getY() + rand.nextDouble();
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "can catch fire");
                double d14 = (double)pos.getZ() + rand.nextDouble();
                worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d4, d9, d14, 0.0D, 0.0D, 0.0D, new int[0]);
             }
@@ -320,8 +338,11 @@ public class BlockFire extends Block {
 
          if(Blocks.fire.canCatchFire(worldIn, pos.north())) {
             for(int l = 0; l < 2; ++l) {
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "can catch fire");
                double d5 = (double)pos.getX() + rand.nextDouble();
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "can catch fire");
                double d10 = (double)pos.getY() + rand.nextDouble();
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "can catch fire");
                double d15 = (double)pos.getZ() + rand.nextDouble() * 0.10000000149011612D;
                worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d5, d10, d15, 0.0D, 0.0D, 0.0D, new int[0]);
             }
@@ -329,8 +350,11 @@ public class BlockFire extends Block {
 
          if(Blocks.fire.canCatchFire(worldIn, pos.south())) {
             for(int i1 = 0; i1 < 2; ++i1) {
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "can catch fire");
                double d6 = (double)pos.getX() + rand.nextDouble();
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "can catch fire");
                double d11 = (double)pos.getY() + rand.nextDouble();
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "can catch fire");
                double d16 = (double)(pos.getZ() + 1) - rand.nextDouble() * 0.10000000149011612D;
                worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d6, d11, d16, 0.0D, 0.0D, 0.0D, new int[0]);
             }
@@ -338,16 +362,22 @@ public class BlockFire extends Block {
 
          if(Blocks.fire.canCatchFire(worldIn, pos.up())) {
             for(int j1 = 0; j1 < 2; ++j1) {
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "can catch fire");
                double d7 = (double)pos.getX() + rand.nextDouble();
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "can catch fire");
                double d12 = (double)(pos.getY() + 1) - rand.nextDouble() * 0.10000000149011612D;
+               DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "can catch fire");
                double d17 = (double)pos.getZ() + rand.nextDouble();
                worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d7, d12, d17, 0.0D, 0.0D, 0.0D, new int[0]);
             }
          }
       } else {
          for(int i = 0; i < 3; ++i) {
+            DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "fire display particle");
             double d0 = (double)pos.getX() + rand.nextDouble();
+            DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "fire display particle");
             double d1 = (double)pos.getY() + rand.nextDouble() * 0.5D + 0.5D;
+            DBLogger.log("BlockFire.java", rand, "nextDouble", -1, "fire display particle");
             double d2 = (double)pos.getZ() + rand.nextDouble();
             worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
          }

@@ -9,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.custom.DBLogger;
 
 public class BlockDynamicLiquid extends BlockLiquid {
    int adjacentSourceBlocks;
@@ -59,7 +60,7 @@ public class BlockDynamicLiquid extends BlockLiquid {
                i1 = 0;
             }
          }
-
+         DBLogger.log("BlockDynamicLiquid.java", rand, "nextInt", 4, "Liquid flow delay");
          if(this.blockMaterial == Material.lava && i < 8 && i1 < 8 && i1 > i && rand.nextInt(4) != 0) {
             k *= 4;
          }

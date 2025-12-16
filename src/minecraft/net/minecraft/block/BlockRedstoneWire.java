@@ -26,6 +26,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.custom.DBLogger;
 
 public class BlockRedstoneWire extends Block {
    public static final PropertyEnum<BlockRedstoneWire.EnumAttachPosition> NORTH = PropertyEnum.<BlockRedstoneWire.EnumAttachPosition>create("north", BlockRedstoneWire.EnumAttachPosition.class);
@@ -326,9 +327,11 @@ public class BlockRedstoneWire extends Block {
    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
       int i = ((Integer)state.getValue(POWER)).intValue();
       if(i != 0) {
-         logger.info("custom logger BlockRestoneWire: rand.nextFloat() two times");
+//         logger.info("custom logger BlockRestoneWire: rand.nextFloat() two times");
+         DBLogger.log("BlockRedstoneWire.java", rand, "nextFloat", -1, "Particle spawn coordinates");
          double d0 = (double)pos.getX() + 0.5D + ((double)rand.nextFloat() - 0.5D) * 0.2D;
          double d1 = (double)((float)pos.getY() + 0.0625F);
+         DBLogger.log("BlockRedstoneWire.java", rand, "nextFloat", -1, "Particle spawn coordinates");
          double d2 = (double)pos.getZ() + 0.5D + ((double)rand.nextFloat() - 0.5D) * 0.2D;
          float f = (float)i / 15.0F;
          float f1 = f * 0.6F + 0.4F;

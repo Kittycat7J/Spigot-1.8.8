@@ -48,6 +48,7 @@ import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.custom.DBLogger;
 
 public abstract class BiomeGenBase {
    private static final Logger logger = LogManager.getLogger();
@@ -193,6 +194,7 @@ public abstract class BiomeGenBase {
    }
 
    public WorldGenAbstractTree genBigTreeChance(Random rand) {
+      DBLogger.log("BiomeGenBase.java", rand, "nextInt", 10, "get big tree chance");
       return (WorldGenAbstractTree)(rand.nextInt(10) == 0?this.worldGeneratorBigTree:this.worldGeneratorTrees);
    }
 
@@ -201,6 +203,7 @@ public abstract class BiomeGenBase {
    }
 
    public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, BlockPos pos) {
+      DBLogger.log("BiomeGenBase.java", rand, "nextInt", 3, "pick random flower");
       return rand.nextInt(3) > 0?BlockFlower.EnumFlowerType.DANDELION:BlockFlower.EnumFlowerType.POPPY;
    }
 
@@ -323,12 +326,14 @@ public abstract class BiomeGenBase {
       IBlockState iblockstate = this.topBlock;
       IBlockState iblockstate1 = this.fillerBlock;
       int j = -1;
+      DBLogger.log("BiomeGenBase.java", rand, "nextDouble", -1, "get terrain height");
       int k = (int)(p_180628_6_ / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
       int l = p_180628_4_ & 15;
       int i1 = p_180628_5_ & 15;
       BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
       for(int j1 = 255; j1 >= 0; --j1) {
+         DBLogger.log("BiomeGenBase.java", rand, "nextInt", 5, "get terrain height");
          if(j1 <= rand.nextInt(5)) {
             chunkPrimerIn.setBlockState(i1, j1, l, Blocks.bedrock.getDefaultState());
          } else {
@@ -367,6 +372,7 @@ public abstract class BiomeGenBase {
                   --j;
                   chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
                   if(j == 0 && iblockstate1.getBlock() == Blocks.sand) {
+                     DBLogger.log("BiomeGenBase.java", rand, "nextInt", 4, "get terrain height");
                      j = rand.nextInt(4) + Math.max(0, j1 - 63);
                      iblockstate1 = iblockstate1.getValue(BlockSand.VARIANT) == BlockSand.EnumType.RED_SAND?Blocks.red_sandstone.getDefaultState():Blocks.sandstone.getDefaultState();
                   }

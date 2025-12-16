@@ -2,6 +2,7 @@ package net.minecraft.util;
 
 import java.util.Collection;
 import java.util.Random;
+import net.custom.DBLogger;
 
 public class WeightedRandom {
    public static int getTotalWeight(Collection<? extends WeightedRandom.Item> collection) {
@@ -18,6 +19,7 @@ public class WeightedRandom {
       if(totalWeight <= 0) {
          throw new IllegalArgumentException();
       } else {
+         DBLogger.log("WeightedRandom.getRandomItem", random, "nextInt", totalWeight, "getRandomItem"); 
          int i = random.nextInt(totalWeight);
          return getRandomItem(collection, i);
       }

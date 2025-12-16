@@ -28,6 +28,10 @@ public class BlockOre extends Block {
    }
 
    public int quantityDropped(Random random) {
+      // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+
+      if (this == Blocks.lapis_ore){DBLogger.log("BlockOre.java", random, "nextInt", 5, "lapis ore drop count");} else if(this == Blocks.coal_ore){DBLogger.log("BlockOre.java", random, "nextInt", 3, "coal ore drop count");} else if(this == Blocks.diamond_ore){DBLogger.log("BlockOre.java", random, "nextInt", 3, "diamond ore drop count");} else if(this == Blocks.emerald_ore){DBLogger.log("BlockOre.java", random, "nextInt", 3, "emerald ore drop count");} else if(this == Blocks.quartz_ore){DBLogger.log("BlockOre.java", random, "nextInt", 5, "quartz ore drop count");}
       return this == Blocks.lapis_ore?4 + random.nextInt(5):1;
    }
 

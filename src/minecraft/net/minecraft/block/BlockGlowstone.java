@@ -16,10 +16,14 @@ public class BlockGlowstone extends Block {
    }
 
    public int quantityDroppedWithBonus(int fortune, Random random) {
+      // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+      DBLogger.log("BlockGlowstone.java", random, "nextInt", fortune + 1, "glowstone drop count, bound is fortune + 1"); 
       return MathHelper.clamp_int(this.quantityDropped(random) + random.nextInt(fortune + 1), 1, 4);
    }
 
    public int quantityDropped(Random random) {
+      DBLogger.log("BlockGlowstone.java", random, "nextInt", 3, "glowstone drop count");
       return 2 + random.nextInt(3);
    }
 

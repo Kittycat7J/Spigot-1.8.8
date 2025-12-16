@@ -13,9 +13,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.custom.DBLogger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BlockCrops extends BlockBush implements IGrowable {
    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
+   private static final Logger logger = LogManager.getLogger();
 
    protected BlockCrops() {
       this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
@@ -38,6 +42,7 @@ public class BlockCrops extends BlockBush implements IGrowable {
          int i = ((Integer)state.getValue(AGE)).intValue();
          if(i < 7) {
             float f = getGrowthChance(this, worldIn, pos);
+            DBLogger.log("BlockCrops.java", rand, "nextInt", (int)(25.0F / f) + 1, "Growth chance, bound is (int)(25.0F / f) + 1");
             if(rand.nextInt((int)(25.0F / f) + 1) == 0) {
                worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(i + 1)), 2);
             }
@@ -46,6 +51,7 @@ public class BlockCrops extends BlockBush implements IGrowable {
    }
 
    public void grow(World worldIn, BlockPos pos, IBlockState state) {
+      // Logger.info("custom logger BlockCrops.java: MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);");
       int i = ((Integer)state.getValue(AGE)).intValue() + MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);
       if(i > 7) {
          i = 7;
@@ -115,6 +121,7 @@ public class BlockCrops extends BlockBush implements IGrowable {
             int j = 3 + fortune;
 
             for(int k = 0; k < j; ++k) {
+                DBLogger.log("BlockCrops.java", worldIn.rand, "nextInt", 15, "Seed drop chance");
                if(worldIn.rand.nextInt(15) <= i) {
                   spawnAsEntity(worldIn, pos, new ItemStack(this.getSeed(), 1, 0));
                }

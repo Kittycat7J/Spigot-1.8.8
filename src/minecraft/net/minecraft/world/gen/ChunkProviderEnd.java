@@ -2,7 +2,6 @@ package net.minecraft.world.gen;
 
 import java.util.List;
 import net.custom.CustomRandom;
-import net.custom.CustomRandom;
 import java.util.Random;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
@@ -33,15 +32,15 @@ public class ChunkProviderEnd implements IChunkProvider {
    double[] noiseData3;
    double[] noiseData4;
    double[] noiseData5;
-
    public ChunkProviderEnd(World worldIn, long p_i2007_2_) {
       this.endWorld = worldIn;
-      this.endRNG = new CustomRandom(p_i2007_2_);
+      this.endRNG = new Random(p_i2007_2_);
       this.noiseGen1 = new NoiseGeneratorOctaves(this.endRNG, 16);
       this.noiseGen2 = new NoiseGeneratorOctaves(this.endRNG, 16);
       this.noiseGen3 = new NoiseGeneratorOctaves(this.endRNG, 8);
       this.noiseGen4 = new NoiseGeneratorOctaves(this.endRNG, 10);
       this.noiseGen5 = new NoiseGeneratorOctaves(this.endRNG, 16);
+
    }
 
    public void func_180520_a(int p_180520_1_, int p_180520_2_, ChunkPrimer p_180520_3_) {
@@ -224,9 +223,10 @@ public class ChunkProviderEnd implements IChunkProvider {
       return true;
    }
 
+
    public void populate(IChunkProvider p_73153_1_, int p_73153_2_, int p_73153_3_) {
-       this.endWorld.rand.setSeed(125452248375284L);
-       BlockFalling.fallInstantly = true;
+      this.endWorld.rand.setSeed(119623915123639L);
+      BlockFalling.fallInstantly = true;
       BlockPos blockpos = new BlockPos(p_73153_2_ * 16, 0, p_73153_3_ * 16);
       this.endWorld.getBiomeGenForCoords(blockpos.add(16, 0, 16)).decorate(this.endWorld, this.endWorld.rand, blockpos);
       BlockFalling.fallInstantly = false;

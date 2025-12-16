@@ -55,6 +55,9 @@ public class BlockFarmland extends Block {
 
    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
       if(entityIn instanceof EntityLivingBase) {
+         // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+         DBLogger.log("BlockFarmland.java", worldIn.rand, "nextFloat", -1, "crop trample");
          if(!worldIn.isRemote && worldIn.rand.nextFloat() < fallDistance - 0.5F) {
             if(!(entityIn instanceof EntityPlayer) && !worldIn.getGameRules().getBoolean("mobGriefing")) {
                return;

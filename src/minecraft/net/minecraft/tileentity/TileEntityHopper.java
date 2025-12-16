@@ -23,6 +23,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.custom.DBLogger;
 
 public class TileEntityHopper extends TileEntityLockable implements IHopper, ITickable {
    private ItemStack[] inventory = new ItemStack[5];
@@ -446,8 +447,9 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
       if(iinventory == null) {
          List<Entity> list = worldIn.getEntitiesInAABBexcluding((Entity)null, new AxisAlignedBB(x - 0.5D, y - 0.5D, z - 0.5D, x + 0.5D, y + 0.5D, z + 0.5D), EntitySelectors.selectInventories);
          if(list.size() > 0) {
+             DBLogger.log("TileEntityHopper.java", worldIn.rand, "rand.nextInt", list.size(), "Selecting random inventory entity for hopper transfer, bound is list.size()");
             iinventory = (IInventory)list.get(worldIn.rand.nextInt(list.size()));
-            logger.info("custom logger TileEntityHopper: rand call made: worldIn.rand.nextInt({})", list.size());
+            // logger.info("custom logger TileEntityHopper: rand call made: worldIn.rand.nextInt({})", list.size());
          }
       }
 

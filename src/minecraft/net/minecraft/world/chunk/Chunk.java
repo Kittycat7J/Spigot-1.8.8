@@ -661,7 +661,7 @@ public class Chunk {
 
    public void addTileEntity(BlockPos pos, TileEntity tileEntityIn) {
       tileEntityIn.setWorldObj(this.worldObj);
-      logger.info("Adding tile entity at " + pos + " (" + this.xPosition + ", " + this.zPosition + ")", new Object[]{tileEntityIn});
+      // logger.info("Adding tile entity at " + pos + " (" + this.xPosition + ", " + this.zPosition + ")", new Object[]{tileEntityIn});
       tileEntityIn.setPos(pos);
       if(this.getBlock(pos) instanceof ITileEntityProvider) {
          if(this.chunkTileEntityMap.containsKey(pos)) {
@@ -784,9 +784,12 @@ public class Chunk {
       boolean flag5 = p_76624_1_.chunkExists(p_76624_3_ + 1, p_76624_4_ + 1);
       boolean flag6 = p_76624_1_.chunkExists(p_76624_3_ - 1, p_76624_4_ + 1);
       boolean flag7 = p_76624_1_.chunkExists(p_76624_3_ + 1, p_76624_4_ - 1);
+     this.worldObj.rand.setSeed(125452248375284L);
+   //   logger.info("random gen is:{}", this.worldObj.rand);
+      // logger.info("Populating chunk " + this.xPosition + ", " + this.zPosition);
       if(flag1 && flag2 && flag5) {
          if(!this.isTerrainPopulated) {
-            p_76624_1_.populate(p_76624_2_, p_76624_3_, p_76624_4_);
+             p_76624_1_.populate(p_76624_2_, p_76624_3_, p_76624_4_);
          } else {
             p_76624_1_.func_177460_a(p_76624_2_, this, p_76624_3_, p_76624_4_);
          }

@@ -11,7 +11,9 @@ public class BlockGravel extends BlockFalling {
       if(fortune > 3) {
          fortune = 3;
       }
-
+      // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+      DBLogger.log("BlockGravel.java", rand, "nextInt", 10 - fortune * 3, "Gravel drop, bound is 10 - fortune * 3");
       return rand.nextInt(10 - fortune * 3) == 0?Items.flint:Item.getItemFromBlock(this);
    }
 

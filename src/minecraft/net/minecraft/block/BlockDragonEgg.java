@@ -12,6 +12,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.custom.DBLogger;
 
 public class BlockDragonEgg extends Block {
    public BlockDragonEgg() {
@@ -64,16 +65,29 @@ public class BlockDragonEgg extends Block {
       IBlockState iblockstate = worldIn.getBlockState(pos);
       if(iblockstate.getBlock() == this) {
          for(int i = 0; i < 1000; ++i) {
+             DBLogger.log("BlockDragonEgg.java", worldIn.rand, "nextInt", 16, "Teleporting dragon egg");
+             DBLogger.log("BlockDragonEgg.java", worldIn.rand, "nextInt", 16, "Teleporting dragon egg");
+             DBLogger.log("BlockDragonEgg.java", worldIn.rand, "nextInt", 8, "Teleporting dragon egg");
+             DBLogger.log("BlockDragonEgg.java", worldIn.rand, "nextInt", 8, "Teleporting dragon egg");
+             DBLogger.log("BlockDragonEgg.java", worldIn.rand, "nextInt", 16, "Teleporting dragon egg");
+             DBLogger.log("BlockDragonEgg.java", worldIn.rand, "nextInt", 16, "Teleporting dragon egg");
             BlockPos blockpos = pos.add(worldIn.rand.nextInt(16) - worldIn.rand.nextInt(16), worldIn.rand.nextInt(8) - worldIn.rand.nextInt(8), worldIn.rand.nextInt(16) - worldIn.rand.nextInt(16));
             if(worldIn.getBlockState(blockpos).getBlock().blockMaterial == Material.air) {
                if(worldIn.isRemote) {
                   for(int j = 0; j < 128; ++j) {
+                      DBLogger.log("BlockDragonEgg.java", worldIn.rand, "nextDouble", -1, "Spawning dragon egg portal particle");
                      double d0 = worldIn.rand.nextDouble();
+                     DBLogger.log("BlockDragonEgg.java", worldIn.rand, "nextFloat", -1, "Spawning dragon egg portal particle");
                      float f = (worldIn.rand.nextFloat() - 0.5F) * 0.2F;
+                     DBLogger.log("BlockDragonEgg.java", worldIn.rand, "nextFloat", -1, "Spawning dragon egg portal particle");
                      float f1 = (worldIn.rand.nextFloat() - 0.5F) * 0.2F;
+                     DBLogger.log("BlockDragonEgg.java", worldIn.rand, "nextFloat", -1, "Spawning dragon egg portal particle");
                      float f2 = (worldIn.rand.nextFloat() - 0.5F) * 0.2F;
+                      DBLogger.log("BlockDragonEgg.java", worldIn.rand, "nextDouble", -1, "Spawning dragon egg portal particle");
                      double d1 = (double)blockpos.getX() + (double)(pos.getX() - blockpos.getX()) * d0 + (worldIn.rand.nextDouble() - 0.5D) * 1.0D + 0.5D;
+                      DBLogger.log("BlockDragonEgg.java", worldIn.rand, "nextDouble", -1, "Spawning dragon egg portal particle");
                      double d2 = (double)blockpos.getY() + (double)(pos.getY() - blockpos.getY()) * d0 + worldIn.rand.nextDouble() * 1.0D - 0.5D;
+                      DBLogger.log("BlockDragonEgg.java", worldIn.rand, "nextDouble", -1, "Spawning dragon egg portal particle");
                      double d3 = (double)blockpos.getZ() + (double)(pos.getZ() - blockpos.getZ()) * d0 + (worldIn.rand.nextDouble() - 0.5D) * 1.0D + 0.5D;
                      worldIn.spawnParticle(EnumParticleTypes.PORTAL, d1, d2, d3, (double)f, (double)f1, (double)f2, new int[0]);
                   }

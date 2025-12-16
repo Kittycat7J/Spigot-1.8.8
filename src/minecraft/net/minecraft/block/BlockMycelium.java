@@ -37,6 +37,11 @@ public class BlockMycelium extends Block {
          } else {
             if(worldIn.getLightFromNeighbors(pos.up()) >= 9) {
                for(int i = 0; i < 4; ++i) {
+                  // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+                  DBLogger.log("BlockMycelium.java", rand, "nextInt", 3, "get light");
+                  DBLogger.log("BlockMycelium.java", rand, "nextInt", 5, "get light");
+                  DBLogger.log("BlockMycelium.java", rand, "nextInt", 3, "get light");
                   BlockPos blockpos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
                   IBlockState iblockstate = worldIn.getBlockState(blockpos);
                   Block block = worldIn.getBlockState(blockpos.up()).getBlock();
@@ -51,7 +56,10 @@ public class BlockMycelium extends Block {
 
    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
       super.randomDisplayTick(worldIn, pos, state, rand);
+      DBLogger.log("BlockMycelium.java", rand, "nextInt", 10, "spawn particle");
       if(rand.nextInt(10) == 0) {
+         DBLogger.log("BlockMycelium.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+         DBLogger.log("BlockMycelium.java", rand, "nextFloat", -1, "Particle spawn coordinates");
          worldIn.spawnParticle(EnumParticleTypes.TOWN_AURA, (double)((float)pos.getX() + rand.nextFloat()), (double)((float)pos.getY() + 1.1F), (double)((float)pos.getZ() + rand.nextFloat()), 0.0D, 0.0D, 0.0D, new int[0]);
       }
    }

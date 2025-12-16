@@ -25,6 +25,9 @@ public class BlockHugeMushroom extends Block {
    }
 
    public int quantityDropped(Random random) {
+      // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+      DBLogger.log("BlockHugeMushroom.java", random, "nextInt", 10, "mushroom quantity dropped");
       return Math.max(0, random.nextInt(10) - 7);
    }
 

@@ -16,6 +16,9 @@ public class BlockMushroom extends BlockBush implements IGrowable {
    }
 
    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+      // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+      DBLogger.log("BlockMushroom.java", rand, "nextInt", 25, "mushroom grow");
       if(rand.nextInt(25) == 0) {
          int i = 5;
          int j = 4;
@@ -28,14 +31,20 @@ public class BlockMushroom extends BlockBush implements IGrowable {
                }
             }
          }
-
+         DBLogger.log("BlockMushroom.java", rand, "nextInt", 3, "mushroom grow");
+         DBLogger.log("BlockMushroom.java", rand, "nextInt", 2, "mushroom grow");
+         DBLogger.log("BlockMushroom.java", rand, "nextInt", 2, "mushroom grow");
+         DBLogger.log("BlockMushroom.java", rand, "nextInt", 3, "mushroom grow");
          BlockPos blockpos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(2) - rand.nextInt(2), rand.nextInt(3) - 1);
 
          for(int k = 0; k < 4; ++k) {
             if(worldIn.isAirBlock(blockpos1) && this.canBlockStay(worldIn, blockpos1, this.getDefaultState())) {
                pos = blockpos1;
             }
-
+            DBLogger.log("BlockMushroom.java", rand, "nextInt", 3, "mushroom grow");
+            DBLogger.log("BlockMushroom.java", rand, "nextInt", 2, "mushroom grow");
+            DBLogger.log("BlockMushroom.java", rand, "nextInt", 2, "mushroom grow");
+            DBLogger.log("BlockMushroom.java", rand, "nextInt", 3, "mushroom grow");
             blockpos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(2) - rand.nextInt(2), rand.nextInt(3) - 1);
          }
 
@@ -84,6 +93,7 @@ public class BlockMushroom extends BlockBush implements IGrowable {
    }
 
    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+      DBLogger.log("BlockMushroom.java", rand, "nextFloat", -1, "boanemeal");
       return (double)rand.nextFloat() < 0.4D;
    }
 

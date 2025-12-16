@@ -15,6 +15,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.custom.DBLogger;
 
 public class TileEntityChest extends TileEntityLockable implements ITickable, IInventory {
    private ItemStack[] chestContents = new ItemStack[27];
@@ -241,7 +242,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
          if(this.adjacentChestXPos != null) {
             d1 += 0.5D;
          }
-
+         DBLogger.log("TileEntityChest.java", this.worldObj.rand, "nextFloat", -1, "chest noise");
          this.worldObj.playSoundEffect(d1, (double)j + 0.5D, d2, "random.chestopen", 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
       }
 
@@ -268,7 +269,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
             if(this.adjacentChestXPos != null) {
                d3 += 0.5D;
             }
-
+            DBLogger.log("TileEntityChest.java", this.worldObj.rand, "nextFloat", -1, "chest noise");
             this.worldObj.playSoundEffect(d3, (double)j + 0.5D, d0, "random.chestclosed", 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
          }
 

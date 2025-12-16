@@ -24,7 +24,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
+import net.custom.DBLogger;
 public class BlockCauldron extends Block {
    public static final PropertyInteger LEVEL = PropertyInteger.create("level", 0, 3);
 
@@ -160,6 +160,7 @@ public class BlockCauldron extends Block {
    }
 
    public void fillWithRain(World worldIn, BlockPos pos) {
+       DBLogger.log("BlockCauldron.java", worldIn.rand, "nextInt", 20, "Cauldron filling with rain");
       if(worldIn.rand.nextInt(20) == 1) {
          IBlockState iblockstate = worldIn.getBlockState(pos);
          if(((Integer)iblockstate.getValue(LEVEL)).intValue() < 3) {

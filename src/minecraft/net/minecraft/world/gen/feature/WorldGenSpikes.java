@@ -10,6 +10,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.custom.DBLogger;
 
 public class WorldGenSpikes extends WorldGenerator {
    private Block baseBlockRequired;
@@ -20,8 +21,10 @@ public class WorldGenSpikes extends WorldGenerator {
 
    public boolean generate(World worldIn, Random rand, BlockPos position) {
       if(worldIn.isAirBlock(position) && worldIn.getBlockState(position.down()).getBlock() == this.baseBlockRequired) {
-          logger.info("custom log WorldGenSpikes: rand.nextInt(32) + 6; rand.nextInt(4) + 1;");
-          int i = rand.nextInt(32) + 6;
+         //  logger.info("custom log WorldGenSpikes: rand.nextInt(32) + 6; rand.nextInt(4) + 1;");
+         DBLogger.log("WorldGenSpikes.java", rand, "nextInt", 32, "spike height calculation");
+         int i = rand.nextInt(32) + 6;
+         DBLogger.log("WorldGenSpikes.java", rand, "nextInt", 4, "spike width calculation");
          int j = rand.nextInt(4) + 1;
          logger.info("custom log WorldGenSpikes: i:{} j:{}",i,j);
          logger.info("custom log WorldGenSpikes: rand.nextInt(32) = {}",i-6);
@@ -51,7 +54,8 @@ public class WorldGenSpikes extends WorldGenerator {
          }
 
          Entity entity = new EntityEnderCrystal(worldIn);
-         logger.info("custom log WorldGenSpikes: rand.nextFloat()");
+         // logger.info("custom log WorldGenSpikes: rand.nextFloat()");
+         DBLogger.log("WorldGenSpikes.java", rand, "nextFloat", -1, "ender crystal rotation");
          entity.setLocationAndAngles((double)((float)position.getX() + 0.5F), (double)(position.getY() + i), (double)((float)position.getZ() + 0.5F), rand.nextFloat() * 360.0F, 0.0F);
 
          worldIn.spawnEntityInWorld(entity);

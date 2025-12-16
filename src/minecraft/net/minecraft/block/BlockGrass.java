@@ -50,6 +50,11 @@ public class BlockGrass extends Block implements IGrowable {
          } else {
             if(worldIn.getLightFromNeighbors(pos.up()) >= 9) {
                for(int i = 0; i < 4; ++i) {
+                  // DBLogger.log("BiomeDecorator.java", this.randomGenerator, "nextInt", 16, "gen sand decorate");
+         // DBLogger.log("BlockEnchantmentTable.java", rand, "nextFloat", -1, "Particle spawn coordinates");
+                  DBLogger.log("BlockGrass.java", rand, "nextInt", 3, "get light from neighbors");
+                  DBLogger.log("BlockGrass.java", rand, "nextInt", 5, "get light from neighbors");
+                  DBLogger.log("BlockGrass.java", rand, "nextInt", 3, "get light from neighbors");
                   BlockPos blockpos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
                   Block block = worldIn.getBlockState(blockpos.up()).getBlock();
                   IBlockState iblockstate = worldIn.getBlockState(blockpos);
@@ -84,6 +89,7 @@ public class BlockGrass extends Block implements IGrowable {
          while(true) {
             if(j >= i / 16) {
                if(worldIn.getBlockState(blockpos1).getBlock().blockMaterial == Material.air) {
+                  DBLogger.log("BlockGrass.java", rand, "nextInt", 8, "get block state");
                   if(rand.nextInt(8) == 0) {
                      BlockFlower.EnumFlowerType blockflower$enumflowertype = worldIn.getBiomeGenForCoords(blockpos1).pickRandomFlower(rand, blockpos1);
                      BlockFlower blockflower = blockflower$enumflowertype.getBlockType().getBlock();
@@ -100,7 +106,10 @@ public class BlockGrass extends Block implements IGrowable {
                }
                break;
             }
-
+            DBLogger.log("BlockGrass.java", rand, "nextInt", 3, "get block state");
+            DBLogger.log("BlockGrass.java", rand, "nextInt", 3, "get block state");
+            DBLogger.log("BlockGrass.java", rand, "nextInt", 3, "get block state");
+            DBLogger.log("BlockGrass.java", rand, "nextInt", 3, "get block state");
             blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
             if(worldIn.getBlockState(blockpos1.down()).getBlock() != Blocks.grass || worldIn.getBlockState(blockpos1).getBlock().isNormalCube()) {
                break;

@@ -20,6 +20,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import net.custom.DBLogger;
 
 public class BlockTripWireHook extends Block {
    private static final Logger logger = LogManager.getLogger();
@@ -176,7 +177,8 @@ public class BlockTripWireHook extends Block {
       } else if(p_180694_3_ && !p_180694_5_) {
          worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.1D, (double)pos.getZ() + 0.5D, "random.click", 0.4F, 0.7F);
       } else if(!p_180694_3_ && p_180694_5_) {
-         logger.info("custom logger BlockTripWireHook: worldIn.rand.nextFloat()");
+         // logger.info("custom logger BlockTripWireHook: worldIn.rand.nextFloat()");
+         DBLogger.log("BlockTripWireHook.java", worldIn.rand, "nextFloat", -1, "Tripwire hook detach sound pitch");
          worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.1D, (double)pos.getZ() + 0.5D, "random.bowhit", 0.4F, 1.2F / (worldIn.rand.nextFloat() * 0.2F + 0.9F));
       }
    }
