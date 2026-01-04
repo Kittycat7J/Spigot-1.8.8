@@ -12,22 +12,24 @@ public class BiomeEndDecorator extends BiomeDecorator {
    protected WorldGenerator spikeGen = new WorldGenSpikes(Blocks.end_stone);
     private static final Logger logger = LogManager.getLogger();
    protected void genDecorations(BiomeGenBase biomeGenBaseIn) {
-
+       this.randomGenerator.setSeed(119871903073118L);
       this.generateOres();
 //      logger.info("nextInt(1):{}",this.randomGenerator.nextInt(1));
-      // this.randomGenerator.setSeed(119861556137096L);
+
       // logger.info("custom logger BiomeEndDecorator: calling if(this.randomGenerator.nextInt(5) == 0)");
       DBLogger.log("BiomeEndDecorator.java", this.randomGenerator, "nextInt", 5, "spike generation chance");
       int chance = this.randomGenerator.nextInt(5);
-      // logger.info("custom logger BiomeEndDecorator: this.randomGenerator.nextInt(5) = {}",chance);
+       logger.info("custom logger BiomeEndDecorator: this.randomGenerator.nextInt(5) = {}",chance);
       // logger.info("random gen is:{}",this.randomGenerator);
       if(chance == 0) {
-         //  logger.info("custom logger BiomeEndDecorator: calling int x = this.randomGenerator.nextInt(16) + 8;\nz = this.randomGenerator.nextInt(16) + 8;");
+           logger.info("custom logger BiomeEndDecorator: calling int x = this.randomGenerator.nextInt(16) + 8;\nz = this.randomGenerator.nextInt(16) + 8;");
           DBLogger.log("BiomeEndDecorator.java", this.randomGenerator, "nextInt", 16, "spike generation x");
          int x = this.randomGenerator.nextInt(16) + 8;
+//         x = 21;
          DBLogger.log("BiomeEndDecorator.java", this.randomGenerator, "nextInt", 16, "spike generation z");
          int z = this.randomGenerator.nextInt(16) + 8;
-         // logger.info("custom logger BiomeEndDecorator: x:{}, z:{}",x,z);
+
+          logger.info("custom logger BiomeEndDecorator: x:{}, z:{}",x,z);
          this.spikeGen.generate(this.currentWorld, this.randomGenerator, this.currentWorld.getTopSolidOrLiquidBlock(this.field_180294_c.add(x, 0, z)));
       }
 

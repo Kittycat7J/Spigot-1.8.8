@@ -20,7 +20,7 @@ public class WorldProviderEnd extends WorldProvider {
 
    public IChunkProvider createChunkGenerator() {
       //  logger.info("custom logger WorldProviderEnd: createChunkGenerator() called");
-       this.worldObj.rand.setSeed(125452248375284L);
+//       this.worldObj.rand.setSeed(121826795104830L);
       return new ChunkProviderEnd(this.worldObj, this.worldObj.getSeed());
    }
 

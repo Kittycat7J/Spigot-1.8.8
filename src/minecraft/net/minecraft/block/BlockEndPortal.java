@@ -15,6 +15,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.custom.DBLogger;
 
 public class BlockEndPortal extends BlockContainer {
    protected BlockEndPortal(Material materialIn) {

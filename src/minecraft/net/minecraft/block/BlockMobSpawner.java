@@ -9,6 +9,7 @@ import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.World;
+import net.custom.DBLogger;
 
 public class BlockMobSpawner extends BlockContainer {
    protected BlockMobSpawner() {

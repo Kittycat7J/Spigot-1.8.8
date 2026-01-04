@@ -1,5 +1,6 @@
 package net.minecraft.command;
 
+import net.minecraft.command.CommandRegenerate;
 import net.minecraft.command.server.CommandAchievement;
 import net.minecraft.command.server.CommandBanIp;
 import net.minecraft.command.server.CommandBanPlayer;
@@ -37,7 +38,9 @@ import net.minecraft.util.IChatComponent;
 public class ServerCommandManager extends CommandHandler implements IAdminCommand {
    public ServerCommandManager() {
       this.registerCommand(new CommandTime());
+      this.registerCommand(new CommandRegenerate());
       this.registerCommand(new CommandRepopulate());
+      this.registerCommand(new CommandRNGLog());
       this.registerCommand(new CommandGameMode());
       this.registerCommand(new CommandDifficulty());
       this.registerCommand(new CommandDefaultGameMode());

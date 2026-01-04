@@ -428,7 +428,7 @@ public class BiomeDecorator {
    }
 
    protected void genStandardOre2(int blockCount, WorldGenerator generator, int centerHeight, int spread) {
-//       this.randomGenerator.setSeed(2873990483555L);
+//       this.randomGenerator.setSeed(121826795104830L);
 
        for(int i = 0; i < blockCount; ++i) {
 //         logger.info("custom logger BiomeDecorator ore2:this.randomGenerator.nextInt(16)\nthis.randomGenerator.nextInt({})\nthis.randomGenerator.nextInt({})\nthis.randomGenerator.nextInt(16));",spread,spread);
