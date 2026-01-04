@@ -24,6 +24,7 @@ public class WorldGenSpikes extends WorldGenerator {
          //  logger.info("custom log WorldGenSpikes: rand.nextInt(32) + 6; rand.nextInt(4) + 1;");
          DBLogger.log("WorldGenSpikes.java", rand, "nextInt", 32, "spike height calculation");
          int i = rand.nextInt(32) + 6;
+//         i=10;
          DBLogger.log("WorldGenSpikes.java", rand, "nextInt", 4, "spike width calculation");
          int j = rand.nextInt(4) + 1;
          logger.info("custom log WorldGenSpikes: i:{} j:{}",i,j);

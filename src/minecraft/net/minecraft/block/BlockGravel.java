@@ -5,6 +5,7 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.custom.DBLogger;
 
 public class BlockGravel extends BlockFalling {
    public Item getItemDropped(IBlockState state, Random rand, int fortune) {

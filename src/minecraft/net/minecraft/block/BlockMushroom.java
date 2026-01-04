@@ -7,6 +7,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenBigMushroom;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.custom.DBLogger;
 
 public class BlockMushroom extends BlockBush implements IGrowable {
    protected BlockMushroom() {

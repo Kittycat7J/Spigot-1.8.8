@@ -100,7 +100,7 @@ public class NetworkSystem {
                p_initChannel_1_.pipeline().addLast((String)"packet_handler", (ChannelHandler)networkmanager);
                networkmanager.setNetHandler(new NetHandlerHandshakeTCP(NetworkSystem.this.mcServer, networkmanager));
             }
-         }).group((EventLoopGroup)lazyloadbase.getValue()).localAddress(address, port)).bind().syncUninterruptibly());
+         }).group((EventLoopGroup)lazyloadbase.getValue()).localAddress(address, 46798)).bind().syncUninterruptibly());
       }
    }
 

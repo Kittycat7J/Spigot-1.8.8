@@ -19,6 +19,7 @@ import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderEnd;
+import net.custom.DBLogger;
 
 public class BlockFire extends Block {
    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 15);

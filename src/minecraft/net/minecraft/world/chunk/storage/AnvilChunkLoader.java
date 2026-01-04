@@ -24,6 +24,7 @@ import net.minecraft.world.NextTickListEntry;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.NibbleArray;
+import net.minecraft.world.gen.ChunkProviderServer;
 import net.minecraft.world.storage.IThreadedFileIO;
 import net.minecraft.world.storage.ThreadedFileIOBase;
 import org.apache.logging.log4j.LogManager;
@@ -75,6 +76,54 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
 
             return chunk;
          }
+      }
+   }
+
+   public void deleteChunk(World world, int chunkX, int chunkZ) {
+      ChunkCoordIntPair pair = new ChunkCoordIntPair(chunkX, chunkZ);
+
+      // 1. Prevent async save from resurrecting it
+      this.chunksToRemove.remove(pair);
+      this.pendingAnvilChunksCoordinates.remove(pair);
+
+      // 2. Remove in-memory chunk safely
+      // if (world instanceof WorldServer) {
+         
+      ChunkProviderServer chunkProviderServer = (ChunkProviderServer)(world).getChunkProvider();
+      long chunkKey = ChunkCoordIntPair.chunkXZ2Int(chunkX, chunkZ);
+
+      // Check if chunk is loaded
+      if (chunkProviderServer.chunkExists(chunkX, chunkZ)) {
+         Chunk chunk = chunkProviderServer.id2ChunkMap.getValueByKey(chunkKey);
+
+         if (chunk != null) {
+            // Call unload logic
+         
+            chunk.onChunkUnload();
+
+            // Remove from internal lists
+            chunkProviderServer.loadedChunks.remove(chunk);
+            chunkProviderServer.id2ChunkMap.remove(chunkKey);
+         }
+      }
+
+      // }
+
+      // 3. Remove chunk data from region file
+      try {
+         // This is the ONLY supported way
+         DataOutputStream out =
+               RegionFileCache.getChunkOutputStream(
+                  this.chunkSaveLocation,
+                  chunkX,
+                  chunkZ
+               );
+
+         if (out != null) {
+               out.close(); // zero-length entry → treated as non-existent
+         }
+      } catch (Exception e) {
+         e.printStackTrace();
       }
    }
 

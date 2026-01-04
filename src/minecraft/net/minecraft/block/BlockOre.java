@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.custom.DBLogger;
 
 public class BlockOre extends Block {
    public BlockOre() {
