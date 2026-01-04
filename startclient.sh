@@ -28,6 +28,5 @@ fi
 exec docker run --rm -it \
     $DOCKER_ARGS \
     -p 5005:5005 \
-    -p 46798:46798 \
     $IMAGE \
     python runtime/startclient.py "$@"
