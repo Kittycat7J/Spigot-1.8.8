@@ -24,13 +24,13 @@ chatLinks:true
 chatLinksPrompt:true
 chatOpacity:1.0
 snooperEnabled:true
-fullscreen:false
-enableVsync:true
+fullscreen:true
+enableVsync:false
 useVbo:false
 hideServerAddress:false
 advancedItemTooltips:true
-pauseOnLostFocus:true
-touchscreen:false
+pauseOnLostFocus:false
+touchscreen:true
 overrideWidth:0
 overrideHeight:0
 heldItemTooltips:true
@@ -39,7 +39,7 @@ chatHeightUnfocused:0.44366196
 chatScale:1.0
 chatWidth:1.0
 showInventoryAchievementHint:false
-mipmapLevels:4
+mipmapLevels:0
 streamBytesPerPixel:0.5
 streamMicVolume:1.0
 streamSystemVolume:1.0
