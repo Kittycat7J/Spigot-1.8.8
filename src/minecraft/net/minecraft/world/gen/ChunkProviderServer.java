@@ -21,6 +21,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.EmptyChunk;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.chunk.storage.AnvilChunkLoader;
 import net.minecraft.world.chunk.storage.IChunkLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,10 +31,10 @@ public class ChunkProviderServer implements IChunkProvider {
    private Set<Long> droppedChunksSet = Collections.<Long>newSetFromMap(new ConcurrentHashMap());
    private Chunk dummyChunk;
    private IChunkProvider serverChunkGenerator;
-   private IChunkLoader chunkLoader;
+   public IChunkLoader chunkLoader;
    public boolean chunkLoadOverride = true;
-   private LongHashMap<Chunk> id2ChunkMap = new LongHashMap();
-   private List<Chunk> loadedChunks = Lists.<Chunk>newArrayList();
+   public LongHashMap<Chunk> id2ChunkMap = new LongHashMap();
+   public List<Chunk> loadedChunks = Lists.<Chunk>newArrayList();
    private WorldServer worldObj;
 
    public ChunkProviderServer(WorldServer p_i1520_1_, IChunkLoader p_i1520_2_, IChunkProvider p_i1520_3_) {
@@ -68,6 +69,7 @@ public class ChunkProviderServer implements IChunkProvider {
    }
 
    public Chunk loadChunk(int p_73158_1_, int p_73158_2_) {
+       logger.info("Loading chunk at {}, {}", p_73158_1_, p_73158_2_);
       long i = ChunkCoordIntPair.chunkXZ2Int(p_73158_1_, p_73158_2_);
       this.droppedChunksSet.remove(Long.valueOf(i));
       Chunk chunk = (Chunk)this.id2ChunkMap.getValueByKey(i);
@@ -124,6 +126,8 @@ public class ChunkProviderServer implements IChunkProvider {
          }
       }
    }
+   
+
 
    private void saveChunkExtraData(Chunk p_73243_1_) {
       if(this.chunkLoader != null) {

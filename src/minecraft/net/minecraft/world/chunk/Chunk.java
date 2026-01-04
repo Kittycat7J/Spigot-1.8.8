@@ -784,11 +784,12 @@ public class Chunk {
       boolean flag5 = p_76624_1_.chunkExists(p_76624_3_ + 1, p_76624_4_ + 1);
       boolean flag6 = p_76624_1_.chunkExists(p_76624_3_ - 1, p_76624_4_ + 1);
       boolean flag7 = p_76624_1_.chunkExists(p_76624_3_ + 1, p_76624_4_ - 1);
-     this.worldObj.rand.setSeed(125452248375284L);
+//     this.worldObj.rand.setSeed(136785058270207L);
    //   logger.info("random gen is:{}", this.worldObj.rand);
       // logger.info("Populating chunk " + this.xPosition + ", " + this.zPosition);
       if(flag1 && flag2 && flag5) {
          if(!this.isTerrainPopulated) {
+             logger.info("chunk populating at {} {}", p_76624_3_, p_76624_4_);
              p_76624_1_.populate(p_76624_2_, p_76624_3_, p_76624_4_);
          } else {
             p_76624_1_.func_177460_a(p_76624_2_, this, p_76624_3_, p_76624_4_);
