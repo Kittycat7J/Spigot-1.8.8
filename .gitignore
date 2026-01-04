@@ -1,4 +1,5 @@
 **/*.pyc
+**/.idea
 /bin/
 /shelf/
 /workspace.xml
@@ -12,7 +13,6 @@
 /runtime/screenshots/
 /jars/logs/
 /jars/saves/
-/.idea/
 /runtime/crash-reports/
 /jars/options.txt
 /jars/assets/
