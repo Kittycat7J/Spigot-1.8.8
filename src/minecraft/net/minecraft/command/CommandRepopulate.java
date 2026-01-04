@@ -13,11 +13,11 @@ import net.minecraft.world.gen.ChunkProviderServer;
 public class CommandRepopulate extends CommandBase {
     @Override public String getCommandName() { return "repopulate"; }
     @Override public int getRequiredPermissionLevel() { return 2; }
-    @Override public String getCommandUsage(ICommandSender sender) { return "/repopulate [x z] [now|async]"; }
+    @Override public String getCommandUsage(ICommandSender sender) { return "/repopulate [x z] [now]"; }
 
     @Override
     public void processCommand(ICommandSender sender, String[] args) throws CommandException {
-        if (args.length < 1 || args.length > 3) {
+        if (args.length > 3) {
             throw new WrongUsageException(getCommandUsage(sender));
         }
 
@@ -38,53 +38,31 @@ public class CommandRepopulate extends CommandBase {
         }
 
         boolean now = false;
-        boolean async = false;
+        ;
 
         // Handle mode argument
-        if (args.length == 3) {
-            String mode = args[2];
+        if (args.length == 3 || args.length == 1) {
+            String mode = args[args.length - 1];
             if ("now".equalsIgnoreCase(mode)) {
                 now = true;
-            } else if ("async".equalsIgnoreCase(mode)) {
-                now = true;
-                async = true;
             } else {
                 throw new WrongUsageException(getCommandUsage(sender));
             }
+        } else {
+            now = false;
         }
 
         if (now) {
             if (!isAreaLoaded(world, chunkX, chunkZ)) {
                 notifyOperators(sender, this, "Warning: Area not loaded for repopulation!");
             }
-
-            if (async) {
-
-                final World finalWorld = sender.getEntityWorld();
-                final int finalChunkX = chunkX;
-                final int finalChunkZ = chunkZ;
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            repopulate(finalWorld, finalChunkX, finalChunkZ);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
-
-
-            } else {
-                repopulate(world, chunkX, chunkZ);
-            }
+            repopulate(world, chunkX, chunkZ);
         } else {
             world.getChunkFromChunkCoords(chunkX, chunkZ).setTerrainPopulated(false);
         }
 
         sender.setCommandStat(CommandResultStats.Type.AFFECTED_BLOCKS, 1);
-        notifyOperators(sender, this, "commands.repopulate.success", chunkX, chunkZ);
+        notifyOperators(sender, this, "Repopulated chunk " + chunkX + ", " + chunkZ);
     }
 
 

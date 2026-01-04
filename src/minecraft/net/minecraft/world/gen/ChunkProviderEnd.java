@@ -16,9 +16,12 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ChunkProviderEnd implements IChunkProvider {
-   private Random endRNG;
+    private static final Logger logger = LogManager.getLogger();
+    private Random endRNG;
    private NoiseGeneratorOctaves noiseGen1;
    private NoiseGeneratorOctaves noiseGen2;
    private NoiseGeneratorOctaves noiseGen3;
@@ -225,7 +228,8 @@ public class ChunkProviderEnd implements IChunkProvider {
 
 
    public void populate(IChunkProvider p_73153_1_, int p_73153_2_, int p_73153_3_) {
-      this.endWorld.rand.setSeed(119623915123639L);
+//      this.endWorld.rand.setSeed(143539702413494L);
+      logger.info("chunk provider end populating at {} {}", p_73153_2_, p_73153_3_);
       BlockFalling.fallInstantly = true;
       BlockPos blockpos = new BlockPos(p_73153_2_ * 16, 0, p_73153_3_ * 16);
       this.endWorld.getBiomeGenForCoords(blockpos.add(16, 0, 16)).decorate(this.endWorld, this.endWorld.rand, blockpos);
@@ -256,7 +260,8 @@ public class ChunkProviderEnd implements IChunkProvider {
    }
 
    public List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-      return this.endWorld.getBiomeGenForCoords(pos).getSpawnableList(creatureType);
+//      logger.info("Getting possible creatures for {} at {}", creatureType, this.endWorld.getBiomeGenForCoords(pos).getSpawnableList(creatureType));
+       return this.endWorld.getBiomeGenForCoords(pos).getSpawnableList(creatureType);
    }
 
    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position) {

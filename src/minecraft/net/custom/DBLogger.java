@@ -17,7 +17,7 @@ public final class DBLogger {
        CONFIG
        ========================= */
 
-    private static final int QUEUE_LIMIT = 10000;
+    private static final int QUEUE_LIMIT = 20000;
 
     /* =========================
        STATE
@@ -26,8 +26,11 @@ public final class DBLogger {
     private static final BlockingQueue<LogEntry> QUEUE =
             new LinkedBlockingQueue<LogEntry>(QUEUE_LIMIT);
 
-    private static volatile boolean running = true;
+    private static volatile boolean running = false;
+    private static Thread writerThread;
     private static Connection connection;
+
+    private DBLogger() {}
 
     /* =========================
        LOG ENTRY
@@ -55,20 +58,22 @@ public final class DBLogger {
 
         boolean sameAs(LogEntry other) {
             return other != null &&
-                   tick == other.tick &&
-                   bound == other.bound &&
-                   file.equals(other.file) &&
-                   rand.equals(other.rand) &&
-                   call.equals(other.call) &&
-                   note.equals(other.note);
+                    tick == other.tick &&
+                    bound == other.bound &&
+                    file.equals(other.file) &&
+                    rand.equals(other.rand) &&
+                    call.equals(other.call) &&
+                    note.equals(other.note);
         }
     }
 
     /* =========================
-       STATIC INIT
+       LIFECYCLE
        ========================= */
 
-    static {
+    public static synchronized void start() {
+        if (running) return;
+
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:events.db");
@@ -86,19 +91,34 @@ public final class DBLogger {
             );
         } catch (Exception e) {
             e.printStackTrace();
+            return;
         }
 
-        Thread writer = new Thread(new Runnable() {
+        running = true;
+
+        writerThread = new Thread(new Runnable() {
+            @Override
             public void run() {
                 writeLoop();
             }
         }, "DBLogger");
 
-        writer.setDaemon(true);
-        writer.start();
+        writerThread.setDaemon(true);
+        writerThread.start();
     }
 
-    private DBLogger() {}
+    public static synchronized void stop() {
+        if (!running) return;
+        running = false;
+
+        if (writerThread != null) {
+            writerThread.interrupt();
+        }
+    }
+
+    public static boolean isRunning() {
+        return running;
+    }
 
     /* =========================
        WRITER LOOP
@@ -115,8 +135,12 @@ public final class DBLogger {
                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
             );
 
-            while (running) {
-                LogEntry entry = QUEUE.take(); // blocks
+            while (running || !QUEUE.isEmpty()) {
+                LogEntry entry = QUEUE.poll();
+                if (entry == null) {
+                    Thread.sleep(10);
+                    continue;
+                }
 
                 if (entry.sameAs(last)) {
                     last.repetitions++;
@@ -127,9 +151,7 @@ public final class DBLogger {
                     last = entry;
                 }
             }
-        } catch (InterruptedException ignored) {
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         } finally {
             try {
                 if (last != null && ps != null) {
@@ -137,13 +159,8 @@ public final class DBLogger {
                 }
             } catch (SQLException ignored) {}
 
-            if (ps != null) {
-                try { ps.close(); } catch (SQLException ignored) {}
-            }
-
-            if (connection != null) {
-                try { connection.close(); } catch (SQLException ignored) {}
-            }
+            try { if (ps != null) ps.close(); } catch (SQLException ignored) {}
+            try { if (connection != null) connection.close(); } catch (SQLException ignored) {}
         }
     }
 
@@ -169,11 +186,11 @@ public final class DBLogger {
        ========================= */
 
     public static void log(String file, Random rand, String call, int bound, String note) {
-        long tick = getCurrentTick();
+        if (!running) return;
 
         LogEntry entry = new LogEntry(
                 System.currentTimeMillis(),
-                tick,
+                getCurrentTick(),
                 file,
                 rand,
                 call,
@@ -181,13 +198,11 @@ public final class DBLogger {
                 note
         );
 
-        // Drop if queue is full (never block game thread)
         QUEUE.offer(entry);
     }
 
     private static long getCurrentTick() {
         try {
-            // Server side (dedicated or integrated)
             MinecraftServer server = MinecraftServer.getServer();
             if (server != null && server.worldServers != null && server.worldServers.length > 0) {
                 WorldServer world = server.worldServers[0];
@@ -195,22 +210,12 @@ public final class DBLogger {
                     return world.getTotalWorldTime();
                 }
             }
-        } catch (Throwable ignored) {
-            // absolutely never crash the game for logging
-        }
+        } catch (Throwable ignored) {}
 
-        // Client side or very early startup
         return -1;
     }
-
-    /* =========================
-       SHUTDOWN
-       ========================= */
-
-    public static void shutdown() {
-        running = false;
-    }
 }
+
 
 // DBLogger.log("file.java", random, "method", bound, "note");
 
